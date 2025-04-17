@@ -53,7 +53,8 @@ function ItemSorting({ propertyCount, label }: SearchResultsHeaderProps) {
   };
 
   return (
-    <div className="flex items-center justify-between mt-4">
+    <div className="mt-8">
+      {/* flex items-center justify-between  */}
       <div className="text-gray-900">
         <span className="font-bold text-[5]">
           {propertyCount || "No"} {label} found{" "}
@@ -88,7 +89,7 @@ function ItemSorting({ propertyCount, label }: SearchResultsHeaderProps) {
       </DropdownMenu> */}
 
       {/* Tab filter */}
-      <div className="hidden md:flex items-center space-x-2">
+      <div className="hidden md:flex items-center justify-between mt-4 space-x-2">
         {sortOptions.map((option) => (
           <Button
             key={option.value}

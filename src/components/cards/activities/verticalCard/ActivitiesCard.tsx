@@ -110,9 +110,13 @@ export default function ActivitiesCard({
               {/* Book Now Button */}
               <div className="text-right mt-2 content-bottom-right">
                 <Link href={url}>
-                  <Button variant={"outline"}>
+                  <Button variant={"primary"} className="">
                     Check Availability
-                    <ArrowRight className="mt-1" size={12} color="#000000" />
+                    <ArrowRight
+                      className="mt-[2px] m-0 p-0"
+                      size={12}
+                      color="#fff"
+                    />
                   </Button>
                 </Link>
               </div>
