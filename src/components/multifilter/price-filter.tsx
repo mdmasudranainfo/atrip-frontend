@@ -124,8 +124,8 @@ export default function PriceFilter({
             />
           </div>
           <div className="flex justify-between text-primary-dark font-medium text-sm mt-2">
-            <span>Min: ${searchQuery[0]}</span>
-            <span>Max: ${searchQuery[1]}</span>
+            <span>Min: AED {searchQuery[0]}</span>
+            <span>Max: AED {searchQuery[1]}</span>
           </div>
 
           {/* Budget Range Buttons */}

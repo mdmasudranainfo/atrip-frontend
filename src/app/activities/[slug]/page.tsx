@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
+  ArrowLeft,
   BookCheck,
   Hotel,
   MapPin,
@@ -97,7 +98,8 @@ const ActivitiesDetails = async (context: {
             href="/activities"
             className="text-blue-600 hover:text-blue-800 text-sm mb-4 inline-block"
           >
-            Revisit the search list
+            <ArrowLeft className="h-4 w-4 inline-block mr-1 mb-[2px]" />
+            Back
           </Link>
 
           {/*  */}

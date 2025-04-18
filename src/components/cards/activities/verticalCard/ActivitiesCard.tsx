@@ -47,7 +47,7 @@ export default function ActivitiesCard({
                     {activity.title}
                   </h3>
                   {/* Rating Section */}
-                  <RatingStar reviewScore={activity.review_score} />
+                  {/* <RatingStar reviewScore={activity.review_score} /> */}
                 </div>
 
                 {/* Location */}
@@ -58,11 +58,8 @@ export default function ActivitiesCard({
 
                 {/* sub title start */}
                 <div className=" py-2">
-                  <p className="text-sm">
-                    {" "}
-                    Admission to Dubai’s biggest, multicultural festival park
-                    with replicas of iconic landmarks , Admission to Dubai’s
-                    biggest
+                  <p className="text-sm md:block hidden">
+                    {activity?.sub_title}
                   </p>
                 </div>
                 {/* sub title end  */}

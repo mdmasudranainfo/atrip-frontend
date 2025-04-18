@@ -16,7 +16,7 @@ interface InclusionsProps {
 
 const Inclusions = ({ content }: InclusionsProps) => {
   // Parse the JSON string to get an array of inclusions.
-  const inclusionsArray: string[] = JSON.parse(content || "[]");
+  // const inclusionsArray: string[] = JSON.parse(content || "[]");
 
   return (
     <Card className="w-full border-none">
@@ -28,15 +28,24 @@ const Inclusions = ({ content }: InclusionsProps) => {
               <h3 className="text-base font-bold">Inclusions</h3>
             </div>
           </AccordionTrigger>
-          <AccordionContent className="px-6 pb-6 border-none">
-            <Card className="w-full border-none bg-white shadow-none">
-              <CardContent className="shadow-none border-none">
-                <div className="space-y-3 border-none shadow-none">
+          <AccordionContent className="px-6 border-none ">
+            <Card className="w-full border-none bg-white shadow-none ">
+              <CardContent className="shadow-none border-none ">
+                {/* <div className="space-y-3 border-none shadow-none">
                   <ul className="list-disc pl-5">
                     {inclusionsArray.map((item, index) => (
                       <li key={index}>{item}</li>
                     ))}
                   </ul>
+                </div> */}
+
+                <div className="w-full">
+                  <article className="prose prose-slate prose-lead:text-secondary-foreground dark:prose-invert xl:prose-md w-full mx-auto max-w-4xl">
+                    <div
+                      className=" text-sm font-normal leading-7"
+                      dangerouslySetInnerHTML={{ __html: content }}
+                    />
+                  </article>
                 </div>
               </CardContent>
             </Card>
