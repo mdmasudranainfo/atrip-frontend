@@ -41,6 +41,7 @@ const ActivitiesDetails = async (context: {
   }
 
   const { data, reviews, booking_data } = await getActivityBySlug(slug);
+  // console.log("data", data?.address);
 
   if (!data?.id) {
     notFound();
@@ -59,31 +60,8 @@ const ActivitiesDetails = async (context: {
     { value: "cancellation_policy", label: "Cancellation policy" },
     { value: "location", label: "Location" },
     { value: "my_tickets", label: "My Tickets" },
-    // { label: "FAQ", value: "faq" },
+    { value: "travelers_asking", label: "Travelers asking" },
   ];
-
-  const handleIcons = (value: string) => {
-    switch (value) {
-      case "highlights":
-        return <HiOutlineSpeakerphone className="h-8 w-8 " />;
-      case "inclusions":
-        return <BookCheck className="h-7 w-7" />;
-      case "operating_hours":
-        return <SlidersHorizontal className="h-8 w-8" />;
-      case "need_to_know":
-        return <SquarePlus className="h-8 w-8 " />;
-      case "cancellation_policy":
-        return <Hotel className="h-8 w-8 " />;
-      case "location":
-        return <Hotel className="h-8 w-8 " />;
-      case "my_tickets":
-        return <ShieldQuestion className="h-8 w-8 " />;
-      case "faq":
-        return <ShieldQuestion className="h-8 w-8 " />;
-      default:
-        return null;
-    }
-  };
 
   return (
     <div>
@@ -153,29 +131,31 @@ const ActivitiesDetails = async (context: {
         {/* Tabs menu */}
         <div
           className="flex gap-8 w-full my-6 lg:flex-row flex-col-reverse"
-          id={elId}
+          // id={elId}
         >
           {/* left section start */}
           <div className="lg:w-[70%] w-full rounded-lg ">
             <div className="w-full ">
               <Tabs defaultValue="highlights" className="w-full font-bold">
-                <ScrollArea className="w-full ">
-                  <TabsList className="h-auto py-2.5 bg-white w-full flex-nowrap flex gap-4 overflow-x-auto shadow-sm border-b border-gray-200 justify-start">
-                    {tabItems.map((tab) => (
-                      <TabsTrigger
-                        key={tab?.value}
-                        value={tab?.value}
-                        className="group px-3 py-1.5 text-sm font-medium text-gray-600 
+                <div className=" sticky top-0 z-50">
+                  <ScrollArea className="w-full ">
+                    <TabsList className="h-auto py-2.5 bg-white w-full flex-nowrap flex  overflow-x-auto shadow-sm border-b border-gray-200 justify-start">
+                      {tabItems.map((tab) => (
+                        <TabsTrigger
+                          key={tab?.value}
+                          value={tab?.value}
+                          className="group px-3 py-1.5 text-sm font-medium text-gray-600 
         data-[state=active]:text-blue-600 
         data-[state=active]:border-b-2 data-[state=active]:border-blue-600 
-        hover:text-blue-600 rounded-none flex items-center transition-all duration-200"
-                      >
-                        <span className="text-sm">{tab?.label}</span>
-                      </TabsTrigger>
-                    ))}
-                  </TabsList>
-                  <ScrollBar orientation="horizontal" className="invisible" />
-                </ScrollArea>
+        hover:text-blue-600 rounded-none  transition-all duration-200"
+                        >
+                          <span className="text-sm">{tab?.label}</span>
+                        </TabsTrigger>
+                      ))}
+                    </TabsList>
+                    <ScrollBar orientation="horizontal" className="invisible" />
+                  </ScrollArea>
+                </div>
 
                 <ScrollArea>
                   <div className="">
@@ -191,7 +171,10 @@ const ActivitiesDetails = async (context: {
                       value="operating_hours"
                       className="border-none"
                     >
-                      <OperatingHours operatingHours={data?.operating_hours} />
+                      <OperatingHours
+                        data={data.operating_hours_title}
+                        operatingHours={data?.operating_hours}
+                      />
                     </TabsContent>
 
                     <TabsContent value="need_to_know" className="border-none">
@@ -206,7 +189,11 @@ const ActivitiesDetails = async (context: {
                     </TabsContent>
 
                     <TabsContent value="location" className="border-none">
-                      <ActivitiesMap lat={data?.map_lat} lng={data?.map_lng} />
+                      <ActivitiesMap
+                        address={data?.address}
+                        lat={data?.map_lat}
+                        lng={data?.map_lng}
+                      />
                     </TabsContent>
 
                     <TabsContent value="my_tickets" className="border-none">

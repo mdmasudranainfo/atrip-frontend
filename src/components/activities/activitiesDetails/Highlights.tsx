@@ -57,7 +57,11 @@ const ActivitiesHighlights = ({ data }: { data: any }) => {
         <CancelationPolicy cancelationPolicyData={data?.faqs} />
       </div>
       <div className="pt-5">
-        <ActivitiesMap lat={data?.map_lat} lng={data?.map_lng} />
+        <ActivitiesMap
+          address={data?.address}
+          lat={data?.map_lat}
+          lng={data?.map_lng}
+        />
       </div>
       <div className="pt-5">
         <MyTickets myTicket={data?.my_ticket} />

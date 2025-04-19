@@ -1,5 +1,3 @@
-"use client";
-
 import { AppWindowMac } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import {
@@ -9,10 +7,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-export default function OperatingHours({
-  operatingHours,
-  operatingHoursTitle,
-}: any) {
+export default function OperatingHours({ data, operatingHours }: any) {
   return (
     <Card className="w-full border-none">
       <Accordion type="single" collapsible defaultValue="policies">
@@ -24,15 +19,13 @@ export default function OperatingHours({
                 className="h-10 w-10 bg-blue-50 p-2 rounded-lg"
               />
               <span className="text-lg leading-[26px] font-semibold">
-                {"Operating Hours"}
+                Operating Hours
               </span>
             </div>
           </AccordionTrigger>
           <AccordionContent className="px-7 pb-6 font-inter">
             <div className="w-full ">
-              {/* <h3 className="text-base font-semibold text-dark mb-4">
-                {operatingHoursTitle}
-              </h3> */}
+              <h3 className="text-base font-semibold text-dark mb-4">{data}</h3>
               <ul className="space-y-4 w-full sm:w-6/12">
                 {operatingHours?.map(
                   (

@@ -6,10 +6,21 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Card } from "@/components/ui/card";
+import { console } from "inspector";
 import { LandPlot } from "lucide-react";
 
-export default function ActivitiesMap({lat, lng}: {lat: string, lng: string}) {
-  if(!lat || !lng) return;
+export default function ActivitiesMap({
+  address,
+  lat,
+  lng,
+}: {
+  address: string;
+  lat: string;
+  lng: string;
+}) {
+  console.log("address", address);
+  if (!lat || !lng) return;
+
   return (
     <Card className="w-full border-none">
       <Accordion type="single" collapsible defaultValue="policies">
@@ -21,7 +32,8 @@ export default function ActivitiesMap({lat, lng}: {lat: string, lng: string}) {
             </div>
           </AccordionTrigger>
           <AccordionContent className="px-6 pb-6">
-            <MapIframe lat={lat} lng={lng}/>
+            {address}
+            <MapIframe lat={lat} lng={lng} />
           </AccordionContent>
         </AccordionItem>
       </Accordion>
