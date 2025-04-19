@@ -205,15 +205,15 @@ const SearchEvents = ({
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="font-medium truncate">{result.title}</div>
-                    <div className="text-sm text-gray-500 flex items-center gap-2">
+                    {/* <div className="text-sm text-gray-500 flex items-center gap-2">
                       <span>{result.address}</span>
                       {result.review_score && (
                         <span className="flex items-center text-yellow-500">
                           ★ {result.review_score}
                         </span>
                       )}
-                    </div>
-                    <div className="text-sm font-medium text-primary-600">
+                    </div> */}
+                    {/* <div className="text-sm font-medium text-primary-600">
                       {result.sale_price ? (
                         <>
                           <span className="text-gray-400 line-through mr-2">
@@ -229,7 +229,7 @@ const SearchEvents = ({
                       <span className="text-gray-400 ml-2">
                         • {result.duration}h {result.start_time}
                       </span>
-                    </div>
+                    </div> */}
                   </div>
                   <Check
                     className={cn(
