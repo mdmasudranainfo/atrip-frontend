@@ -1,15 +1,27 @@
 // components/EmblaCarousel.tsx
 "use client";
 
-import React, { useEffect, useCallback, useState } from "react";
+import React, {
+  useEffect,
+  useCallback,
+  useState,
+  Dispatch,
+  SetStateAction,
+} from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
 
-type Props = {
-  slides: string[]; // array of image URLs
-};
+interface Props {
+  slides: any;
+  showGallery: boolean;
+  setShowGallery: Dispatch<SetStateAction<boolean>>;
+}
 
-const MobilePhototSlider: React.FC<Props> = ({ slides }) => {
+const MobilePhototSlider: React.FC<Props> = ({
+  slides,
+  showGallery,
+  setShowGallery,
+}: any) => {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
   const [selectedIndex, setSelectedIndex] = useState(0);
 
@@ -35,13 +47,14 @@ const MobilePhototSlider: React.FC<Props> = ({ slides }) => {
     <div className="relative">
       <div className="overflow-hidden" ref={emblaRef}>
         <div className="flex">
-          {slides.map((slider: any, index) => (
+          {slides.map((slider: any, index: number) => (
             <div className="min-w-full relative aspect-video" key={index}>
               <Image
                 src={slider.large}
                 alt={`Slide ${index}`}
                 layout="fill"
                 objectFit="cover"
+                onClick={() => setShowGallery(true)}
               />
             </div>
           ))}
@@ -50,7 +63,7 @@ const MobilePhototSlider: React.FC<Props> = ({ slides }) => {
 
       {/* Dot Navigation */}
       <div className="flex justify-center mt-4 gap-2">
-        {slides.map((_, index) => (
+        {slides.map((_: any, index: number) => (
           <button
             key={index}
             onClick={() => scrollTo(index)}

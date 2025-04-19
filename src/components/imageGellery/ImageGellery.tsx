@@ -38,7 +38,11 @@ export function ImageGallery({
     <div className="container mx-auto">
       {/* Image Gallery */}
       <div className="md:hidden block">
-        <MobilePhototSlider slides={images} />
+        <MobilePhototSlider
+          slides={images}
+          showGallery={showGallery}
+          setShowGallery={setShowGallery}
+        />
       </div>
       {/* grid */}
       <div className="md:grid hidden  grid-cols-1 md:grid-cols-2 gap-2">

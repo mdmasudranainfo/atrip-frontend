@@ -91,9 +91,11 @@ export function ImageGalleryModal({
                   <div className="">
                     <span className="text-base font-bold text-black">
                       {review?.author
-                        ? `${review.author.first_name ?? ""} ${review.author.last_name ?? ""}`.trim()
+                        ? `${review.author.first_name ?? ""} ${
+                            review.author.last_name ?? ""
+                          }`.trim()
                         : review?.user_name ?? "Anonymous"}
-                    </span>                   
+                    </span>
                     <p className="text-sm text-gray-600">{review.title}</p>
                   </div>
                   <p className="text-sm text-gray-600">{review.content}</p>
