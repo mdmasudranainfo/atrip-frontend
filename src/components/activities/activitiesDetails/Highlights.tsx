@@ -17,7 +17,7 @@ import NeedToKnow from "@/components/activities/activitiesDetails/NeedToKnow";
 const ActivitiesHighlights = ({ data }: { data: any }) => {
   return (
     <div>
-      <Card className="w-full border-none">
+      <div className="w-full bg-white border-t-2 ">
         <Accordion type="single" collapsible defaultValue="policies">
           <AccordionItem value="policies" className="border-0">
             <AccordionTrigger className="px-6 py-4 hover:no-underline">
@@ -35,7 +35,7 @@ const ActivitiesHighlights = ({ data }: { data: any }) => {
               <div className="w-full">
                 <article className="prose prose-slate prose-lead:text-secondary-foreground dark:prose-invert xl:prose-md w-full mx-auto max-w-4xl">
                   <div
-                    className="text-base text-sm font-normal leading-7"
+                    className=" text-sm font-normal leading-7"
                     dangerouslySetInnerHTML={{ __html: data?.content }}
                   />
                 </article>
@@ -43,27 +43,27 @@ const ActivitiesHighlights = ({ data }: { data: any }) => {
             </AccordionContent>
           </AccordionItem>
         </Accordion>
-      </Card>
-      <div className="pt-5">
+      </div>
+      <div className="">
         <Inclusions content={data?.include} />
       </div>
-      <div className="pt-5">
+      <div className="">
         <OperatingHours operatingHours={data?.operating_hours} />
       </div>
-      <div className="pt-5">
+      <div className="">
         <NeedToKnow NeedToKnowData={data?.need_to_know} />
       </div>
-      <div className="pt-5">
+      <div className="">
         <CancelationPolicy cancelationPolicyData={data?.faqs} />
       </div>
-      <div className="pt-5">
+      <div className="">
         <ActivitiesMap
           address={data?.address}
           lat={data?.map_lat}
           lng={data?.map_lng}
         />
       </div>
-      <div className="pt-5">
+      <div className="">
         <MyTickets myTicket={data?.my_ticket} />
       </div>
     </div>

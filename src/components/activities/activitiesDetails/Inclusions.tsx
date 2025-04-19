@@ -19,7 +19,7 @@ const Inclusions = ({ content }: InclusionsProps) => {
   // const inclusionsArray: string[] = JSON.parse(content || "[]");
 
   return (
-    <Card className="w-full border-none">
+    <div className="w-full bg-white border-t-2">
       <Accordion type="single" collapsible defaultValue="policies">
         <AccordionItem value="policies" className="border-none">
           <AccordionTrigger className="px-6 py-4 hover:no-underline">
@@ -52,7 +52,7 @@ const Inclusions = ({ content }: InclusionsProps) => {
           </AccordionContent>
         </AccordionItem>
       </Accordion>
-    </Card>
+    </div>
   );
 };
 

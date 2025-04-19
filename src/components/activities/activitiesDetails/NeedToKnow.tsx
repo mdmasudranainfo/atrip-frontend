@@ -1,4 +1,4 @@
-import { ArrowDownWideNarrow} from "lucide-react";
+import { ArrowDownWideNarrow } from "lucide-react";
 import type React from "react";
 import {
   Accordion,
@@ -8,10 +8,9 @@ import {
 } from "@/components/ui/accordion";
 import { Card } from "@/components/ui/card";
 
-export default function NeedToKnow({ NeedToKnowData }: any ) {
-
+export default function NeedToKnow({ NeedToKnowData }: any) {
   return (
-    <Card className="w-full border-none">
+    <div className="w-full border-none bg-white">
       <Accordion type="single" collapsible defaultValue="policies">
         <AccordionItem value="policies" className="border-0">
           <AccordionTrigger className="px-6 py-4 hover:no-underline">
@@ -22,17 +21,18 @@ export default function NeedToKnow({ NeedToKnowData }: any ) {
           </AccordionTrigger>
           <AccordionContent className="px-6 pb-6">
             <div className="w-full">
-                {NeedToKnowData ? (
-                  <div className="text-base font-normal leading-7" dangerouslySetInnerHTML={{ __html: NeedToKnowData }} />
-                ) : (
-                  <p className="text-gray-500">No information available.</p>
-                )}
+              {NeedToKnowData ? (
+                <div
+                  className="text-base font-normal leading-7"
+                  dangerouslySetInnerHTML={{ __html: NeedToKnowData }}
+                />
+              ) : (
+                <p className="text-gray-500">No information available.</p>
+              )}
             </div>
           </AccordionContent>
         </AccordionItem>
       </Accordion>
-    </Card>
+    </div>
   );
 }
-
-

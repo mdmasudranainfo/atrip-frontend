@@ -9,7 +9,7 @@ import {
 
 export default function OperatingHours({ data, operatingHours }: any) {
   return (
-    <Card className="w-full border-none">
+    <div className="w-full bg-white border-t-2 ">
       <Accordion type="single" collapsible defaultValue="policies">
         <AccordionItem value="policies" className="border-0">
           <AccordionTrigger className="px-6 py-4 hover:no-underline">
@@ -50,6 +50,6 @@ export default function OperatingHours({ data, operatingHours }: any) {
           </AccordionContent>
         </AccordionItem>
       </Accordion>
-    </Card>
+    </div>
   );
 }

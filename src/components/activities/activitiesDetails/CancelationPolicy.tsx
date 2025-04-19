@@ -7,10 +7,10 @@ import {
 import { Card } from "@/components/ui/card";
 import { LandPlot } from "lucide-react";
 
-export default function CancelationPolicy({cancelationPolicyData}:any) {
+export default function CancelationPolicy({ cancelationPolicyData }: any) {
   const isArray = Array.isArray(cancelationPolicyData);
   return (
-    <Card className="w-full border-none">
+    <div className="w-full bg-white border-t-2">
       <Accordion type="single" collapsible defaultValue="policies">
         <AccordionItem value="policies" className="border-0">
           <AccordionTrigger className="px-6 py-4 hover:no-underline">
@@ -22,7 +22,10 @@ export default function CancelationPolicy({cancelationPolicyData}:any) {
           <AccordionContent className="px-6 pb-6">
             <div className="w-full">
               {!isArray && cancelationPolicyData ? (
-                <div className="text-base font-normal leading-7" dangerouslySetInnerHTML={{ __html: cancelationPolicyData }} />
+                <div
+                  className="text-base font-normal leading-7"
+                  dangerouslySetInnerHTML={{ __html: cancelationPolicyData }}
+                />
               ) : (
                 <p className="text-gray-500">No information available.</p>
               )}
@@ -30,6 +33,6 @@ export default function CancelationPolicy({cancelationPolicyData}:any) {
           </AccordionContent>
         </AccordionItem>
       </Accordion>
-    </Card>
+    </div>
   );
 }
