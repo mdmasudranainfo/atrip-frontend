@@ -27,9 +27,9 @@ export default function ActivitiesCard({
   return (
     <Link href={url}>
       <Card className="card-wrapper overflow-hidden sm:p-4 border-none w-full h-auto">
-        <div className="single-item flex gap-4">
+        <div className="single-item flex flex-col sm:flex-row gap-4">
           {/* Image Section */}
-          <div className="single-item-media relative w-32 h-auto  sm:h-60 sm:w-32 md:w-40 lg:w-60 rounded-xl overflow-hidden">
+          <div className="md:single-item-media relative w-full sm:w-32 h-60 sm:h-60 md:w-40 lg:w-60 rounded-xl overflow-hidden">
             <Image
               src={activity.image_url || "/placeholder.svg"}
               alt={activity.title}
@@ -39,78 +39,72 @@ export default function ActivitiesCard({
           </div>
 
           {/* Content Section */}
-          <div className="single-item-content flex flex-1 flex-col gap-0 justify-between">
-            <div className="content-wrapper flex justify-between items-stretch">
-              <div className="basis-[80%]">
+          <div className="single-item-content flex flex-1 flex-col gap-2 justify-between">
+            <div className="content-wrapper flex flex-col sm:flex-row justify-between">
+              <div className="basis-full sm:basis-[80%]">
                 <div className="flex items-center gap-1 content-top">
-                  <h3 className="md:text-xl text-[15px] leading-[16px] md:leading-[28px] font-semibold text-dark">
+                  <h3 className="text-[15px] leading-[16px] md:text-xl md:leading-[28px] font-semibold text-dark">
                     {activity.title}
                   </h3>
-                  {/* Rating Section */}
-                  {/* <RatingStar reviewScore={activity.review_score} /> */}
                 </div>
 
                 {/* Location */}
-                <div className="content-location flex items-center gap-2 md:text-sm text-[13px] text-primary-dark mt-2">
-                  <MapPin className="md:h-4 md:w-4 w-3 h-3" />
+                <div className="content-location flex items-center gap-2 text-[13px] md:text-sm text-primary-dark mt-1">
+                  <MapPin className="h-3 w-3 md:h-4 md:w-4" />
                   <span>{activity.address}</span>
                 </div>
 
-                {/* sub title start */}
-                <div className=" py-2">
-                  <p className="text-sm md:block hidden">
-                    {activity?.sub_title}
-                  </p>
+                {/* Subtitle */}
+                <div className="py-2">
+                  <p className="text-sm ">{activity?.sub_title}</p>
                 </div>
-                {/* sub title end  */}
-                {/* Services Section */}
-                <div className="services flex gap-5 mt-3 text-dark text-sm">
+
+                {/* Services */}
+                <div className="services md:grid hidden  grid-cols-2 gap-x-4 gap-y-2 mt-2 text-dark text-[13px] md:text-sm">
                   <div className="service-single flex items-center gap-2">
-                    <BsCalendarX className="md:h-5 md:w-5 h-4 w-4 text-primary-dark" />
-                    <span className="md:text-md text-[13px]">
-                      Free cancellation
-                    </span>
+                    <BsCalendarX className="h-4 w-4 text-primary-dark md:h-5 md:w-5" />
+                    <span>Free cancellation</span>
                   </div>
                   <div className="service-single flex items-center gap-2">
-                    <BsBookmarkStar className="md:h-5 md:w-5 h-4 w-4 text-primary-dark" />
-                    <span className="md:text-md text-[13px]">
-                      Instant confirmation
-                    </span>
+                    <BsBookmarkStar className="h-4 w-4 text-primary-dark md:h-5 md:w-5" />
+                    <span>Instant confirmation</span>
                   </div>
                   <div className="service-single flex items-center gap-2">
-                    <BsPhone className="md:h-5 md:w-5 h-4 w-4 text-primary-dark" />
-                    <span className="md:text-md text-[13px]">
-                      Mobile ticket
-                    </span>
+                    <BsPhone className="h-4 w-4 text-primary-dark md:h-5 md:w-5" />
+                    <span>Mobile ticket</span>
                   </div>
                   <div className="service-single flex items-center gap-2">
-                    <TbCalendarTime className="md:h-5 md:w-5 h-4 w-4 text-primary-dark" />
-                    <span className="md:text-md text-[13px]">
-                      Flexible duration
-                    </span>
+                    <TbCalendarTime className="h-4 w-4 text-primary-dark md:h-5 md:w-5" />
+                    <span>Flexible duration</span>
                   </div>
                 </div>
               </div>
-              <div className="content-bottom flex flex-col justify-between">
+
+              {/* Rating badge (place under title on small screens) */}
+              <div className="mt-2 sm:mt-0 sm:self-start">
                 <RatingBadge
                   total={activity.total_review}
                   score={activity.review_score}
                 />
               </div>
             </div>
-            <div className="mt-2">
+
+            {/* Bottom Price & CTA */}
+            <div className="mt-3 sm:mt-2">
               <DiscountPriceBadge
                 sellPrice={sellPrice}
                 comparePrice={comparePrice}
                 priceAfterText="/person"
               />
-              {/* Book Now Button */}
-              <div className="text-right mt-2 content-bottom-right">
+              <div className="text-right mt-2">
                 <Link href={url}>
-                  <Button variant={"primary"} className="">
+                  <Button
+                    variant={"primary"}
+                    className=" w-full sm:w-auto !py-4"
+                  >
                     Check Availability
                     <ArrowRight
-                      className="mt-[2px] m-0 p-0"
+                      className="mt-[2px] ml-1"
                       size={12}
                       color="#fff"
                     />
