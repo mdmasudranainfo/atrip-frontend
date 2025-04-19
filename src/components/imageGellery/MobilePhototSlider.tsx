@@ -13,8 +13,6 @@ const MobilePhototSlider: React.FC<Props> = ({ slides }) => {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
   const [selectedIndex, setSelectedIndex] = useState(0);
 
-  console.log("slides", slides);
-
   const scrollTo = useCallback(
     (index: number) => {
       emblaApi?.scrollTo(index);

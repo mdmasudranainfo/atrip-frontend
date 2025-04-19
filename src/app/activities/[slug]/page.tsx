@@ -29,6 +29,8 @@ import ActivityBooking from "@/components/activities/activity-booking";
 import RatingBadgeHorizontal from "@/components/rating-badge-horizontal";
 import BookingAttraction from "@/components/layouts/booking-attraction";
 import DiscountPriceBadge from "@/components/booking/discount-price-badge";
+import * as Dialog from "@radix-ui/react-dialog";
+import { X } from "lucide-react";
 
 const ActivitiesDetails = async (context: {
   params: Promise<{ slug: string }>;
@@ -64,13 +66,13 @@ const ActivitiesDetails = async (context: {
   ];
 
   return (
-    <div>
+    <div className="">
       <div className="relative h-full :max-h-[600px] bg-about-us w-full  from-blue-900 via-blue-950 to-blue-950">
         <div className="bg-[#00000066] h-full w-full absolute top-0 bottom-0"></div>
         <TransparentNavbar isBgWhite={false} />
       </div>
       {/*  */}
-      <main className="w-[96%] sm:container m-auto min-h-screen  py-8  ">
+      <main className="w-[96%] sm:container m-auto min-h-screen  py-8   ">
         <div className="bg-white p-6 rounded-xl  ">
           <Link
             href="/activities"
@@ -208,7 +210,7 @@ const ActivitiesDetails = async (context: {
           {/* left section ends */}
 
           {/* Right section start */}
-          <div className="flex-1 lg:max-w-md w-full  mx-auto">
+          <div className="flex-1 lg:max-w-md w-full  mx-auto md:block hidden ">
             <Card className=" px-5 py-6 bg-white rounded-lg shadow-md">
               <CardHeader className="space-y-2">
                 {/* <CardTitle className="text-lg leading-6 font-semibold text-dark">
@@ -227,6 +229,41 @@ const ActivitiesDetails = async (context: {
           </div>
           {/* Right section ends */}
         </div>
+
+        <Dialog.Root>
+          <Dialog.Trigger asChild>
+            {/* mobile checkout button */}
+            <div className="px-2 py-2 rounded-t-md fixed bottom-0 z-50 border-t md:hidden flex justify-between items-center bg-white w-full">
+              <p className="text-lg leading-6 font-medium text-dark">
+                {formatPrice(sellPrice)}/{" "}
+                <span className="text-sm text-primary">Per Person</span>
+              </p>
+              <Button className="text-white">Check Availability</Button>
+            </div>
+          </Dialog.Trigger>
+
+          <Dialog.Portal>
+            <Dialog.Overlay className="fixed inset-0 bg-black/40 z-50" />
+            <Dialog.Content className="fixed inset-x-0 bottom-0 z-50 bg-white rounded-t-2xl p-4 max-h-[90vh] overflow-y-auto">
+              <div className="flex justify-end">
+                <Dialog.Close asChild>
+                  <button className="text-gray-500 hover:text-gray-700">
+                    <X className="h-5 w-5" />
+                  </button>
+                </Dialog.Close>
+              </div>
+
+              {/* mobile modal checkout card */}
+              <div className="flex-1 lg:max-w-md w-full mx-auto">
+                <Card className="px-5 py-6 bg-white rounded-lg shadow-md">
+                  <CardContent className="p-0 sm:p-0 mt-4">
+                    <ActivityBooking event={data} />
+                  </CardContent>
+                </Card>
+              </div>
+            </Dialog.Content>
+          </Dialog.Portal>
+        </Dialog.Root>
       </main>
     </div>
   );
