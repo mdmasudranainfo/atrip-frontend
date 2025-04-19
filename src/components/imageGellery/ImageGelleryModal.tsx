@@ -9,6 +9,7 @@ import RatingStar from "../rating-star";
 import { useState } from "react";
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
+import ImageGalleryModalSingle from "./ImageGalleryModalSingle";
 
 interface GalleryModalProps {
   open: boolean;
@@ -107,13 +108,16 @@ export function ImageGalleryModal({
       </DialogContent>
 
       {/* Lightbox for Fullscreen Image Gallery */}
-      <Lightbox
+
+      <ImageGalleryModalSingle
         open={lightboxOpen}
-        close={() => setLightboxOpen(false)}
-        index={lightboxIndex}
-        slides={images.hotelUploads.map((img) => ({
-          src: img.large,
-        }))}
+        onClose={() => setLightboxOpen(false)}
+        hotelName={hotelName}
+        star_rate={star_rate}
+        review_score={review_score}
+        reviewCount={reviewCount}
+        images={images}
+        reviews={reviews}
       />
     </Dialog>
   );
