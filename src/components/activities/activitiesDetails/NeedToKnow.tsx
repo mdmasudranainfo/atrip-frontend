@@ -10,7 +10,7 @@ import { Card } from "@/components/ui/card";
 
 export default function NeedToKnow({ NeedToKnowData }: any) {
   return (
-    <div className="w-full border-none bg-white">
+    <div className="w-full bg-white border-t-2">
       <Accordion type="single" collapsible defaultValue="policies">
         <AccordionItem value="policies" className="border-0">
           <AccordionTrigger className="px-6 py-4 hover:no-underline">

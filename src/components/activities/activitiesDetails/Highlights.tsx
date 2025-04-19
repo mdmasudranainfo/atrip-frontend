@@ -48,7 +48,10 @@ const ActivitiesHighlights = ({ data }: { data: any }) => {
         <Inclusions content={data?.include} />
       </div>
       <div className="">
-        <OperatingHours operatingHours={data?.operating_hours} />
+        <OperatingHours
+          data={data?.operating_hours_title}
+          operatingHours={data?.operating_hours}
+        />
       </div>
       <div className="">
         <NeedToKnow NeedToKnowData={data?.need_to_know} />
