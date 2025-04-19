@@ -8,6 +8,7 @@ import { useState } from "react";
 
 import { TourReviewList } from "@/types/tourTypes";
 import { Review } from "@/types/review";
+import MobilePhototSlider from "./MobilePhototSlider";
 
 interface ImageGalleryProps {
   images: any;
@@ -36,7 +37,11 @@ export function ImageGallery({
   return (
     <div className="container mx-auto">
       {/* Image Gallery */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+      <div className="md:hidden block">
+        <MobilePhototSlider slides={images} />
+      </div>
+      {/* grid */}
+      <div className="md:grid hidden  grid-cols-1 md:grid-cols-2 gap-2">
         <div className="md:col-span-1 aspect-[4/3] overflow-hidden rounded-lg">
           {images?.length !== 0 && (
             <Image
