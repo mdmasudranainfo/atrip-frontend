@@ -43,8 +43,6 @@ export default async function Page({
     notFound();
   }
 
-  console.log("Booking Data", bookingData);
-
   // Visa
   if (bookingData.booking.object_model == "visa") {
     if (bookingData.booking.step == 1) {

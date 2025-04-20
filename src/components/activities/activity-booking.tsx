@@ -36,7 +36,7 @@ import { getErrorMessage } from "@/lib/handle-error";
 
 const FormSchema = z.object({
   start_date: z.date(),
-  start_time: z.string().min(3, "Start time required"),
+  start_time: z.string().optional(),
 });
 
 export default function ActivityBooking({ event }: { event: EventRow }) {
