@@ -57,7 +57,7 @@ export default function ActivityBooking({ event }: { event: EventRow }) {
         step: 0,
         ...value,
         start_date: format(value.start_date, "yyyy-MM-dd"),
-        time_slot: value.start_time,
+        // time_slot: value.start_time,
       };
 
       const { data, error } = await bookingAddToCart(payload);
@@ -134,29 +134,36 @@ export default function ActivityBooking({ event }: { event: EventRow }) {
           )}
         />
 
-        <FormField
-          control={form.control}
-          name="start_time"
-          render={({ field }) => (
-            <FormItem>
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
-                <FormControl>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Time Slot" />
-                  </SelectTrigger>
-                </FormControl>
-                <SelectContent>
-                  {timeSlots.map((time: string) => (
-                    <SelectItem value={time} key={time}>
-                      {time}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+        {timeSlots?.length ? (
+          <FormField
+            control={form.control}
+            name="start_time"
+            render={({ field }) => (
+              <FormItem>
+                <Select
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                >
+                  <FormControl>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Time Slot" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    {timeSlots.map((time: string) => (
+                      <SelectItem value={time} key={time}>
+                        {time}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        ) : (
+          ""
+        )}
 
         <Button
           className="w-full h-12 bg-blue-600 hover:bg-blue-700 text-white"
