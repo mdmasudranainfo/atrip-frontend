@@ -57,7 +57,7 @@ export default function ActivityGuestInfo({
 }: {
   bookingData: any;
 }) {
-  console.log("bookingDataBooking", bookingData?.booking);
+  console.log("bookingDataBooking", bookingData);
 
   const [selectedPackage, setSelectedPackage] = useState<any[]>([]);
   const router = useRouter();
@@ -159,42 +159,47 @@ export default function ActivityGuestInfo({
                 className="space-y-4"
               >
                 {!!packages?.length && (
-                  <Card className="p-4 space-y-4">
-                    <CardHeader>
-                      <CardTitle className="flex items-center gap-2 ">
-                        <User className="h-5 w-5 text-blue-600 " />
-                        <h2 className="text-xl">Guests Information</h2>
+                  <Card className="p-4 space-y-6">
+                    <CardHeader className="pb-0">
+                      <CardTitle className="flex items-center gap-2 text-xl">
+                        <User className="h-5 w-5 text-blue-600" />
+                        Guests Information
                       </CardTitle>
                     </CardHeader>
+
                     <CardContent>
                       {/* Table Header */}
-                      <div className="grid grid-cols-[auto,auto,auto] gap-4 mb-4 text-sm text-gray-500">
+                      <div className="hidden md:grid grid-cols-3 gap-4 text-sm text-gray-500 mb-2">
                         <div>TITLE</div>
-                        <div className="text-center px-8">QUANTITY</div>
+                        <div className="text-center">QUANTITY</div>
                         <div className="text-right">PRICE</div>
                       </div>
 
                       {/* Package Items */}
                       <div className="space-y-6">
-                        {packages?.map((pkg: BookingTicketType, i: number) => {
+                        {packages.map((pkg: BookingTicketType, i: number) => {
                           const oldItem = selectedPackage?.find(
-                            (_it) => _it.name == pkg.name
+                            (_it) => _it.name === pkg.name
                           );
                           const val = oldItem?.number || 0;
 
                           return (
                             <div
                               key={i}
-                              className="grid grid-cols-[auto,auto,auto] gap-4 items-center py-10 border-t"
+                              className="flex flex-col md:grid md:grid-cols-3 gap-4 items-center border-t pt-6"
                             >
-                              <div>
-                                <h3 className="font-semibold">{pkg.name}</h3>
+                              {/* Title & Description */}
+                              <div className="text-center md:text-left">
+                                <h3 className="font-semibold text-base">
+                                  {pkg.name}
+                                </h3>
                                 <p className="text-sm text-gray-500">
-                                  {pkg?.des}
+                                  {pkg.des}
                                 </p>
                               </div>
 
-                              <div className="flex items-center justify-between  h-10 rounded-md bg-gray-100">
+                              {/* Quantity Selector */}
+                              <div className="flex items-center justify-center w-full h-10 rounded-full bg-gray-100 max-w-[180px] mx-auto md:mx-0">
                                 <Button
                                   variant="ghost"
                                   size="icon"
@@ -203,20 +208,19 @@ export default function ActivityGuestInfo({
                                   className="h-full px-3 hover:bg-transparent"
                                   onClick={() => updateQuantity(pkg, val - 1)}
                                 >
-                                  <span className="text-xl font-medium">−</span>
+                                  <span className="text-xl font-medium text-primary">
+                                    −
+                                  </span>
                                 </Button>
                                 <Input
                                   type="number"
                                   value={val}
                                   onChange={(e) => {
-                                    const value = Number.parseInt(
-                                      e.target.value
-                                    );
-                                    if (!isNaN(value)) {
+                                    const value = parseInt(e.target.value);
+                                    if (!isNaN(value))
                                       updateQuantity(pkg, value);
-                                    }
                                   }}
-                                  className="w-35 h-full border-0 bg-transparent text-center focus-visible:ring-0 focus-visible:ring-offset-0"
+                                  className="w-12 h-full border-0 bg-transparent text-center focus-visible:ring-0 focus-visible:ring-offset-0"
                                 />
                                 <Button
                                   variant="ghost"
@@ -226,11 +230,14 @@ export default function ActivityGuestInfo({
                                   className="h-full px-3 hover:bg-transparent"
                                   onClick={() => updateQuantity(pkg, val + 1)}
                                 >
-                                  <span className="text-xl font-medium">+</span>
+                                  <span className="text-xl font-medium text-primary">
+                                    +
+                                  </span>
                                 </Button>
                               </div>
 
-                              <div className="text-right font-medium">
+                              {/* Price */}
+                              <div className="md:text-right text-center font-semibold text-gray-800 w-full md:w-auto">
                                 {formatPrice(Number(pkg.price || 0))}
                               </div>
                             </div>
@@ -347,6 +354,7 @@ export default function ActivityGuestInfo({
           </div>
 
           <ActivityPriceSummery
+            title={bookingData?.service?.title}
             isLoading={isLoading}
             packages={packages}
             selectedPackage={selectedPackage}
