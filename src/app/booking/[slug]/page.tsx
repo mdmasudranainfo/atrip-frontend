@@ -23,7 +23,13 @@ export const metadata: Metadata = {
   description: `${siteConfig.description}`,
 };
 
-export default async function Page({ params, searchParams }: { params: any, searchParams: any }) {
+export default async function Page({
+  params,
+  searchParams,
+}: {
+  params: any;
+  searchParams: any;
+}) {
   const pageParams = await params;
   const query = await searchParams;
   const booking_id = pageParams?.slug;
@@ -32,101 +38,105 @@ export default async function Page({ params, searchParams }: { params: any, sear
   }
 
   const session = await auth();
-  const { data: bookingData } = await fetchBookingCheckoutData(
-    booking_id
-  );
+  const { data: bookingData } = await fetchBookingCheckoutData(booking_id);
   if (!bookingData?.booking?.id) {
     notFound();
   }
 
+  console.log("Booking Data", bookingData);
 
   // Visa
-  if(bookingData.booking.object_model == 'visa')
-  {
-
-    if(bookingData.booking.step == 1) {
-      return <VisaDocumentForm bookingData={bookingData} />
+  if (bookingData.booking.object_model == "visa") {
+    if (bookingData.booking.step == 1) {
+      return <VisaDocumentForm bookingData={bookingData} />;
     }
 
-    if(bookingData.booking.step == 2) {
-      return <VisaCheckoutFinal bookingData={bookingData} />
+    if (bookingData.booking.step == 2) {
+      return <VisaCheckoutFinal bookingData={bookingData} />;
     }
 
-    return <VisaGuestInfo bookingData={bookingData} />
-
+    return <VisaGuestInfo bookingData={bookingData} />;
   }
 
   // Umrah
-  if(bookingData.booking.object_model == 'umrah')
-  {
-    if(bookingData.booking.step == 1) {
-      return <UmrahCheckoutFinal bookingData={bookingData} />
+  if (bookingData.booking.object_model == "umrah") {
+    if (bookingData.booking.step == 1) {
+      return <UmrahCheckoutFinal bookingData={bookingData} />;
     }
 
-    return <UmrahGuestInfo bookingData={bookingData} />
+    return <UmrahGuestInfo bookingData={bookingData} />;
   }
 
   // Tour
-  if(bookingData.booking.object_model == 'tour')
-  {
-    if(bookingData.booking.step == 1) {
-      return <UmrahCheckoutFinal bookingData={bookingData} />
+  if (bookingData.booking.object_model == "tour") {
+    if (bookingData.booking.step == 1) {
+      return <UmrahCheckoutFinal bookingData={bookingData} />;
     }
 
-    return <TourGuestInfo bookingData={bookingData} />
+    return <TourGuestInfo bookingData={bookingData} />;
   }
 
-
-
   // Car
-  if(bookingData.booking.object_model == 'car' || bookingData.booking.object_model == 'transport' || bookingData.booking.object_model == 'flight')
-  {
-    return <CarCheckoutFinal bookingData={bookingData} />
+  if (
+    bookingData.booking.object_model == "car" ||
+    bookingData.booking.object_model == "transport" ||
+    bookingData.booking.object_model == "flight"
+  ) {
+    return <CarCheckoutFinal bookingData={bookingData} />;
   }
 
   // Event
-  if(bookingData.booking.object_model == 'event')
-  {
-    if(bookingData.booking.step == 1) {
-      return <ActivityCheckoutFinal bookingData={bookingData} />
+  if (bookingData.booking.object_model == "event") {
+    if (bookingData.booking.step == 1) {
+      return <ActivityCheckoutFinal bookingData={bookingData} />;
     }
 
-    return <ActivityGuestInfo bookingData={bookingData} />
+    return <ActivityGuestInfo bookingData={bookingData} />;
   }
 
-
   // Hotel
-  if(bookingData.booking.object_model == 'hotel')
-  {
-    if(bookingData.booking.step == 1) {
-
-      if(bookingData.booking?.gateway == "offline_payment") {
-        return <HotelCheckoutFinalCard bookingData={bookingData} hasLoggin={!!session} />
+  if (bookingData.booking.object_model == "hotel") {
+    if (bookingData.booking.step == 1) {
+      if (bookingData.booking?.gateway == "offline_payment") {
+        return (
+          <HotelCheckoutFinalCard
+            bookingData={bookingData}
+            hasLoggin={!!session}
+          />
+        );
       }
 
-      return <HotelCheckoutFinalContainer bookingData={bookingData} hasLoggin={!!session} />
+      return (
+        <HotelCheckoutFinalContainer
+          bookingData={bookingData}
+          hasLoggin={!!session}
+        />
+      );
     }
-  
-    return <HotelCheckoutMain bookingData={bookingData} hasLoggin={!!session} />
+
+    return (
+      <HotelCheckoutMain bookingData={bookingData} hasLoggin={!!session} />
+    );
   }
 
   // Chauffeur
-  if(bookingData.booking.object_model == 'chauffeur')
-  {    
-
+  if (bookingData.booking.object_model == "chauffeur") {
     const locationIds = [];
     if (query.location_id) {
       locationIds.push(Number(query.location_id));
     }
-    
+
     const selectedLocations = locationIds.length
       ? await getSelectedLocation(locationIds)
       : [];
 
-
-    return <ChauffeurCheckoutFinal bookingData={bookingData} selectedLocations={selectedLocations} />
+    return (
+      <ChauffeurCheckoutFinal
+        bookingData={bookingData}
+        selectedLocations={selectedLocations}
+      />
+    );
   }
 
-  redirect('/')
-
+  redirect("/");
 }

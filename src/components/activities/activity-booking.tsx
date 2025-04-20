@@ -57,6 +57,7 @@ export default function ActivityBooking({ event }: { event: EventRow }) {
         step: 0,
         ...value,
         start_date: format(value.start_date, "yyyy-MM-dd"),
+        time_slot: value.start_time,
       };
 
       const { data, error } = await bookingAddToCart(payload);
@@ -73,7 +74,21 @@ export default function ActivityBooking({ event }: { event: EventRow }) {
     }
   }
 
-  const timeSlots = generateTimeSlots("00:00", "23:30");
+  // const timeSlots = generateTimeSlots("00:00", "23:30");\
+  let timeSlots: string[] = [];
+
+  try {
+    const rawTimeSlot = event?.time_slot;
+
+    if (typeof rawTimeSlot === "string" && rawTimeSlot.trim() !== "") {
+      timeSlots = JSON.parse(rawTimeSlot);
+    } else if (Array.isArray(rawTimeSlot)) {
+      timeSlots = rawTimeSlot;
+    }
+  } catch (err) {
+    console.error("Failed to parse time_slot:", err);
+    timeSlots = [];
+  }
 
   return (
     <Form {...form}>
@@ -131,7 +146,7 @@ export default function ActivityBooking({ event }: { event: EventRow }) {
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  {timeSlots.map((time) => (
+                  {timeSlots.map((time: string) => (
                     <SelectItem value={time} key={time}>
                       {time}
                     </SelectItem>

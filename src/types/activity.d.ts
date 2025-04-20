@@ -60,6 +60,7 @@ export interface EventRow {
   service_fee: string | null;
   surrounding: string | null;
   end_time: string;
+  time_slot?: any;
   duration_unit: string;
   author_id: number;
   image: string;

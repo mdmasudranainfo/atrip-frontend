@@ -43,7 +43,6 @@ const ActivitiesDetails = async (context: {
   }
 
   const { data, reviews, booking_data } = await getActivityBySlug(slug);
-  // console.log("data", data?.address);
 
   if (!data?.id) {
     notFound();
