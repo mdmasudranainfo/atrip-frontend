@@ -75,20 +75,26 @@ export default function ActivityBooking({ event }: { event: EventRow }) {
   }
 
   // const timeSlots = generateTimeSlots("00:00", "23:30");\
-  let timeSlots: string[] = [];
+  let timeSlots: any[] = [];
 
   try {
     const rawTimeSlot = event?.time_slot;
 
     if (typeof rawTimeSlot === "string" && rawTimeSlot.trim() !== "") {
-      timeSlots = JSON.parse(rawTimeSlot);
+      // Parse JSON and remove duplicates
+      timeSlots = [...new Set(JSON.parse(rawTimeSlot))];
     } else if (Array.isArray(rawTimeSlot)) {
-      timeSlots = rawTimeSlot;
+      // Remove duplicates if it's already an array
+      timeSlots = [...new Set(rawTimeSlot)];
     }
   } catch (err) {
     console.error("Failed to parse time_slot:", err);
     timeSlots = [];
   }
+
+  timeSlots.map((item: string) => {
+    console.log(item);
+  });
 
   return (
     <Form {...form}>
@@ -142,12 +148,14 @@ export default function ActivityBooking({ event }: { event: EventRow }) {
             render={({ field }) => (
               <FormItem>
                 <Select
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
+                  value={field.value}
+                  onValueChange={(value) => {
+                    field.onChange(value); // This will set a single value
+                  }}
                 >
                   <FormControl>
                     <SelectTrigger>
-                      <SelectValue placeholder="Time Slot" />
+                      <SelectValue placeholder="Select time slot" />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
