@@ -53,13 +53,13 @@ function ItemSorting({ propertyCount, label }: SearchResultsHeaderProps) {
   };
 
   return (
-    <div className="mt-8">
+    <div className="">
       {/* flex items-center justify-between  */}
-      <div className="text-gray-900">
+      {/* <div className="text-gray-900">
         <span className="font-bold text-[5]">
           {propertyCount || "No"} {label} found{" "}
         </span>
-      </div>
+      </div> */}
       {/* <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button
