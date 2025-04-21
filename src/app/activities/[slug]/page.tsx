@@ -73,17 +73,17 @@ const ActivitiesDetails = async (context: {
       </div>
       {/*  */}
       <main className="w-[96%] sm:container m-auto min-h-screen  py-8   ">
-        <div className="bg-white p-6 rounded-xl  ">
+        <div className="bg-white py-6 rounded-xl  ">
           <Link
             href="/activities"
-            className="text-blue-600 hover:text-blue-800 text-sm mb-4 inline-block"
+            className="text-blue-600 hover:text-blue-800 text-sm mb-4 inline-block px-6 "
           >
             <ArrowLeft className="h-4 w-4 inline-block mr-1 mb-[2px]" />
             Back
           </Link>
 
           {/*  */}
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-3">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-3 px-6 ">
             <div>
               <h1 className="text-2xl font-semibold text-gray-900 mb-2">
                 {data.title}
