@@ -195,7 +195,7 @@ export default function ActivityGuestInfo({
                               </div>
 
                               {/* Quantity Selector */}
-                              <div className="flex items-center justify-end md:space-x-4">
+                              <div className="flex items-center justify-end md:space-x-4 ">
                                 <Button
                                   variant="outline"
                                   size="icon"

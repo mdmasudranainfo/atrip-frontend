@@ -30,6 +30,30 @@ export default function ActivityPriceSummery({
 }) {
   return (
     <>
+      <div className="flex justify-between items-center fixed bottom-0 left-0 w-full bg-white-softSlate px-4 py-2 border-t-2 rounded-t-lg  shadow-[0_-2px_10px_rgba(0,0,0,0.1)] z-50">
+        <div className="flex justify-between items-center">
+          <div>
+            <span className="text-sm text-dark font-medium">
+              AED {formatPrice(totalPrice)}
+            </span>
+            <span className="text-sm text-primary ml-1">/ Per Person</span>
+          </div>
+        </div>
+
+        <Button
+          className=" font-semibold  bg-primary text-white hover:bg-primary/90"
+          disabled={!isValid || isLoading}
+          onClick={onSubmit}
+        >
+          {isLoading ? (
+            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+          ) : (
+            "Book Now"
+          )}
+        </Button>
+      </div>
+
+      {/*  */}
       <div className=" px-0 space-y-4 hidden lg:block">
         <section className=" flex-1 text-dark sticky top-0">
           <Card className="w-full lg:max-w-lg">
