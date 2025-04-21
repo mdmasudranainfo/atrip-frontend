@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { Check, ChevronsUpDown } from "lucide-react";
+import { Check, Search } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useDebounce } from "@/hooks/use-debounce";
 import Image from "next/image";
@@ -35,7 +35,7 @@ interface SearchEventsProps {
 }
 
 const SearchEvents = ({
-  placeholder = "Search names...",
+  placeholder = "Where are you going",
   onSelect,
 }: SearchEventsProps) => {
   const [searchInput, setSearchInput] = useState("");
@@ -151,7 +151,7 @@ const SearchEvents = ({
         <input
           ref={inputRef}
           type="text"
-          className="w-full px-3 py-4 border outline-none rounded-md font-bold text-dark text-[15px] placeholder:text-dark"
+          className="w-full px-3 pl-9 py-4 border outline-none rounded-md font-bold text-dark text-[15px] placeholder:text-gray-600"
           placeholder={placeholder}
           value={searchInput}
           onChange={(e) => {
@@ -161,8 +161,8 @@ const SearchEvents = ({
           onFocus={() => setOpen(true)}
           onKeyDown={handleKeyDown}
         />
-        <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-2">
-          <ChevronsUpDown className="h-4 w-4 text-gray-500" />
+        <div className="absolute left-3 top-1/2 -translate-y-1/2 flex items-center gap-2">
+          <Search className="h-5 w-5 text-gray-500" />
         </div>
       </div>
 
