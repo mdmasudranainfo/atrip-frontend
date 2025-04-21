@@ -213,7 +213,7 @@ const ActivitiesDetails = async (context: {
 
           {/* Right section start */}
 
-          <div className="flex-1 lg:max-w-md w-full  mx-auto md:block hidden">
+          <div className="flex-1 lg:max-w-md w-full  mx-auto md:block hidden m-0 p-0">
             <div className=" sticky top-0    ">
               <Card className=" px-5 py-6 bg-white rounded-lg shadow-md">
                 <CardHeader className="space-y-2">

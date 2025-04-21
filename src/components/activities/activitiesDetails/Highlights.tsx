@@ -17,7 +17,7 @@ import NeedToKnow from "@/components/activities/activitiesDetails/NeedToKnow";
 const ActivitiesHighlights = ({ data }: { data: any }) => {
   return (
     <div>
-      <div className="w-full bg-white border-t-2 -mt-2">
+      <div className="w-full bg-white -mt-2">
         <Accordion type="single" collapsible defaultValue="policies">
           <AccordionItem value="policies" className="border-0">
             <AccordionTrigger className="px-6 py-4 hover:no-underline">

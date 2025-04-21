@@ -103,7 +103,8 @@ export default function ActivityBooking({ event }: { event: EventRow }) {
                   <PopoverTrigger asChild>
                     <Button
                       variant="outline"
-                      className="w-full justify-start text-left font-normal"
+                      className={`w-full justify-start text-left font-normal focus:ring-0 focus:outline-none focus:border 
+    ${form.watch("start_date") ? "focus:border-black" : ""}`}
                     >
                       <CalendarIcon className="mr-2 h-4 w-4" />
                       {field.value ? (
