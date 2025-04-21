@@ -31,6 +31,7 @@ import BookingAttraction from "@/components/layouts/booking-attraction";
 import DiscountPriceBadge from "@/components/booking/discount-price-badge";
 import * as Dialog from "@radix-ui/react-dialog";
 import { X } from "lucide-react";
+import StickyTabs from "@/components/activities/activitiesDetails/TabNav";
 
 const ActivitiesDetails = async (context: {
   params: Promise<{ slug: string }>;
@@ -138,7 +139,7 @@ const ActivitiesDetails = async (context: {
           <div className="lg:w-[70%] w-full rounded-lg ">
             <div className="w-full ">
               <Tabs defaultValue="highlights" className="w-full font-bold">
-                <div className=" sticky top-0 z-50">
+                {/* <div className=" sticky top-0 z-50">
                   <ScrollArea className="w-full ">
                     <TabsList className="h-auto py-2.5 bg-white w-full flex-nowrap flex  overflow-x-auto shadow-sm border-b border-gray-200 justify-start">
                       {tabItems.map((tab) => (
@@ -156,10 +157,12 @@ const ActivitiesDetails = async (context: {
                     </TabsList>
                     <ScrollBar orientation="horizontal" className="invisible" />
                   </ScrollArea>
-                </div>
+                </div> */}
+
+                <StickyTabs tabItems={tabItems} />
 
                 <ScrollArea>
-                  <div className="">
+                  <div className="-mt-2">
                     <TabsContent value="highlights" className="border-none">
                       <ActivitiesHighlights data={data} />
                     </TabsContent>
@@ -209,22 +212,25 @@ const ActivitiesDetails = async (context: {
           {/* left section ends */}
 
           {/* Right section start */}
-          <div className="flex-1 lg:max-w-md w-full  mx-auto md:block hidden ">
-            <Card className=" px-5 py-6 bg-white rounded-lg shadow-md">
-              <CardHeader className="space-y-2">
-                {/* <CardTitle className="text-lg leading-6 font-semibold text-dark">
+
+          <div className="flex-1 lg:max-w-md w-full  mx-auto md:block hidden">
+            <div className=" sticky top-0    ">
+              <Card className=" px-5 py-6 bg-white rounded-lg shadow-md">
+                <CardHeader className="space-y-2">
+                  {/* <CardTitle className="text-lg leading-6 font-semibold text-dark">
                   {data.title}
                 </CardTitle> */}
-                <p className="text-lg leading-6 font-medium text-dark">
-                  {formatPrice(sellPrice)}/{" "}
-                  <span className="text-sm text-primary"> Per Person</span>
-                </p>
-              </CardHeader>
-              <CardContent className="p-0 sm:p-0 mt-4">
-                <ActivityBooking event={data} />
-              </CardContent>
-            </Card>
-            <BookingAttraction />
+                  <p className="text-lg leading-6 font-medium text-dark">
+                    {formatPrice(sellPrice)}/{" "}
+                    <span className="text-sm text-primary"> Per Person</span>
+                  </p>
+                </CardHeader>
+                <CardContent className="p-0 sm:p-0 mt-4">
+                  <ActivityBooking event={data} />
+                </CardContent>
+              </Card>
+              <BookingAttraction />
+            </div>
           </div>
           {/* Right section ends */}
         </div>
