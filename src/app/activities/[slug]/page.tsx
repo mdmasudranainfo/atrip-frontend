@@ -50,6 +50,7 @@ const ActivitiesDetails = async (context: {
   }
 
   const sellPrice = getSellPrice(data.price, data.sale_price);
+
   const comparePrice = getComparePrice(data.price, data.sale_price);
 
   const elId = "activity-checkout";

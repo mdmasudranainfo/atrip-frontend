@@ -39,7 +39,8 @@ export function formatPrice(
   return new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: opts.currency ?? "AED",
-    // notation: opts.notation ?? "compact",
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
     ...opts,
   }).format(Number(price));
 }
@@ -48,14 +49,11 @@ export function formatStaticPrice(
   price: number | string,
   opts: Intl.NumberFormatOptions = {}
 ) {
-  return formatPrice(price, opts)
+  return formatPrice(price, opts);
 }
 
-export function preferInt(
-  price: number | string,
-) {
-  
-  const _price = Number(price)
+export function preferInt(price: number | string) {
+  const _price = Number(price);
   if (Number.isInteger(_price)) {
     return _price;
   } else {
@@ -66,7 +64,6 @@ export function preferInt(
       return _price; // Return float if decimal part is not 0
     }
   }
-  
 }
 
 export const parseUrlStrDate = (dateStr: string | null) => {
@@ -75,12 +72,11 @@ export const parseUrlStrDate = (dateStr: string | null) => {
   return isValid(date) ? date : null;
 };
 
-
 // Function to generate time slots every 30 minutes
 export const generateTimeSlots = (start: string, end: string) => {
   const times = [];
   const currentTime = new Date();
-  
+
   // Convert start and end time to minutes
   const [startHours, startMinutes] = start.split(":").map(Number);
   const [endHours, endMinutes] = end.split(":").map(Number);
@@ -96,23 +92,35 @@ export const generateTimeSlots = (start: string, end: string) => {
   }
 
   return times;
-}
+};
 
-export const getComparePrice = (price: number|string, sale_price?: number|string) => {
-  const _sale_price = Number(sale_price || 0)
-  const _price = Number(price || 0)
-  return _sale_price > 0 && _price > _sale_price ? _price : 0
-}
+export const getComparePrice = (
+  price: number | string,
+  sale_price?: number | string
+) => {
+  const _sale_price = Number(sale_price || 0);
+  const _price = Number(price || 0);
+  return _sale_price > 0 && _price > _sale_price ? _price : 0;
+};
 
-export const getSellPrice = (price: number|string, sale_price?: number|string) => {
-  const _sale_price = Number(sale_price || 0)
-  const _price = Number(price || 0)
-  return _sale_price > 0 ? _sale_price : _price
-}
+export const getSellPrice = (
+  price: number | string,
+  sale_price?: number | string
+) => {
+  const _sale_price = Number(sale_price || 0);
+  const _price = Number(price || 0);
+  return _sale_price > 0 ? _sale_price : _price;
+};
 
-export const getDiscountPercentage = (sellPrice: number, comparePrice: number) => {
-  const hasDiscount = comparePrice > 0 && comparePrice > sellPrice
-  return hasDiscount ? Math.round(((comparePrice - sellPrice) / comparePrice) * 100) : 0
-}
+export const getDiscountPercentage = (
+  sellPrice: number,
+  comparePrice: number
+) => {
+  const hasDiscount = comparePrice > 0 && comparePrice > sellPrice;
+  return hasDiscount
+    ? Math.round(((comparePrice - sellPrice) / comparePrice) * 100)
+    : 0;
+};
 
-export const taxRateToAmount = (amount: number, taxRate: number) => taxRate > 0 ? (taxRate / 100) * amount : 0
+export const taxRateToAmount = (amount: number, taxRate: number) =>
+  taxRate > 0 ? (taxRate / 100) * amount : 0;
