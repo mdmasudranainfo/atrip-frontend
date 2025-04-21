@@ -392,3 +392,15 @@ body {
     object-fit: cover;
   }
 }
+
+.phone-input {
+  @apply flex items-center w-full border border-gray-300 rounded-lg px-3  text-sm bg-white transition-all focus-within:ring-1 focus-within:ring-black;
+}
+
+.phone-input input {
+  @apply flex-1 outline-none bg-transparent text-sm;
+}
+
+.phone-input .PhoneInputCountry {
+  @apply mr-2;
+}

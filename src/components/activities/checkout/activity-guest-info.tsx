@@ -140,17 +140,13 @@ export default function ActivityGuestInfo({
       <main className="container mx-auto px-4">
         <div className="grid  lg:grid-cols-[70%,1fr] gap-4 md:p-5 px-0 py-6  grid-cols-1">
           <div className="space-y-4">
-            <div className="border rounded-xl p-4 h-content ">
-              <h1 className="text-2xl font-bold">
+            <div className="border rounded-xl p-4 h-content overflow-hidden bg-cover bg-center  bg-[url(/images/bradcomed-banner.png)]">
+              <h1 className="md:text-2xl font-bold  text-white">
                 {bookingData?.service?.title}
               </h1>
-              <h2 className="pt-1 font-semibold">
+              <h2 className="pt-1 md:text-md text-sm font-semibold  text-white">
                 {dayjs(bookingData?.booking?.start_date).format("D MMMM YYYY")}
               </h2>
-
-              <p className="text-sm pt-3 ">
-                Fill out the form and apply online{" "}
-              </p>
             </div>
 
             <Form {...form}>
@@ -159,11 +155,11 @@ export default function ActivityGuestInfo({
                 className="space-y-4"
               >
                 {!!packages?.length && (
-                  <Card className="p-4 space-y-6">
+                  <Card className="md:p-4 p-2 py-4 space-y-6">
                     <CardHeader className="pb-0">
-                      <CardTitle className="flex items-center gap-2 text-xl">
+                      <CardTitle className="flex items-center gap-2 md:text-xl">
                         <User className="h-5 w-5 text-blue-600" />
-                        Guests Information
+                        Guests
                       </CardTitle>
                     </CardHeader>
 
@@ -171,7 +167,7 @@ export default function ActivityGuestInfo({
                       {/* Table Header */}
                       <div className="hidden md:grid grid-cols-3 gap-4 text-sm text-gray-500 mb-2">
                         <div>TITLE</div>
-                        <div className="text-center">QUANTITY</div>
+                        <div className="text-right mr-8">QUANTITY</div>
                         <div className="text-right">PRICE</div>
                       </div>
 
@@ -186,11 +182,11 @@ export default function ActivityGuestInfo({
                           return (
                             <div
                               key={i}
-                              className="flex flex-col md:grid md:grid-cols-3 gap-4 items-center border-t pt-6"
+                              className="grid grid-cols-3 gap-4 items-center border-t md:pt-6 pt-4"
                             >
                               {/* Title & Description */}
                               <div className="text-center md:text-left">
-                                <h3 className="font-semibold text-base">
+                                <h3 className="font-semibold md:text-base text-[12px]">
                                   {pkg.name}
                                 </h3>
                                 <p className="text-sm text-gray-500">
@@ -199,19 +195,18 @@ export default function ActivityGuestInfo({
                               </div>
 
                               {/* Quantity Selector */}
-                              <div className="flex items-center justify-center w-full h-10 rounded-full bg-gray-100 max-w-[180px] mx-auto md:mx-0">
+                              <div className="flex items-center justify-end md:space-x-4">
                                 <Button
-                                  variant="ghost"
+                                  variant="outline"
                                   size="icon"
                                   type="button"
                                   disabled={val <= 0}
-                                  className="h-full px-3 hover:bg-transparent"
+                                  className="md:h-8 h-6 md:w-8 w-6 rounded-full hover:bg-gray-50 md:border border-none"
                                   onClick={() => updateQuantity(pkg, val - 1)}
                                 >
-                                  <span className="text-xl font-medium text-primary">
-                                    −
-                                  </span>
+                                  <span className="text-xl font-medium">−</span>
                                 </Button>
+
                                 <Input
                                   type="number"
                                   value={val}
@@ -220,24 +215,25 @@ export default function ActivityGuestInfo({
                                     if (!isNaN(value))
                                       updateQuantity(pkg, value);
                                   }}
-                                  className="w-12 h-full border-0 bg-transparent text-center focus-visible:ring-0 focus-visible:ring-offset-0"
+                                  className=" w-12 h-8 border-0 bg-transparent text-center focus-visible:ring-0 focus-visible:ring-offset-0"
                                 />
+
                                 <Button
-                                  variant="ghost"
+                                  variant="outline"
                                   size="icon"
                                   type="button"
                                   disabled={val >= pkg.max}
-                                  className="h-full px-3 hover:bg-transparent"
+                                  className=" md:h-8 h-6 md:w-8 w-6 rounded-full hover:bg-gray-50 md:border border-none"
                                   onClick={() => updateQuantity(pkg, val + 1)}
                                 >
-                                  <span className="text-xl font-medium text-primary">
+                                  <span className="md:text-xl font-medium">
                                     +
                                   </span>
                                 </Button>
                               </div>
 
                               {/* Price */}
-                              <div className="md:text-right text-center font-semibold text-gray-800 w-full md:w-auto">
+                              <div className="md:text-right text-center md:text-lg text-[12px] font-semibold text-gray-800 w-full md:w-auto">
                                 {formatPrice(Number(pkg.price || 0))}
                               </div>
                             </div>
@@ -248,24 +244,27 @@ export default function ActivityGuestInfo({
                   </Card>
                 )}
 
-                <Card className="p-4 space-y-4">
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-2 ">
-                      <UserRoundCog className="h-5 w-5 text-blue-600 " />
-                      <h2 className="text-xl">Contact Information</h2>
+                <Card className="p-4 md:p-8 space-y-6 shadow-md rounded-2xl border">
+                  <CardHeader className="pb-0">
+                    <CardTitle className="flex items-center gap-2 text-xl md:text-2xl font-semibold text-gray-800">
+                      <UserRoundCog className="h-5 w-5 text-blue-600" />
+                      Contact Information
                     </CardTitle>
                   </CardHeader>
-                  <CardContent className="grid md:grid-cols-2 gap-3">
+
+                  <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    {/* First Name */}
                     <FormField
                       control={form.control}
                       name="firstName"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-base">
+                          <FormLabel className="text-sm md:text-base font-medium text-gray-700">
                             First Name
                           </FormLabel>
                           <FormControl>
                             <Input
+                              className="w-full h-11 px-4 text-sm border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:outline-none"
                               placeholder="Enter your first name"
                               {...field}
                             />
@@ -275,14 +274,18 @@ export default function ActivityGuestInfo({
                       )}
                     />
 
+                    {/* Last Name */}
                     <FormField
                       control={form.control}
                       name="lastName"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-base">Last Name</FormLabel>
+                          <FormLabel className="text-sm md:text-base font-medium text-gray-700">
+                            Last Name
+                          </FormLabel>
                           <FormControl>
                             <Input
+                              className="w-full h-11 px-4 text-sm border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:outline-none"
                               placeholder="Enter your last name"
                               {...field}
                             />
@@ -292,21 +295,22 @@ export default function ActivityGuestInfo({
                       )}
                     />
 
+                    {/* Phone Number */}
                     <FormField
                       control={form.control}
                       name="phoneNumber"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-base">
+                          <FormLabel className="text-sm md:text-base font-medium text-gray-700">
                             Mobile Number
                           </FormLabel>
                           <FormControl>
                             <PhoneInput
-                              value={field.value}
-                              onChange={field.onChange}
                               international
                               defaultCountry="AE"
-                              className="flex-1 border-[#ddd] border login-country rounded-md px-3 py-0 text-base"
+                              value={field.value}
+                              onChange={field.onChange}
+                              className="phone-input w-full"
                             />
                           </FormControl>
                           <FormMessage />
@@ -314,18 +318,20 @@ export default function ActivityGuestInfo({
                       )}
                     />
 
+                    {/* Email */}
                     <FormField
                       control={form.control}
                       name="email"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-base">
+                          <FormLabel className="text-sm md:text-base font-medium text-gray-700">
                             Email Address
                           </FormLabel>
                           <FormControl>
                             <Input
-                              placeholder="Enter your email address"
                               type="email"
+                              className="w-full h-11 px-4 text-sm border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:outline-none"
+                              placeholder="Enter your email address"
                               {...field}
                             />
                           </FormControl>
