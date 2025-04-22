@@ -13,6 +13,7 @@ import MyTickets from "@/components/activities/activitiesDetails/MyTickets";
 import OperatingHours from "@/components/activities/activitiesDetails/OperatingHours";
 import ActivitiesMap from "@/components/activities/activitiesDetails/ActivitiesMap";
 import NeedToKnow from "@/components/activities/activitiesDetails/NeedToKnow";
+import TravelersAsking from "./TravelersAsking";
 
 const ActivitiesHighlights = ({ data }: { data: any }) => {
   return (
@@ -68,6 +69,9 @@ const ActivitiesHighlights = ({ data }: { data: any }) => {
       </div>
       <div className="">
         <MyTickets myTicket={data?.my_ticket} />
+      </div>
+      <div className="">
+        <TravelersAsking content={data?.asking} />
       </div>
     </div>
   );

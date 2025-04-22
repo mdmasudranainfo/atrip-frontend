@@ -32,6 +32,7 @@ import DiscountPriceBadge from "@/components/booking/discount-price-badge";
 import * as Dialog from "@radix-ui/react-dialog";
 import { X } from "lucide-react";
 import StickyTabs from "@/components/activities/activitiesDetails/TabNav";
+import TravelersAsking from "@/components/activities/activitiesDetails/TravelersAsking";
 
 const ActivitiesDetails = async (context: {
   params: Promise<{ slug: string }>;
@@ -203,6 +204,12 @@ const ActivitiesDetails = async (context: {
 
                     <TabsContent value="my_tickets" className="border-none">
                       <MyTickets myTicket={data?.my_ticket} />
+                    </TabsContent>
+                    <TabsContent
+                      value="travelers_asking"
+                      className="border-none"
+                    >
+                      <TravelersAsking content={data?.asking} />
                     </TabsContent>
                   </div>
                   <ScrollBar orientation="horizontal" className="invisible" />
