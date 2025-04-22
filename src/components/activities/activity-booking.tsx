@@ -33,6 +33,7 @@ import { bookingAddToCart } from "@/lib/actions/booking-actions";
 import { useRouter } from "next/navigation";
 import { generateTimeSlots } from "@/lib/utils";
 import { getErrorMessage } from "@/lib/handle-error";
+import { Calendar2 } from "../ui/calendar2";
 
 const FormSchema = z.object({
   start_date: z.date(),
@@ -117,7 +118,7 @@ export default function ActivityBooking({ event }: { event: EventRow }) {
                     </Button>
                   </PopoverTrigger>
                   <PopoverContent className="w-auto p-0" align="start">
-                    <Calendar
+                    <Calendar2
                       mode="single"
                       selected={field.value}
                       onSelect={(val) => {
