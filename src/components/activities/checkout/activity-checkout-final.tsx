@@ -23,6 +23,7 @@ import { confirmBooking } from "@/lib/actions/booking-actions";
 import { getErrorMessage } from "@/lib/handle-error";
 import Link from "next/link";
 import ActivityPriceSummery from "./activity-price-summery";
+import dayjs from "dayjs";
 
 const FormSchema = z.object({
   accepted: z
@@ -90,13 +91,15 @@ export default function ActivityCheckoutFinal({
           <form onSubmit={form.handleSubmit(onSubmit)}>
             <div className="grid  lg:grid-cols-[70%,1fr] gap-4 md:p-5 px-0 py-6  grid-cols-1">
               <div className="space-y-4">
-                <div className="border rounded-xl p-4 h-content ">
-                  <h1 className="text-2xl font-bold">
+                <div className="border rounded-xl p-4 h-content overflow-hidden bg-cover bg-center  bg-[url(/images/bradcomed-banner.png)]">
+                  <h1 className="md:text-2xl font-bold  text-white">
                     {bookingData?.service?.title}
                   </h1>
-                  <p className="text-sm pt-3 ">
-                    Fill out the form and apply online{" "}
-                  </p>
+                  <h2 className="pt-1 md:text-md text-sm font-semibold  text-white">
+                    {dayjs(bookingData?.booking?.start_date).format(
+                      "D MMMM YYYY"
+                    )}
+                  </h2>
                 </div>
                 <div>
                   <div className="space-y-6">
