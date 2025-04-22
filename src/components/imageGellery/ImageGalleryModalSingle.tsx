@@ -78,7 +78,7 @@ const ImageGalleryModalSingle = ({
                       height={600}
                       src={image.large || "/placeholder.svg"}
                       alt={`Image ${index}`}
-                      className="w-full h-[500px] object-cover rounded-lg"
+                      className="w-full md:h-[500px] h-[200] object-cover rounded-lg"
                     />
                   </div>
                 ))}
