@@ -57,7 +57,7 @@ export default function ActivityBooking({ event }: { event: EventRow }) {
         step: 0,
         ...value,
         start_date: format(value.start_date, "yyyy-MM-dd"),
-        // time_slot: value.start_time,
+        time_slot: value.start_time,
       };
 
       const { data, error } = await bookingAddToCart(payload);
@@ -91,10 +91,6 @@ export default function ActivityBooking({ event }: { event: EventRow }) {
     console.error("Failed to parse time_slot:", err);
     timeSlots = [];
   }
-
-  timeSlots.map((item: string) => {
-    console.log(item);
-  });
 
   return (
     <Form {...form}>

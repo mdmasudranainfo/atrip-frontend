@@ -78,7 +78,7 @@ const ImageGalleryModalSingle = ({
                       height={600}
                       src={image.large || "/placeholder.svg"}
                       alt={`Image ${index}`}
-                      className="w-full h-[400px] object-cover rounded-lg"
+                      className="w-full h-[500px] object-cover rounded-lg"
                     />
                   </div>
                 ))}
@@ -87,26 +87,25 @@ const ImageGalleryModalSingle = ({
           </div>
 
           {/* Thumbnail Carousel */}
-          <div className="px-4 pb-4">
+          <div className="px-4  border-t">
             <div className="overflow-hidden" ref={thumbRef}>
-              <div className="grid grid-cols-6 gap-2">
+              <div className="flex">
                 {slides.map((image, index) => (
                   <button
                     key={index}
                     onClick={() => scrollTo(index)}
-                    className={`border-2 rounded-md overflow-hidden ${
+                    className={`flex-shrink-0 border-2 rounded-md overflow-hidden mr-2 ${
                       index === selectedIndex
                         ? "border-blue-500"
                         : "border-transparent"
                     }`}
                   >
                     <Image
-                      width={100}
-                      height={70}
+                      width={120}
+                      height={80}
                       src={image.thumb || image.large}
                       alt={`Thumbnail ${index}`}
-                      className="w-full object-cover"
-                      // w-[180px] h-[100px]
+                      className="w-[120px] h-[70px] object-cover"
                     />
                   </button>
                 ))}
