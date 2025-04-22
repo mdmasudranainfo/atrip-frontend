@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useState, useEffect } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -60,13 +60,16 @@ export default function OfferSlide() {
         {images?.length &&
           images.map((item: CampaignTypes, index: number) => (
             <div key={index} className="px-2 md:h-full h-full">
-              <Link href={item.link || "#"} className="h-full inline-block w-full">
+              <Link
+                href={item.link || "#"}
+                className="h-full inline-block w-full"
+              >
                 <Card className="md:h-full h-full w-full border-2 border-red-600 overflow-hidden !bg-transparent !shadow-none !border-none relative">
                   <Image
                     src={item.image || ""}
                     alt="Travel illustration"
-                    width={256}
-                    height={256}
+                    width={500}
+                    height={500}
                     className="w-full h-full cursor-pointer object-cover travel-illustration-img"
                     onClick={(e) => {
                       e.preventDefault(); // Prevent Link from triggering

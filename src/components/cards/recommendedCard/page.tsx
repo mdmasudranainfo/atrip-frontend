@@ -52,7 +52,8 @@ const RecommendedCard = () => {
 
   if (loading) return <p className="text-center">Loading...</p>;
   if (error) return <p className="text-red-500">{error}</p>;
-  if (featuredCards.length === 0) return <p className="text-center">No recommended cards available.</p>;
+  if (featuredCards.length === 0)
+    return <p className="text-center">No recommended cards available.</p>;
 
   const settings = {
     dots: false,
@@ -111,81 +112,94 @@ const RecommendedCard = () => {
     <div className="w-full">
       <Slider {...settings} className="recommended-slider-left">
         {featuredCards.map((card) => {
+          const sellPrice = getSellPrice(card.price, card.sale_price);
 
-        const sellPrice = getSellPrice(card.price, card.sale_price)
+          return (
+            <div key={card?.id} className="px-2 h-full">
+              <div className="w-full overflow-hidden bg-white rounded-[10px] shadow-none border h-full">
+                {/* Image */}
+                <div className="relative w-full h-36 md:h-[280px] sm:h-48">
+                  <Link href={`#`}>
+                    <Image
+                      src={card?.image_url}
+                      alt={card?.title}
+                      fill
+                      className="object-cover rounded-[10px]"
+                      priority
+                    />
+                  </Link>
+                </div>
 
-        
-        return (
-          <div key={card?.id} className="px-2 h-full">
-            <div className="w-full overflow-hidden bg-white rounded-[10px] shadow-none border h-full">
-              {/* Image */}
-              <div className="relative w-full h-36 md:h-[280px] sm:h-48">
-                <Link href={`#`}>
-                  <Image
-                    src={card?.image_url}
-                    alt={card?.title}
-                    fill
-                    className="object-cover rounded-[10px]"
-                    priority
-                  />
-                </Link>
-              </div>
+                {/* Title and Price */}
+                <div className="md:px-5 px-3 flex flex-col md:mt-6 mt-1 md:mb-2.5 mb-1">
+                  {/* <span className="font-inter font-semibold md:text-sm text-[13px] md:leading-5 leading-3 text-success-light">
+                    Entry Ticket
+                  </span> */}
+                  <Link
+                    href="activities"
+                    className="hover:underline font-inter font-semibold md:text-xl text-[14px] md:leading-7 leading-4"
+                  >
+                    {card?.title}
+                  </Link>
+                </div>
 
-              {/* Title and Price */}
-              <div className="md:px-5 px-3 flex flex-col md:mt-6 mt-1 md:mb-2.5 mb-1">
-                <span className="font-inter font-semibold md:text-sm text-[13px] md:leading-5 leading-3 text-success-light">
-                  Entry Ticket
-                </span>
-                <Link href="activities" className="hover:underline font-inter font-semibold md:text-xl text-[14px] md:leading-7 leading-4">
-                  {card?.title}
-                </Link>
-              </div>
+                {/* Features */}
+                <div className="md:p-0 md:px-5 px-3 flex flex-wrap md:gap-3 gap-1">
+                  {card?.service_including
+                    ? card?.service_including.map((service, index) => (
+                        <div key={index} className="flex gap-2">
+                          <span className="text-sm text-dark">{service}</span>
+                        </div>
+                      ))
+                    : cardFeatures.map((feature, index) => (
+                        <div
+                          key={`car${index}`}
+                          className="flex items-start gap-2"
+                        >
+                          {feature?.icon}
+                          <p className="font-inter font-medium text-sm leading-6 text-dark">
+                            {feature?.value
+                              ? `${feature?.value} ${feature?.text}`
+                              : feature?.text}
+                          </p>
+                        </div>
+                      ))}
+                </div>
 
-              {/* Features */}
-              <div className="md:p-0 md:px-5 px-3 flex flex-wrap md:gap-3 gap-1">
-                {card?.service_including
-                  ? card?.service_including.map((service, index) => (
-                    <div key={index} className="flex gap-2">
-                      <span className="text-sm text-dark">{service}</span>
+                {/* Footer */}
+                <div className="md:px-5 px-3 md:pb-4 pb-3 md:mt-[40px] mt-2">
+                  <div className="flex md:flex-row flex-col items-center justify-between h-[70px]">
+                    <div className="text-primary-dark w-full">
+                      <span className="font-medium text-sm">
+                        One Night From
+                      </span>
+                      <div className="flex items-end gap-1">
+                        <span className="font-bold  text-md md:leading-[22px] leading-[16px] text-dark">
+                          {formatPrice(sellPrice)}
+                        </span>
+                        <span className="text-sm">Per person</span>
+                      </div>
                     </div>
-                  ))
-                  : cardFeatures.map((feature, index) => (
-                    <div key={`car${index}`} className="flex items-start gap-2">
-                      {feature?.icon}
-                      <p className="font-inter font-medium text-sm leading-6 text-dark">
-                        {feature?.value ? `${feature?.value} ${feature?.text}` : feature?.text}
+
+                    <div className="flex gap-2 items-center justify-between md:justify-end w-full">
+                      <div className="text-dark">
+                        <h4 className="font-semibold text-base">
+                          {card?.review_data?.score_text}
+                        </h4>
+                        <p className="text-sm">
+                          {card?.review_data?.total_review} reviews
+                        </p>
+                      </div>
+                      <p className="bg-info rounded-sm px-2 py-2 text-white text-sm">
+                        {String(card?.review_data?.score_total)}
                       </p>
                     </div>
-                  ))}
-              </div>
-
-              {/* Footer */}
-              <div className="md:px-5 px-3 md:pb-4 pb-3 md:mt-[40px] mt-2">
-                <div className="flex md:flex-row flex-col items-center justify-between h-[70px]">
-                  <div className="text-primary-dark w-full">
-                    <span className="font-medium text-sm">One Night From</span>
-                    <div className="flex items-end gap-1">
-                      <span className="font-bold md:text-xl text-md md:leading-[22px] leading-[16px] text-dark">
-                        {formatPrice(sellPrice)}
-                      </span>
-                      <span className="text-sm">Per person</span>
-                    </div>
-                  </div>
-
-                  <div className="flex gap-2 items-center justify-between md:justify-end w-full">
-                    <div className="text-dark">
-                      <h4 className="font-semibold text-base">{card?.review_data?.score_text}</h4>
-                      <p className="text-sm">{card?.review_data?.total_review} reviews</p>
-                    </div>
-                    <p className="bg-info rounded-sm px-2 py-2 text-white text-sm">
-                      {String(card?.review_data?.score_total)}
-                    </p>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        )})}
+          );
+        })}
       </Slider>
     </div>
   );
