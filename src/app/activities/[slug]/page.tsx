@@ -142,26 +142,6 @@ const ActivitiesDetails = async (context: {
           <div className="lg:w-[70%] w-full rounded-lg ">
             <div className="w-full ">
               <Tabs defaultValue="highlights" className="w-full font-bold">
-                {/* <div className=" sticky top-0 z-50">
-                  <ScrollArea className="w-full ">
-                    <TabsList className="h-auto py-2.5 bg-white w-full flex-nowrap flex  overflow-x-auto shadow-sm border-b border-gray-200 justify-start">
-                      {tabItems.map((tab) => (
-                        <TabsTrigger
-                          key={tab?.value}
-                          value={tab?.value}
-                          className="group px-3 py-1.5 text-sm font-medium text-gray-600 
-        data-[state=active]:text-blue-600 
-        data-[state=active]:border-b-2 data-[state=active]:border-blue-600 
-        hover:text-blue-600 rounded-none  transition-all duration-200"
-                        >
-                          <span className="text-sm">{tab?.label}</span>
-                        </TabsTrigger>
-                      ))}
-                    </TabsList>
-                    <ScrollBar orientation="horizontal" className="invisible" />
-                  </ScrollArea>
-                </div> */}
-
                 <StickyTabs tabItems={tabItems} />
 
                 <ScrollArea>
