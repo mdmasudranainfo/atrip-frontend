@@ -11,6 +11,7 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { formatPrice, getSellPrice } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 
 interface Feature {
   icon: React.ReactNode;
@@ -123,7 +124,7 @@ const RecommendedCard = () => {
             >
               <div className="w-full overflow-hidden bg-white rounded-[10px] shadow-none border h-full">
                 {/* Image */}
-                <div className="relative w-full h-36 md:h-[280px] sm:h-48">
+                <div className="relative w-full h-36 md:h-[250px] sm:h-48">
                   <Image
                     src={card?.image_url}
                     alt={card?.title}
@@ -138,12 +139,9 @@ const RecommendedCard = () => {
                   {/* <span className="font-inter font-semibold md:text-sm text-[13px] md:leading-5 leading-3 text-success-light">
                     Entry Ticket
                   </span> */}
-                  <Link
-                    href={`activities/${card?.slug}`}
-                    className="hover:underline font-inter font-semibold md:text-xl text-[14px] md:leading-7 leading-4"
-                  >
+                  <span className="hover:underline  font-inter font-semibold md:text-lg text-md mt-2 md:leading-7 leading-4">
                     {card?.title}
-                  </Link>
+                  </span>
                 </div>
 
                 {/* Features */}
@@ -168,14 +166,28 @@ const RecommendedCard = () => {
                         </div>
                       ))}
                 </div> */}
-                <p className="font-inter font-normal text-sm leading-6 text-dark md:px-5 px-3 mt-2">
+
+                <p className="hidden md:block font-inter font-normal text-sm leading-6 text-dark md:px-5 px-3 mt-2  ">
                   {card?.sub_title?.length > 100
                     ? `${card.sub_title.slice(0, 100)}...`
                     : card?.sub_title}
                 </p>
 
+                <div className="grid md:grid-cols-2 md:p-0 md:px-5 px-3 flex-wrap md:gap-3 gap-1 mt-2 ">
+                  {cardFeatures.map((feature, index) => (
+                    <div key={`car${index}`} className="flex items-start gap-2">
+                      {feature?.icon}
+                      <p className="font-inter font-medium text-[12px] leading-6 text-dark">
+                        {feature?.value
+                          ? `${feature?.value} ${feature?.text}`
+                          : feature?.text}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+
                 {/* Footer */}
-                <div className="md:px-5 px-3 md:pb-4 pb-3 md:mt-[40px] mt-2">
+                <div className="md:px-5 px-3 md:pb-4 pb-3  mt-2">
                   <div className="flex md:flex-row flex-col items-center justify-between h-[70px]">
                     <div className="text-primary-dark w-full">
                       {/* <span className="font-medium text-sm">
@@ -189,7 +201,7 @@ const RecommendedCard = () => {
                       </div>
                     </div>
 
-                    <div className="flex gap-2 items-center justify-between md:justify-end w-full">
+                    {/* <div className="flex gap-2 items-center justify-between md:justify-end w-full">
                       <div className="text-dark">
                         <h4 className="font-semibold text-base">
                           {card?.review_data?.score_text}
@@ -201,6 +213,11 @@ const RecommendedCard = () => {
                       <p className="bg-info rounded-sm px-2 py-2 text-white text-sm">
                         {String(card?.review_data?.score_total)}
                       </p>
+                    </div> */}
+                    <div className="w-full md:mt-0 mt-4">
+                      <Button className="w-full md:w-auto" variant={"primary"}>
+                        Check Availability
+                      </Button>
                     </div>
                   </div>
                 </div>

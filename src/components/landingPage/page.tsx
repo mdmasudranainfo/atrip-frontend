@@ -1,3 +1,4 @@
+import Link from "next/link";
 import DefaultBanner from "../banner/defaultBanner/page";
 import Brands from "../cards/brands/page";
 import DefaultCarCard from "../cards/cars/defaultCarCard/page";
@@ -9,6 +10,7 @@ import DefaultUmrahCard from "../cards/umrah/defaultUmrahCard/page";
 import DefaultVisaCard from "../cards/visa/defaultVisaCard/page";
 import { TransparentNavbar } from "../header/transparentNav/TransparentNav";
 import OfferSlide from "./sliders/offerSlide/page";
+import { Button } from "../ui/button";
 
 const LandingPage = () => {
   return (
@@ -33,9 +35,14 @@ const LandingPage = () => {
 
         {/* hotel section */}
         <section className="container mx-auto mt-0 sm:mt-[62px] overflow-hidden pb-5">
-          <h1 className="md:landingHeaderTxt md:mb-12 md:text-[40px] md:leading-[40px] text-[25px] leading-[25px] text-center mb-3 font-semibold">
-            Recommended Attractions{" "}
-          </h1>
+          <div className="flex justify-between items-center md:mb-12 mb-3">
+            <h1 className="md:text-[40px]  md:leading-[40px] text-sm  text-center  font-semibold">
+              Recommended Attractions{" "}
+            </h1>
+            <Link href={"/activities"}>
+              <Button variant={"primary"}>See More</Button>
+            </Link>
+          </div>
           <div className="recommended-slick-area mx-auto">
             <RecommendedCard />
           </div>
@@ -48,7 +55,7 @@ const LandingPage = () => {
               Your Private Chauffeur for all your journeys
             </h1>
             <div className="private-chauffeur-slick-area mx-auto overflow-hidden">
-              <DefaultCarCard path={'chauffeur-with-car'}/>
+              <DefaultCarCard path={"chauffeur-with-car"} />
             </div>
           </section>
         </div>
@@ -72,7 +79,7 @@ const LandingPage = () => {
               Best Hotels for Your Next Trip
             </h1>
             <div className="next-trip-slick-area mx-auto px-0 sm:px-3 ">
-              <DefaultHotelCard featured={true}/>
+              <DefaultHotelCard featured={true} />
             </div>
           </section>
         </div>
@@ -97,7 +104,7 @@ const LandingPage = () => {
               Your Private Chauffeur for all your journeys
             </h1>
             <div className="private-chauffeur-slick-area mx-auto px-2 sm:px-3 overflow-hidden">
-              <DefaultCarCard path={'chauffeur'} />
+              <DefaultCarCard path={"chauffeur"} />
             </div>
           </section>
         </div>
