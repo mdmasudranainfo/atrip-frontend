@@ -19,6 +19,7 @@ export interface ReviewData {
 export interface LandingCardDataTypes {
   id: number;
   title: string;
+  sub_title: string;
   slug: string;
   address: string;
   map_lat: string;
@@ -30,7 +31,7 @@ export interface LandingCardDataTypes {
   image_url: string;
   review_data: ReviewData;
   review_score?: ReviewData;
-  sale_price?: number | string
+  sale_price?: number | string;
 }
 
 export interface VisaDataType {

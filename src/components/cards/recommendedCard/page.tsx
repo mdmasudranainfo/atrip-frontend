@@ -47,6 +47,7 @@ const CustomNextArrow: React.FC<ArrowProps> = ({ onClick }) => {
 
 const RecommendedCard = () => {
   const { featuredCards, loading, error } = useFeaturedCards("event");
+
   const searchParams = useSearchParams();
   const queryString = searchParams.toString();
 
@@ -115,19 +116,21 @@ const RecommendedCard = () => {
           const sellPrice = getSellPrice(card.price, card.sale_price);
 
           return (
-            <div key={card?.id} className="px-2 h-full">
+            <Link
+              href={`activities/${card?.slug}`}
+              key={card?.id}
+              className="px-2 h-full"
+            >
               <div className="w-full overflow-hidden bg-white rounded-[10px] shadow-none border h-full">
                 {/* Image */}
                 <div className="relative w-full h-36 md:h-[280px] sm:h-48">
-                  <Link href={`#`}>
-                    <Image
-                      src={card?.image_url}
-                      alt={card?.title}
-                      fill
-                      className="object-cover rounded-[10px]"
-                      priority
-                    />
-                  </Link>
+                  <Image
+                    src={card?.image_url}
+                    alt={card?.title}
+                    fill
+                    className="object-cover rounded-[10px]"
+                    priority
+                  />
                 </div>
 
                 {/* Title and Price */}
@@ -136,7 +139,7 @@ const RecommendedCard = () => {
                     Entry Ticket
                   </span> */}
                   <Link
-                    href="activities"
+                    href={`activities/${card?.slug}`}
                     className="hover:underline font-inter font-semibold md:text-xl text-[14px] md:leading-7 leading-4"
                   >
                     {card?.title}
@@ -144,7 +147,7 @@ const RecommendedCard = () => {
                 </div>
 
                 {/* Features */}
-                <div className="md:p-0 md:px-5 px-3 flex flex-wrap md:gap-3 gap-1">
+                {/* <div className="md:p-0 md:px-5 px-3 flex flex-wrap md:gap-3 gap-1">
                   {card?.service_including
                     ? card?.service_including.map((service, index) => (
                         <div key={index} className="flex gap-2">
@@ -164,7 +167,12 @@ const RecommendedCard = () => {
                           </p>
                         </div>
                       ))}
-                </div>
+                </div> */}
+                <p className="font-inter font-normal text-sm leading-6 text-dark md:px-5 px-3 mt-2">
+                  {card?.sub_title?.length > 100
+                    ? `${card.sub_title.slice(0, 100)}...`
+                    : card?.sub_title}
+                </p>
 
                 {/* Footer */}
                 <div className="md:px-5 px-3 md:pb-4 pb-3 md:mt-[40px] mt-2">
@@ -197,7 +205,7 @@ const RecommendedCard = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </Link>
           );
         })}
       </Slider>
