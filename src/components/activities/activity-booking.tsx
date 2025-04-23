@@ -10,11 +10,12 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import { Calendar } from "@/components/ui/calendar";
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Calendar2 } from "@/components/ui/calendar2";
 import { useState } from "react";
 import { format } from "date-fns";
 import { EventRow } from "@/types/activity";
@@ -31,9 +32,8 @@ import {
 import { toast } from "sonner";
 import { bookingAddToCart } from "@/lib/actions/booking-actions";
 import { useRouter } from "next/navigation";
-import { generateTimeSlots } from "@/lib/utils";
 import { getErrorMessage } from "@/lib/handle-error";
-import { Calendar2 } from "../ui/calendar2";
+import { Calendar } from "../ui/calendar";
 
 const FormSchema = z.object({
   start_date: z.date(),
@@ -43,6 +43,7 @@ const FormSchema = z.object({
 export default function ActivityBooking({ event }: { event: EventRow }) {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
+  const [calendarOpen, setCalendarOpen] = useState(false);
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -75,17 +76,13 @@ export default function ActivityBooking({ event }: { event: EventRow }) {
     }
   }
 
-  // const timeSlots = generateTimeSlots("00:00", "23:30");\
   let timeSlots: any[] = [];
-
   try {
     const rawTimeSlot = event?.time_slot;
 
     if (typeof rawTimeSlot === "string" && rawTimeSlot.trim() !== "") {
-      // Parse JSON and remove duplicates
       timeSlots = [...new Set(JSON.parse(rawTimeSlot))];
     } else if (Array.isArray(rawTimeSlot)) {
-      // Remove duplicates if it's already an array
       timeSlots = [...new Set(rawTimeSlot)];
     }
   } catch (err) {
@@ -94,95 +91,100 @@ export default function ActivityBooking({ event }: { event: EventRow }) {
   }
 
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-        <FormField
-          control={form.control}
-          name="start_date"
-          render={({ field }) => (
-            <FormItem>
-              <FormControl>
-                <Popover>
-                  <PopoverTrigger asChild>
-                    <Button
-                      variant="outline"
-                      className={`w-full justify-start text-left font-normal focus:ring-0 focus:outline-none focus:border 
-    ${form.watch("start_date") ? "focus:border-black" : ""}`}
-                    >
-                      <CalendarIcon className="mr-2 h-4 w-4" />
-                      {field.value ? (
-                        format(field.value, "yyyy-MM-dd")
-                      ) : (
-                        <span>Select date</span>
-                      )}
-                    </Button>
-                  </PopoverTrigger>
-                  <PopoverContent className="w-auto p-0" align="start">
-                    <Calendar2
-                      mode="single"
-                      selected={field.value}
-                      onSelect={(val) => {
-                        if (val) {
-                          form.setValue("start_date", val, {
-                            shouldValidate: true,
-                          });
-                        }
-                      }}
-                      initialFocus
-                    />
-                  </PopoverContent>
-                </Popover>
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        {timeSlots?.length ? (
+    <>
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+          {/* Calendar Open Button */}
           <FormField
             control={form.control}
-            name="start_time"
+            name="start_date"
             render={({ field }) => (
               <FormItem>
-                <Select
-                  value={field.value}
-                  onValueChange={(value) => {
-                    field.onChange(value); // This will set a single value
-                  }}
-                >
-                  <FormControl>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select time slot" />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent>
-                    {timeSlots.map((time: string) => (
-                      <SelectItem value={time} key={time}>
-                        {time}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+                <FormControl>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    onClick={() => setCalendarOpen(true)}
+                    className="w-full justify-start text-left font-normal"
+                  >
+                    <CalendarIcon className="mr-2 h-4 w-4" />
+                    {field.value
+                      ? format(field.value, "yyyy-MM-dd")
+                      : "Select date"}
+                  </Button>
+                </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
-        ) : (
-          ""
-        )}
 
-        <Button
-          className="w-full h-12 bg-blue-600 hover:bg-blue-700 text-white"
-          type="submit"
-          disabled={isLoading}
-        >
-          {isLoading ? (
-            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-          ) : (
-            "Check availability"
-          )}
-        </Button>
-      </form>
-    </Form>
+          {/* Time Slot */}
+          {timeSlots?.length ? (
+            <FormField
+              control={form.control}
+              name="start_time"
+              render={({ field }) => (
+                <FormItem>
+                  <Select
+                    value={field.value}
+                    onValueChange={(value) => field.onChange(value)}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select time slot" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {timeSlots.map((time: string) => (
+                        <SelectItem value={time} key={time}>
+                          {time}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          ) : null}
+
+          <Button
+            className="w-full h-12 bg-blue-600 hover:bg-blue-700 text-white"
+            type="submit"
+            disabled={isLoading}
+          >
+            {isLoading ? (
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+            ) : (
+              "Check availability"
+            )}
+          </Button>
+        </form>
+      </Form>
+
+      {/* Calendar Dialog */}
+      <Dialog open={calendarOpen} onOpenChange={setCalendarOpen}>
+        <DialogContent className="sm:max-w-[450px] ">
+          <DialogHeader>
+            <DialogTitle>Select a Date</DialogTitle>
+          </DialogHeader>
+          <div className="flex justify-center items-center">
+            <Calendar2
+              mode="single"
+              selected={form.watch("start_date")}
+              onSelect={(val) => {
+                if (val) {
+                  form.setValue("start_date", val, {
+                    shouldValidate: true,
+                  });
+                  setCalendarOpen(false); // Close modal after selection
+                }
+              }}
+              initialFocus
+            />
+          </div>
+        </DialogContent>
+      </Dialog>
+    </>
   );
 }
