@@ -38,7 +38,7 @@ export interface EventRow {
   is_featured: number;
   gallery: GalleryImage[];
   video: string;
-  faqs: FAQItem[];
+  faqs: any;
   asking: string;
   ticket_types: TicketType[];
   duration: number;

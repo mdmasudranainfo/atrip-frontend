@@ -14,6 +14,7 @@ import OperatingHours from "@/components/activities/activitiesDetails/OperatingH
 import ActivitiesMap from "@/components/activities/activitiesDetails/ActivitiesMap";
 import NeedToKnow from "@/components/activities/activitiesDetails/NeedToKnow";
 import TravelersAsking from "./TravelersAsking";
+import FAQAccordion from "@/components/share/FAQAccordion";
 
 const ActivitiesHighlights = ({ data }: { data: any }) => {
   return (
@@ -71,7 +72,7 @@ const ActivitiesHighlights = ({ data }: { data: any }) => {
         <MyTickets myTicket={data?.my_ticket} />
       </div>
       <div className="">
-        <TravelersAsking content={data?.asking} />
+        <FAQAccordion faqs={data?.faqs} />
       </div>
     </div>
   );

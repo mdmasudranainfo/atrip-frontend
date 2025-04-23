@@ -33,6 +33,7 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { X } from "lucide-react";
 import StickyTabs from "@/components/activities/activitiesDetails/TabNav";
 import TravelersAsking from "@/components/activities/activitiesDetails/TravelersAsking";
+import FAQAccordion from "@/components/share/FAQAccordion";
 
 const ActivitiesDetails = async (context: {
   params: Promise<{ slug: string }>;
@@ -209,7 +210,8 @@ const ActivitiesDetails = async (context: {
                       value="travelers_asking"
                       className="border-none"
                     >
-                      <TravelersAsking content={data?.asking} />
+                      {/* <TravelersAsking content={data?.asking} /> */}
+                      <FAQAccordion faqs={data?.faqs} />
                     </TabsContent>
                   </div>
                   <ScrollBar orientation="horizontal" className="invisible" />
