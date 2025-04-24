@@ -35,14 +35,15 @@ const LandingPage = () => {
 
         {/* hotel section */}
         <section className="container mx-auto mt-0 sm:mt-[62px] overflow-hidden pb-5">
-          <div className="flex justify-between items-center md:mb-12 mb-3">
-            <h1 className="md:text-[40px]  md:leading-[40px] text-sm  text-center  font-semibold">
-              Recommended Attractions{" "}
-            </h1>
+          <h1 className="md:landingHeaderTxt md:mb-6 md:text-[40px] text-[22px] leading-[23px] text-center mb-3 font-semibold mx-2">
+            Recommended Attractions{" "}
+          </h1>
+          <div className="flex justify-end md:mb-6 mb-2">
             <Link href={"/activities"}>
               <Button variant={"primary"}>See More</Button>
             </Link>
           </div>
+
           <div className="recommended-slick-area mx-auto">
             <RecommendedCard />
           </div>
