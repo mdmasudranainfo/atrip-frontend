@@ -361,6 +361,7 @@ export default function ActivityGuestInfo({
 
           <ActivityPriceSummery
             title={bookingData?.service?.title}
+            date={bookingData?.booking?.start_date}
             isLoading={isLoading}
             packages={packages}
             selectedPackage={selectedPackage}

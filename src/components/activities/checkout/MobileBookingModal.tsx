@@ -2,9 +2,11 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { formatPrice } from "@/lib/utils";
 import { BookingTicketType } from "@/types/activity";
+import dayjs from "dayjs";
 import { Loader2, ShoppingCart, X } from "lucide-react";
 
 function MobileBookingModal({
+  date,
   isOpen,
   onClose,
   onSubmit,
@@ -15,6 +17,7 @@ function MobileBookingModal({
   selectedPackage,
   totalPrice,
 }: {
+  date: string;
   isOpen: boolean;
   onClose: () => void;
   onSubmit: () => void;
@@ -27,11 +30,13 @@ function MobileBookingModal({
 }) {
   if (!isOpen) return null;
 
+  console.log("Packages", packages);
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 lg:hidden overflow-y-auto">
       <div className="bg-white rounded-lg p-4 w-full max-w-md mx-auto my-8 shadow-lg">
-        <div className="flex justify-between items-center mb-4">
-          <h3 className="text-lg font-semibold">Booking Summary</h3>
+        <div className="flex justify-end items-center mb-4">
+          {/* <h3 className="text-lg font-semibold">Booking Summary</h3> */}
           <button onClick={onClose}>
             <X className="h-5 w-5" />
           </button>
@@ -43,12 +48,13 @@ function MobileBookingModal({
             <div className="absolute inset-0 bg-black/40" />
             <div className="relative z-10 flex gap-2">
               <ShoppingCart className="h-5 w-5 text-white" />
-              <h2 className="text-xl font-semibold text-white">
+              <h2 className="text-md font-semibold text-white">
                 {packages.length ? "Package" : "Price"} Summary
               </h2>
             </div>
-            <div className="relative z-10 flex gap-2">
-              <h2 className="text-md font-semibold text-white">{title}</h2>
+            <div className="relative ">
+              <h2 className="text-sm font-semibold text-white">{title}</h2>
+              <p className="text-white">{dayjs(date).format("D MMMM YYYY")}</p>
             </div>
           </CardHeader>
 

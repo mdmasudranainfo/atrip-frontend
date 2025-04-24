@@ -14,6 +14,7 @@ import { BookingTicketType } from "@/types/activity";
 import MobileBookingModal from "./MobileBookingModal";
 
 export default function ActivityPriceSummery({
+  date,
   title,
   isLoading,
   packages,
@@ -22,6 +23,7 @@ export default function ActivityPriceSummery({
   isValid,
   onSubmit,
 }: {
+  date: string;
   title: string;
   isLoading: boolean;
   packages: BookingTicketType[];
@@ -39,16 +41,21 @@ export default function ActivityPriceSummery({
         <div className="flex justify-between items-center">
           <div>
             <span className="text-sm text-dark font-medium">
-              AED {formatPrice(totalPrice)}
+              {formatPrice(totalPrice)}
             </span>
             <span className="text-sm text-primary ml-1">/ Per Person</span>
           </div>
         </div>
 
+        <Button variant={"outline"} onClick={() => setShowModal(true)}>
+          Summary
+        </Button>
+
         <Button
           className="font-semibold bg-primary text-white hover:bg-primary/90"
           disabled={!isValid || isLoading}
-          onClick={() => setShowModal(true)}
+          // onClick={() => setShowModal(true)}
+          onClick={onSubmit}
         >
           {isLoading ? (
             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -60,6 +67,7 @@ export default function ActivityPriceSummery({
 
       {/* Modal for Mobile */}
       <MobileBookingModal
+        date={date}
         isOpen={showModal}
         onClose={() => setShowModal(false)}
         onSubmit={onSubmit}
