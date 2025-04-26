@@ -146,7 +146,8 @@ export default function ActivityCheckoutFinal({
                   <h2 className="pt-1 md:text-md text-sm font-semibold text-white">
                     {dayjs(bookingData?.booking?.start_date).format(
                       "D MMMM YYYY"
-                    )}
+                    )}{" "}
+                    <span> ({bookingData?.booking?.time_slot})</span>
                   </h2>
                 </div>
 
