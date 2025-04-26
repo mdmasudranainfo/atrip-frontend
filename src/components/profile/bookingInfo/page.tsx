@@ -24,7 +24,7 @@ import { IoEyeOutline } from "react-icons/io5";
 import { Loader2 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { Star, Sparkles } from "lucide-react"
+import { Star, Sparkles } from "lucide-react";
 import {
   Bed,
   Calendar,
@@ -42,10 +42,21 @@ import {
   User,
   UtensilsCrossed,
   XCircle,
-  Plane, Car, Building, CreditCard, House, FerrisWheel, Bus, Sun, Briefcase, PlaneTakeoff, CarTaxiFront, Send
+  Plane,
+  Car,
+  Building,
+  CreditCard,
+  House,
+  FerrisWheel,
+  Bus,
+  Sun,
+  Briefcase,
+  PlaneTakeoff,
+  CarTaxiFront,
+  Send,
 } from "lucide-react";
-import { auth } from '~/auth'
-import axios from 'axios';
+import { auth } from "~/auth";
+import axios from "axios";
 // interface RatingStarsProps {
 //   category: string;
 //   label: string;
@@ -57,8 +68,11 @@ interface RatingStarsProps {
   onRateChange: (category: string, value: number) => void;
 }
 
-
-export function BookingInfo({ bookingData }: { bookingData: BookingInfoDataType; }) {
+export function BookingInfo({
+  bookingData,
+}: {
+  bookingData: BookingInfoDataType;
+}) {
   const [selectedBooking, setSelectedBooking] = useState<any>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -67,14 +81,17 @@ export function BookingInfo({ bookingData }: { bookingData: BookingInfoDataType;
   const [hover, setHover] = useState<number>(0);
   const [comment, setComment] = useState<string>("");
   const [success, setSuccess] = useState<string | null>(null);
-  const [selectedBookingData, setSelectedBookingData] = useState({ id: null, objectModel: "" });
+  const [selectedBookingData, setSelectedBookingData] = useState({
+    id: null,
+    objectModel: "",
+  });
   const [ratings, setRatings] = useState({
     service: 0,
     organization: 0,
     friendliness: 0,
     areaExpert: 0,
     safety: 0,
-  })
+  });
   const [reviewData, setReviewData] = useState({
     review_title: "",
     review_content: "",
@@ -139,7 +156,9 @@ export function BookingInfo({ bookingData }: { bookingData: BookingInfoDataType;
       {[...Array(5)].map((_, i) => (
         <svg
           key={i}
-          className={`w-4 h-4 ${i < rating ? "text-yellow-400" : "text-gray-300"}`}
+          className={`w-4 h-4 ${
+            i < rating ? "text-yellow-400" : "text-gray-300"
+          }`}
           fill="currentColor"
           viewBox="0 0 20 20"
         >
@@ -154,7 +173,7 @@ export function BookingInfo({ bookingData }: { bookingData: BookingInfoDataType;
       id: booking.object_id,
       objectModel: booking.object_model,
     });
-    setIsReviewModalOpen(true)
+    setIsReviewModalOpen(true);
   };
 
   const handleRatingChange = (category: string, value: number) => {
@@ -181,7 +200,7 @@ export function BookingInfo({ bookingData }: { bookingData: BookingInfoDataType;
 
     try {
       const response = await reviewStore(updatedReviewData);
-      console.log(updatedReviewData)
+      console.log(updatedReviewData);
 
       // if (!response.success) {
       //   throw new Error(response.error || "Something went wrong.");
@@ -231,19 +250,25 @@ export function BookingInfo({ bookingData }: { bookingData: BookingInfoDataType;
   //     </div>
   //   )
   // }
-  const RatingStars: React.FC<RatingStarsProps> = ({ category, label, onRateChange }) => {
+  const RatingStars: React.FC<RatingStarsProps> = ({
+    category,
+    label,
+    onRateChange,
+  }) => {
     const [rating, setRating] = useState<number>(0); // Stores selected rating
     const [hover, setHover] = useState<number | null>(null); // Stores hovered star
 
     const handleRating = (value: number) => {
-      console.log("ii", value)
+      console.log("ii", value);
       setRating(value); // Save selected rating
       onRateChange(category, value); // Send rating to parent component
     };
 
     return (
       <div className="mb-6">
-        <div className="text-gray-600 mb-2 flex items-center gap-2 font-medium">{label}</div>
+        <div className="text-gray-600 mb-2 flex items-center gap-2 font-medium">
+          {label}
+        </div>
         <div className="flex gap-1">
           {[1, 2, 3, 4, 5].map((star) => (
             <button
@@ -255,10 +280,11 @@ export function BookingInfo({ bookingData }: { bookingData: BookingInfoDataType;
               onMouseLeave={() => setHover(null)} // Reset hover on leave
             >
               <Star
-                className={`w-6 h-6 transition-colors ${star <= (hover ?? rating)
-                  ? "fill-yellow-400 stroke-yellow-500" // Active star (clicked or hovered)
-                  : "fill-gray-100 stroke-gray-300" // Inactive star
-                  }`}
+                className={`w-6 h-6 transition-colors ${
+                  star <= (hover ?? rating)
+                    ? "fill-yellow-400 stroke-yellow-500" // Active star (clicked or hovered)
+                    : "fill-gray-100 stroke-gray-300" // Inactive star
+                }`}
               />
             </button>
           ))}
@@ -267,7 +293,6 @@ export function BookingInfo({ bookingData }: { bookingData: BookingInfoDataType;
     );
   };
 
-
   return (
     <div className="container m-auto">
       <div className="p-4 shadow-md border rounded-xl bg-white my-10">
@@ -275,69 +300,101 @@ export function BookingInfo({ bookingData }: { bookingData: BookingInfoDataType;
           <h3 className="text-base sm:text-xl font-medium text-dark">
             Booking Information
           </h3>
-          <div className="w-64">
-          </div>
+          <div className="w-64"></div>
         </div>
-        <Table>
-          <TableCaption>A list of your recent invoices.</TableCaption>
-          <TableHeader>
-            <TableRow>
-              <TableHead className="font-bold">Type</TableHead>
-              <TableHead className="font-bold">Title</TableHead>
-              <TableHead className="font-bold">Order Date</TableHead>
-              <TableHead className="font-bold">Status</TableHead>
-              <TableHead className="font-bold">Amount</TableHead>
-              <TableHead className="font-bold">Paid</TableHead>
-              <TableHead className="font-bold">Remain</TableHead>
-              <TableHead className="font-bold">Review</TableHead>
-              <TableHead className="text-right pe-4 font-bold">View</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {bookingData?.data.map((booking, index) => (
-              <TableRow key={index}>
-                <TableCell className="font-semibold flex gap-2 items-center ">
-                  {getIcon(booking?.object_model || "")}
-                  {booking?.object_model
-                    ? booking.object_model.charAt(0).toUpperCase() + booking.object_model.slice(1)
-                    : ""}
-                </TableCell>
-                <TableCell className="font-medium">
-                  {booking?.service?.title}
-                </TableCell>
-                <TableCell>
-                  {booking?.created_at
-                    ? new Date(booking.created_at).toLocaleDateString("en-US", {
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                      hour: "2-digit",
-                      minute: "2-digit",
-                    })
-                    : ""}
-                </TableCell>
-                <TableCell>
-                  <span
-                    className={`py-1 px-4 rounded-md text-white font-semibold ${booking?.status === "unpaid"
-                      ? "bg-red-600" // Warning color
-                      : booking?.status === "failed"
-                        ? "bg-red-600" // Danger color
-                        : booking?.status === "paid"
-                          ? "bg-green-600" // Success color for paid
-                          : "bg-yellow-500" // Default for other statuses
-                      }`}
-                  >
-                    {booking?.status
-                      ? booking.status.charAt(0).toUpperCase() + booking.status.slice(1)
+        <div className="w-full overflow-x-auto rounded-lg shadow-sm">
+          <Table className="min-w-[1000px]">
+            <TableCaption className="text-sm text-gray-500">
+              A list of your recent invoices.
+            </TableCaption>
+            <TableHeader>
+              <TableRow>
+                <TableHead className="font-bold whitespace-nowrap">
+                  Type
+                </TableHead>
+                <TableHead className="font-bold whitespace-nowrap">
+                  Title
+                </TableHead>
+                <TableHead className="font-bold whitespace-nowrap">
+                  Order Date
+                </TableHead>
+                <TableHead className="font-bold whitespace-nowrap">
+                  Status
+                </TableHead>
+                <TableHead className="font-bold whitespace-nowrap">
+                  Amount
+                </TableHead>
+                <TableHead className="font-bold whitespace-nowrap">
+                  Paid
+                </TableHead>
+                <TableHead className="font-bold whitespace-nowrap">
+                  Remain
+                </TableHead>
+                <TableHead className="font-bold whitespace-nowrap">
+                  Review
+                </TableHead>
+                <TableHead className="text-right pe-4 font-bold whitespace-nowrap">
+                  View
+                </TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {bookingData?.data.map((booking, index) => (
+                <TableRow key={index}>
+                  <TableCell className="font-semibold flex gap-2 items-center whitespace-nowrap">
+                    {getIcon(booking?.object_model || "")}
+                    {booking?.object_model
+                      ? booking.object_model.charAt(0).toUpperCase() +
+                        booking.object_model.slice(1)
                       : ""}
-                  </span>
-
-                </TableCell>
-                <TableCell>{Number(booking?.total || 0).toFixed(2)}</TableCell>
-                <TableCell>{Number(booking?.paid || 0).toFixed(2)}</TableCell>
-                <TableCell>{(Number(booking?.total || 0) - Number(booking?.paid || 0)).toFixed(2)}</TableCell>
-                <TableCell>
-                  <div>
+                  </TableCell>
+                  <TableCell className="font-medium whitespace-nowrap">
+                    {booking?.service?.title.slice(0, 20)}...
+                  </TableCell>
+                  <TableCell className="whitespace-nowrap">
+                    {booking?.created_at
+                      ? new Date(booking.created_at).toLocaleDateString(
+                          "en-US",
+                          {
+                            year: "numeric",
+                            month: "long",
+                            day: "numeric",
+                            hour: "2-digit",
+                            minute: "2-digit",
+                          }
+                        )
+                      : ""}
+                  </TableCell>
+                  <TableCell className="whitespace-nowrap">
+                    <span
+                      className={`py-1 px-4 rounded-md text-white font-semibold ${
+                        booking?.status === "unpaid"
+                          ? "bg-red-600"
+                          : booking?.status === "failed"
+                          ? "bg-red-600"
+                          : booking?.status === "paid"
+                          ? "bg-green-600"
+                          : "bg-yellow-500"
+                      }`}
+                    >
+                      {booking?.status
+                        ? booking.status.charAt(0).toUpperCase() +
+                          booking.status.slice(1)
+                        : ""}
+                    </span>
+                  </TableCell>
+                  <TableCell className="whitespace-nowrap">
+                    {Number(booking?.total || 0).toFixed(2)}
+                  </TableCell>
+                  <TableCell className="whitespace-nowrap">
+                    {Number(booking?.paid || 0).toFixed(2)}
+                  </TableCell>
+                  <TableCell className="whitespace-nowrap">
+                    {(
+                      Number(booking?.total || 0) - Number(booking?.paid || 0)
+                    ).toFixed(2)}
+                  </TableCell>
+                  <TableCell className="whitespace-nowrap">
                     {booking.review === true ? (
                       <div className="inline-flex items-center gap-1.5 bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-4 py-2 rounded-full font-medium animate-fadeIn">
                         <CheckCircle className="h-4 w-4" />
@@ -346,7 +403,7 @@ export function BookingInfo({ bookingData }: { bookingData: BookingInfoDataType;
                     ) : (
                       <Button
                         onClick={() => {
-                          handleOpenReviewModal(booking, index)
+                          handleOpenReviewModal(booking, index);
                         }}
                         className="group relative inline-flex items-center gap-1.5 bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-4 py-2 rounded-full font-medium overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-indigo-200 dark:hover:shadow-indigo-950"
                       >
@@ -357,47 +414,51 @@ export function BookingInfo({ bookingData }: { bookingData: BookingInfoDataType;
                         <span className="absolute inset-0 bg-gradient-to-r from-violet-600 to-indigo-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
                       </Button>
                     )}
-                  </div>
-                </TableCell>
-                <TableCell className="text-right pe-4">
-                  <Button className="hover:bg-[#273F5F] hover:text-white"
-                    variant="ghost"
-                    onClick={() => handleOpenModal(booking?.id)}
-                    disabled={isLoading}
-                  >
-                    {isLoading ? (
-                      <>
-                        <Loader2 className="h-4 w-4 animate-spin mr-2" />
-                        Loading...
-                      </>
-                    ) : (
-                      <IoEyeOutline size={18} />
-                    )}
-                  </Button>
-                  <a
-                    href={`${process.env.NEXT_PUBLIC_API_ENDPOINT}/download/${booking?.code}/invoice`}
-                    download
-                  >
-                    <Button className="hover:bg-[#273F5F] hover:text-white" variant="ghost">
-                      <Download size={18} />
+                  </TableCell>
+                  <TableCell className="text-right pe-4 whitespace-nowrap space-x-2">
+                    <Button
+                      className="hover:bg-[#273F5F] hover:text-white"
+                      variant="ghost"
+                      onClick={() => handleOpenModal(booking?.id)}
+                      disabled={isLoading}
+                    >
+                      {isLoading ? (
+                        <>
+                          <Loader2 className="h-4 w-4 animate-spin mr-2" />
+                          Loading...
+                        </>
+                      ) : (
+                        <IoEyeOutline size={18} />
+                      )}
                     </Button>
-                  </a>
-                  <a
-                    href={`/booking/${booking?.code}`}
-                  >
-                    {Number(booking?.total || 0) > Number(booking?.paid || 0) && (
-                      <Button className="hover:bg-[#273F5F] hover:text-white font-bold"
+                    <a
+                      href={`${process.env.NEXT_PUBLIC_API_ENDPOINT}/download/${booking?.code}/invoice`}
+                      download
+                    >
+                      <Button
+                        className="hover:bg-[#273F5F] hover:text-white"
                         variant="ghost"
                       >
-                        <CreditCard size={18} />
+                        <Download size={18} />
                       </Button>
-                    )}
-                  </a>
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+                    </a>
+                    <a href={`/booking/${booking?.code}`}>
+                      {Number(booking?.total || 0) >
+                        Number(booking?.paid || 0) && (
+                        <Button
+                          className="hover:bg-[#273F5F] hover:text-white font-bold"
+                          variant="ghost"
+                        >
+                          <CreditCard size={18} />
+                        </Button>
+                      )}
+                    </a>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
       </div>
       {/* Modal */}
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
@@ -537,10 +598,11 @@ export function BookingInfo({ bookingData }: { bookingData: BookingInfoDataType;
                         </span>
                         <div>
                           <Badge
-                            className={`${selectedBooking?.booking?.status === "confirmed"
-                              ? "bg-green-500 text-white hover:bg-green-600"
-                              : "bg-red-500 text-white hover:bg-red-600"
-                              }`}
+                            className={`${
+                              selectedBooking?.booking?.status === "confirmed"
+                                ? "bg-green-500 text-white hover:bg-green-600"
+                                : "bg-red-500 text-white hover:bg-red-600"
+                            }`}
                           >
                             {selectedBooking?.booking?.status}
                           </Badge>
@@ -659,7 +721,9 @@ export function BookingInfo({ bookingData }: { bookingData: BookingInfoDataType;
                   <div className="h-2 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"></div>
                   <div className="p-4 md:p-6">
                     <div className="mb-4 md:mb-6">
-                      <label className="block text-sm font-medium text-gray-700 mb-1">Review Title</label>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                        Review Title
+                      </label>
                       <input
                         type="text"
                         name="title"
@@ -670,7 +734,9 @@ export function BookingInfo({ bookingData }: { bookingData: BookingInfoDataType;
 
                     <div className="grid grid-cols-1 md:grid-cols-5 gap-4 md:gap-6">
                       <div className="md:col-span-3">
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Your Review</label>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                          Your Review
+                        </label>
                         <textarea
                           id="comment"
                           placeholder="Write your review here..."
@@ -683,12 +749,34 @@ export function BookingInfo({ bookingData }: { bookingData: BookingInfoDataType;
                       </div>
 
                       <div className="md:col-span-2 bg-gray-50 p-4 md:p-6 rounded-lg">
-                        <h3 className="text-base md:text-lg font-semibold text-gray-800 mb-2 md:mb-4">Rate Your Experience</h3>
-                        <RatingStars category="Service" label="Service Quality" onRateChange={handleRatingChange} />
-                        <RatingStars category="Organization" label="Organization" onRateChange={handleRatingChange} />
-                        <RatingStars category="Friendliness" label="Staff Friendliness" onRateChange={handleRatingChange} />
-                        <RatingStars category="Area Expert" label="Knowledge & Expertise" onRateChange={handleRatingChange} />
-                        <RatingStars category="Safety" label="Safety Measures" onRateChange={handleRatingChange} />
+                        <h3 className="text-base md:text-lg font-semibold text-gray-800 mb-2 md:mb-4">
+                          Rate Your Experience
+                        </h3>
+                        <RatingStars
+                          category="Service"
+                          label="Service Quality"
+                          onRateChange={handleRatingChange}
+                        />
+                        <RatingStars
+                          category="Organization"
+                          label="Organization"
+                          onRateChange={handleRatingChange}
+                        />
+                        <RatingStars
+                          category="Friendliness"
+                          label="Staff Friendliness"
+                          onRateChange={handleRatingChange}
+                        />
+                        <RatingStars
+                          category="Area Expert"
+                          label="Knowledge & Expertise"
+                          onRateChange={handleRatingChange}
+                        />
+                        <RatingStars
+                          category="Safety"
+                          label="Safety Measures"
+                          onRateChange={handleRatingChange}
+                        />
                       </div>
                     </div>
 
