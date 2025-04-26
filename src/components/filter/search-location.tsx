@@ -6,6 +6,7 @@ import { getAllLocations, Location } from "@/lib/actions/location-action";
 import { cn } from "@/lib/utils";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useDebounce } from "@/hooks/use-debounce";
+import Image from "next/image";
 
 interface SearchProps {
   locationId?: number;
@@ -194,7 +195,20 @@ export default function SearchLocation({
                     setOpen(false);
                   }}
                 >
-                  <span>{location.title}</span>
+                  <div className="flex items-center gap-3">
+                    {location.image && (
+                      <div className="flex-shrink-0 w-12 h-12 relative rounded-md overflow-hidden">
+                        <Image
+                          src={location.image}
+                          alt={location.title}
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                    )}
+
+                    <span>{location.title}</span>
+                  </div>
                   <Check
                     className={cn(
                       "ml-auto",
