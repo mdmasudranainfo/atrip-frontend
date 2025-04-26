@@ -307,7 +307,9 @@ export default function ActivityCheckoutFinal({
               </div>
 
               <ActivityPriceSummery
+                timeSlot={bookingData?.booking?.time_slot}
                 title={bookingData?.service?.title}
+                date={bookingData?.date} // ← Add this line
                 isLoading={isLoading}
                 packages={packages}
                 selectedPackage={selectedPackage}

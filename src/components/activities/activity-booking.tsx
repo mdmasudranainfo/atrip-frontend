@@ -56,7 +56,7 @@ export default function ActivityBooking({ event }: { event: EventRow }) {
       const payload = {
         service_id: event.id,
         service_type: "event",
-        // time_slot: value.start_time,
+        time_slot: value.start_time,
         step: 0,
         ...value,
         start_date: format(value.start_date, "yyyy-MM-dd"),

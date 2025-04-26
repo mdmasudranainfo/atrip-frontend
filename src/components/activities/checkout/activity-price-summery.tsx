@@ -14,6 +14,7 @@ import { BookingTicketType } from "@/types/activity";
 import MobileBookingModal from "./MobileBookingModal";
 
 export default function ActivityPriceSummery({
+  timeSlot,
   date,
   title,
   isLoading,
@@ -23,6 +24,7 @@ export default function ActivityPriceSummery({
   isValid,
   onSubmit,
 }: {
+  timeSlot: string;
   date: string;
   title: string;
   isLoading: boolean;
@@ -67,6 +69,7 @@ export default function ActivityPriceSummery({
 
       {/* Modal for Mobile */}
       <MobileBookingModal
+        timeSlot={timeSlot}
         date={date}
         isOpen={showModal}
         onClose={() => setShowModal(false)}

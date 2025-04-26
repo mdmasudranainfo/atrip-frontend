@@ -6,6 +6,7 @@ import dayjs from "dayjs";
 import { Loader2, ShoppingCart, X } from "lucide-react";
 
 function MobileBookingModal({
+  timeSlot,
   date,
   isOpen,
   onClose,
@@ -17,6 +18,7 @@ function MobileBookingModal({
   selectedPackage,
   totalPrice,
 }: {
+  timeSlot: string;
   date: string;
   isOpen: boolean;
   onClose: () => void;
@@ -54,7 +56,9 @@ function MobileBookingModal({
             </div>
             <div className="relative ">
               <h2 className="text-sm font-semibold text-white">{title}</h2>
-              <p className="text-white">{dayjs(date).format("D MMMM YYYY")}</p>
+              <p className="text-white">
+                {dayjs(date).format("D MMMM YYYY")} <span>({timeSlot})</span>
+              </p>
             </div>
           </CardHeader>
 
