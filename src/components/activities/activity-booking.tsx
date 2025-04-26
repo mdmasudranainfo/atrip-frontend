@@ -134,7 +134,7 @@ export default function ActivityBooking({ event }: { event: EventRow }) {
                         <SelectValue placeholder="Select time slot" />
                       </SelectTrigger>
                     </FormControl>
-                    <SelectContent>
+                    <SelectContent className="max-h-60 overflow-y-auto">
                       {timeSlots.map((time: string) => (
                         <SelectItem value={time} key={time}>
                           {time}
