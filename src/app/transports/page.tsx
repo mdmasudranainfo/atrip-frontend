@@ -18,9 +18,11 @@ import ItemSorting from "@/components/hotels/hotelFilter/ItemSorting";
 import { getSelectedLocation } from "@/lib/actions/location-action";
 
 const Transports = async ({ searchParams }: any) => {
-
   const params = await searchParams;
-  const { attributes, data, page, total_page, total, priceRange } = await getAllTransports(params);
+
+  // console.log("params", params);
+  const { attributes, data, page, total_page, total, priceRange } =
+    await getAllTransports(params);
 
   const currentPage = Number(page) || 1;
 
@@ -50,7 +52,12 @@ const Transports = async ({ searchParams }: any) => {
       {/*  */}
       <div className="container mx-auto mt-8 flex flex-col md:flex-row lg:space-x-8 space-x-0 items-start px-4 sm:px-0 mb-[40px]">
         <div className="lg:block hidden w-full max-w-xs ">
-          <TransportsFilter attributes={attributes} params={params} baseUrl="/transports" priceRange={priceRange} />
+          <TransportsFilter
+            attributes={attributes}
+            params={params}
+            baseUrl="/transports"
+            priceRange={priceRange}
+          />
         </div>
 
         <div className="lg:hidden block relative">
@@ -67,7 +74,12 @@ const Transports = async ({ searchParams }: any) => {
                 <X className="w-5 h-5" />
               </DrawerClose>
               <ScrollArea className=" w-full rounded-md ">
-                <TransportsFilter attributes={attributes} params={params} baseUrl="/transports" priceRange={priceRange} />
+                <TransportsFilter
+                  attributes={attributes}
+                  params={params}
+                  baseUrl="/transports"
+                  priceRange={priceRange}
+                />
               </ScrollArea>
             </DrawerContent>
           </Drawer>

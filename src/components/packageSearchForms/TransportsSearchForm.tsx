@@ -9,16 +9,23 @@ import { DatePickerWithRange } from "./date-time-range-picker/DatePickerWithRang
 import { useRouter, useSearchParams } from "next/navigation";
 import SearchLocation from "@/components/filter/search-location";
 import { parseUrlStrDate } from "@/lib/utils";
+import SearchTransport from "./SearchTransport";
 
-const TransportsSearchForm = ({ locations = [] }: { locations: Location[] }) => {
+const TransportsSearchForm = ({
+  locations = [],
+}: {
+  locations: Location[];
+}) => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const locationIdParams = searchParams.get("location_id");
   const startDateParams = searchParams.get("start");
   const endDateParams = searchParams.get("end");
-  
-  const [locationError, setLocationError] = useState<string>()
-  const [selectedLocation, setSelectedLocation] = useState<number|undefined>(() => locationIdParams ? Number(locationIdParams) : undefined);
+
+  const [locationError, setLocationError] = useState<string>();
+  const [selectedLocation, setSelectedLocation] = useState<number | undefined>(
+    () => (locationIdParams ? Number(locationIdParams) : undefined)
+  );
 
   const [dateRange, setDateRange] = useState<{ from?: Date; to?: Date }>({
     from: parseUrlStrDate(startDateParams) || new Date(),
@@ -40,7 +47,9 @@ const TransportsSearchForm = ({ locations = [] }: { locations: Location[] }) => 
       ...(dateRange.to && { end: dateRange.to.toLocaleDateString() }),
     });
 
-    router.push(`/transports${queryParams.toString() ? `?${queryParams}` : ""}`);
+    router.push(
+      `/transports${queryParams.toString() ? `?${queryParams}` : ""}`
+    );
   };
 
   return (
@@ -50,21 +59,21 @@ const TransportsSearchForm = ({ locations = [] }: { locations: Location[] }) => 
           onSubmit={handleTransportFormSubmit}
           className="flex lg:flex-row flex-col items-start justify-start gap-2 "
         >
-
-          <SearchLocation 
-            error={locationError} 
-            locationId={selectedLocation} 
-            placeholder="Search location..." 
+          <SearchLocation
+            error={locationError}
+            locationId={selectedLocation}
+            placeholder="Search Your location..."
             initialLocations={locations}
             onChangeValue={setSelectedLocation}
           />
 
           {/* Check-in, Nights, Check-out Container */}
           <div className="md:w-5/12  w-full">
-            <DatePickerWithRange
+            {/* <DatePickerWithRange
               dateRange={dateRange}
               setDateRange={setDateRange}
-            />
+            /> */}
+            <SearchTransport />
           </div>
 
           {/* Search Button */}
