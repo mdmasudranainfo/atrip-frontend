@@ -4,10 +4,17 @@ import {
   Fuel,
   AirVent,
   Luggage,
+  Drill,
+  ParkingMeter,
 } from "lucide-react";
 import { TransportExtraInfo } from "@/types/transportTypes";
+import { icons } from "~/public/icons/icons";
 
-export default function TransportExtraService({ info }: { info: TransportExtraInfo }) {
+export default function TransportExtraService({
+  info,
+}: {
+  info: TransportExtraInfo;
+}) {
   return (
     <div className="services flex gap-5 mt-3 text-dark text-sm  flex-wrap">
       {!!info?.passenger && (
@@ -20,10 +27,11 @@ export default function TransportExtraService({ info }: { info: TransportExtraIn
       {!!info.baggage && (
         <div className="service-single flex items-center gap-2">
           <Luggage className="md:h-5 md:w-5 h-4 w-4 text-primary-dark" />
-          <span className="md:text-md text-[13px]">Luggage x {info.baggage}</span>
+          <span className="md:text-md text-[13px]">
+            Luggage x {info.baggage}
+          </span>
         </div>
       )}
-
 
       {!!info?.ac && (
         <div className="service-single flex items-center gap-2">
@@ -32,20 +40,31 @@ export default function TransportExtraService({ info }: { info: TransportExtraIn
         </div>
       )}
 
+      <div className="service-single flex items-center gap-2">
+        <Fuel className="md:h-5 md:w-5 h-4 w-4 text-primary-dark" />
+        <span className="md:text-md text-[13px] ">Fuel</span>
+      </div>
+      <div className="service-single flex items-center gap-2">
+        <Drill className="md:h-5 md:w-5 h-4 w-4 text-primary-dark" />
+        <span className="md:text-md text-[13px] ">Fuel</span>
+      </div>
 
-      {!!info?.fuel && (
-        <div className="service-single flex items-center gap-2">
-          <Fuel className="md:h-5 md:w-5 h-4 w-4 text-primary-dark" />
-          <span className="md:text-md text-[13px]">{info.fuel}</span>
-        </div>
-      )}
+      <div className="service-single flex items-center gap-2">
+        <ParkingMeter className="md:h-5 md:w-5 h-4 w-4 text-primary-dark" />
+        <span className="md:text-md text-[13px] ">Parking</span>
+      </div>
 
-      {!!info?.gear && (
+      <div className="service-single flex items-center gap-2">
+        <span className="text-primary-dark">{icons.carDriverIcon}</span>
+        <span className="md:text-md text-[13px]">Chauffeur</span>
+      </div>
+
+      {/* {!!info?.gear && (
         <div className="service-single flex items-center gap-2">
           <BrainCircuit className="md:h-5 md:w-5 h-4 w-4 text-primary-dark" />
           <span className="md:text-md text-[13px]">{info.gear}</span>
         </div>
-      )}
+      )} */}
     </div>
-  )
+  );
 }

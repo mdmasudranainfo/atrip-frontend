@@ -20,7 +20,6 @@ import { getSelectedLocation } from "@/lib/actions/location-action";
 const Transports = async ({ searchParams }: any) => {
   const params = await searchParams;
 
-  // console.log("params", params);
   const { attributes, data, page, total_page, total, priceRange } =
     await getAllTransports(params);
 

@@ -12,15 +12,16 @@ import TransportExtraService from "@/components/cards/transports/transport-extra
 import { useMediaQuery } from "@mantine/hooks";
 import { useSearchParams } from "next/navigation";
 
-export default function TransportCard({ transport }: { transport: ITransport }) {
+export default function TransportCard({
+  transport,
+}: {
+  transport: ITransport;
+}) {
   const sellPrice = getSellPrice(transport.price, transport.sale_price);
   const isMobileDevice = useMediaQuery("(max-width: 425px)");
 
   const searchParams = useSearchParams();
   const queryString = searchParams.toString();
-
-
-
 
   return (
     <>
@@ -29,7 +30,12 @@ export default function TransportCard({ transport }: { transport: ITransport }) 
           <div className="single-item flex gap-6 md:gap-10">
             {/* Image Section */}
             <div className="single-item-media relative w-32 h-auto sm:h-64 border sm:w-32 md:w-40 lg:w-[26%] rounded-xl overflow-hidden">
-              <Image src={transport.image_url} alt={transport?.title} fill className="" />
+              <Image
+                src={transport.image_url}
+                alt={transport?.title}
+                fill
+                className=""
+              />
             </div>
 
             {/* Content Section */}
@@ -40,7 +46,9 @@ export default function TransportCard({ transport }: { transport: ITransport }) 
                     <h3 className="md:text-xl text-[15px] leading-[16px] md:leading-[28px] font-semibold text-dark">
                       {transport?.title}
                     </h3>
-                    <RatingStar reviewScore={Number(transport.review_score || 0)} />
+                    {/* <RatingStar
+                      reviewScore={Number(transport.review_score || 0)}
+                    /> */}
                   </div>
                   {/* Location */}
                   <div className="content-location flex items-center gap-2 md:text-sm text-[13px] text-primary-dark mt-2">
@@ -49,13 +57,19 @@ export default function TransportCard({ transport }: { transport: ITransport }) 
                   </div>
 
                   {/* Services Section */}
-                  {!!transport.extra_info && <TransportExtraService info={transport.extra_info} />}
+                  {!!transport.extra_info && (
+                    <TransportExtraService info={transport.extra_info} />
+                  )}
                 </div>
 
                 <div className="content-bottom flex flex-col justify-between">
                   <div className="flex justify-end items-center gap-2 content-bottom-left">
-                    <span className="block text-primary-dark text-sm font-sans">{transport.total_review} reviews</span>
-                    <p className="bg-info rounded-sm w-9 h-10 text-white flex justify-center items-center">{transport.review_score}</p>
+                    <span className="block text-primary-dark text-sm font-sans">
+                      {transport.total_review} reviews
+                    </span>
+                    <p className="bg-info rounded-sm w-9 h-10 text-white flex justify-center items-center">
+                      {transport.review_score}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -100,17 +114,28 @@ export default function TransportCard({ transport }: { transport: ITransport }) 
               <span>{transport.address}</span>
             </div>
             {/* Services Section */}
-            {!!transport.extra_info && <TransportExtraService info={transport.extra_info} />}
+            {!!transport.extra_info && (
+              <TransportExtraService info={transport.extra_info} />
+            )}
             <div className="content-bottom flex flex-col justify-between mt-3">
               <div className="flex justify-end items-center gap-2 content-bottom-left">
-                <span className="block text-primary-dark text-sm font-sans">{transport.total_review} reviews</span>
-                <p className="bg-info rounded-sm w-9 h-10 text-white flex justify-center items-center">{transport.review_score}</p>
+                <span className="block text-primary-dark text-sm font-sans">
+                  {transport.total_review} reviews
+                </span>
+                <p className="bg-info rounded-sm w-9 h-10 text-white flex justify-center items-center">
+                  {transport.review_score}
+                </p>
               </div>
             </div>
           </div>
 
           <div className="single-item-media">
-            <Image src={transport.image_url} alt={transport?.title} fill className="object-contain" />
+            <Image
+              src={transport.image_url}
+              alt={transport?.title}
+              fill
+              className="object-contain"
+            />
             <div className="mt-5">
               {/* Price and Book Section */}
               <div className="item-price-wrapper flex gap-4">
