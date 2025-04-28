@@ -12,7 +12,7 @@ import Essentials from "@/components/cars/carDetails/Essentials";
 import GreatChoice from "@/components/cars/carDetails/GreatChoice";
 import Included from "@/components/cars/carDetails/Include";
 
-const CarOverview = ({ carTabData }: any ) => {
+const CarOverview = ({ carTabData }: any) => {
   return (
     <div>
       <Card className="w-full border-none">
@@ -36,13 +36,13 @@ const CarOverview = ({ carTabData }: any ) => {
         </Accordion>
       </Card>
       <div className="pt-5">
-        <GreatChoice greatChoice={carTabData?.great_choice}/>
+        <GreatChoice greatChoice={carTabData?.great_choice} />
       </div>
       <div className="pt-5">
-        <Included include={carTabData?.include}/>
+        <Included include={carTabData?.include} />
       </div>
       <div className="pt-5">
-        <Essentials essential={carTabData?.pre_pick_up}/>
+        <Essentials essential={carTabData?.pre_pick_up} />
       </div>
       <div className="pt-5">
         <CarFAQs faqs={carTabData?.faqs} />
