@@ -49,8 +49,8 @@ const Transports = async ({ searchParams }: any) => {
         />
       </div>
       {/*  */}
-      <div className="container mx-auto mt-8 flex flex-col md:flex-row lg:space-x-8 space-x-0 items-start px-4 sm:px-0 mb-[40px]">
-        <div className="lg:block hidden w-full max-w-xs ">
+      <div className="container   mx-auto mt-8 flex flex-col md:flex-row lg:space-x-8 space-x-0 items-start px-4 sm:px-0 mb-[40px]">
+        <div className="lg:block hidden w-full max-w-xs sticky top-0">
           <TransportsFilter
             attributes={attributes}
             params={params}
