@@ -41,17 +41,21 @@ export interface ICarExtraPrice {
 }
 
 export interface TransportExtraInfo {
-  passenger: number
-  gear: string
-  fuel: string
-  baggage: number
-  door: number
-  ac: number
+  passenger: number;
+  gear: string;
+  fuel: string;
+  baggage: number;
+  door: number;
+  ac: number;
+  chauffeur: number;
+  parking: number;
+  tool: number;
 }
 
 export interface ITransport {
   id: number;
   title: string;
+  sub_title: string;
   slug: string;
   content: string;
   image_id: number;
@@ -89,5 +93,5 @@ export interface ITransport {
   has_wish_list: null;
   translation: null;
 
-  extra_info: TransportExtraInfo
+  extra_info: TransportExtraInfo;
 }

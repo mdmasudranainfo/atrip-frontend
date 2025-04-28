@@ -22,7 +22,7 @@ export default function TransportCard({
 
   const searchParams = useSearchParams();
   const queryString = searchParams.toString();
-
+  // console.log("transport", transport);
   return (
     <>
       {!isMobileDevice ? (
@@ -46,6 +46,7 @@ export default function TransportCard({
                     <h3 className="md:text-xl text-[15px] leading-[16px] md:leading-[28px] font-semibold text-dark">
                       {transport?.title}
                     </h3>
+
                     {/* <RatingStar
                       reviewScore={Number(transport.review_score || 0)}
                     /> */}
@@ -54,6 +55,10 @@ export default function TransportCard({
                   <div className="content-location flex items-center gap-2 md:text-sm text-[13px] text-primary-dark mt-2">
                     <MapPin className="md:h-4 md:w-4 w-3 h-3" />
                     <span>{transport.address}</span>
+                  </div>
+
+                  <div className="">
+                    <p> {transport?.sub_title}</p>
                   </div>
 
                   {/* Services Section */}
