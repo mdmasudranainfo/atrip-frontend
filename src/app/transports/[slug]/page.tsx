@@ -3,9 +3,7 @@ import { ImageGallery } from "@/components/imageGellery/ImageGellery";
 import { Button } from "@/components/ui/button";
 import { getTransportsBySlug } from "@/lib/actions/transport-actions";
 import { getComparePrice, getSellPrice } from "@/lib/utils";
-import {
-  MapPin,
-} from "lucide-react";
+import { MapPin } from "lucide-react";
 import Link from "next/link";
 import TransportExtraService from "@/components/cards/transports/transport-extra-service";
 import RatingBadgeHorizontal from "@/components/rating-badge-horizontal";
@@ -14,7 +12,10 @@ import DiscountPriceBadge from "@/components/booking/discount-price-badge";
 import TransportTabSection from "@/components/transports/transport-tab-section";
 import { getSelectedLocation } from "@/lib/actions/location-action";
 
-const TransportDetails = async (context: { params: Promise<{ slug: string }>, searchParams:  any }) => {
+const TransportDetails = async (context: {
+  params: Promise<{ slug: string }>;
+  searchParams: any;
+}) => {
   const params = await context.params;
   const query = await context.searchParams;
   const slug = params.slug;
@@ -23,22 +24,22 @@ const TransportDetails = async (context: { params: Promise<{ slug: string }>, se
     notFound();
   }
 
-  const { data: transport,reviews } = await getTransportsBySlug(slug);
+  const { data: transport, reviews } = await getTransportsBySlug(slug);
   if (!transport?.id) {
     notFound();
   }
 
-    const locationIds = [];
-    if (query.location_id) {
-      locationIds.push(Number(query.location_id));
-    }
-  
-    const selectedLocations = locationIds.length
-      ? await getSelectedLocation(locationIds)
-      : [];
+  const locationIds = [];
+  if (query.location_id) {
+    locationIds.push(Number(query.location_id));
+  }
 
-  const sellPrice = getSellPrice(transport.price, transport.sale_price)
-  const comparePrice = getComparePrice(transport.price, transport.sale_price)
+  const selectedLocations = locationIds.length
+    ? await getSelectedLocation(locationIds)
+    : [];
+
+  const sellPrice = getSellPrice(transport.price, transport.sale_price);
+  const comparePrice = getComparePrice(transport.price, transport.sale_price);
 
   const elId = "transport-checkout";
 
@@ -68,16 +69,21 @@ const TransportDetails = async (context: { params: Promise<{ slug: string }>, se
                 <MapPin className="h-4 w-4" />
                 <span>{transport.address}</span>
               </div>
-              {!!transport.extra_info && <TransportExtraService info={transport.extra_info} />}
+              {/* {!!transport.extra_info && <TransportExtraService info={transport.extra_info} />} */}
             </div>
-
+            {/* 
             <div className="mt-4 md:mt-0 flex flex-col md:items-end items-start">
               <div className="text-sm text-gray-600 mb-1">
                 Price starts from
               </div>
-              
+
               <div className="text-xl font-semibold mb-2">
-                <DiscountPriceBadge sellPrice={sellPrice} comparePrice={comparePrice} hideLabel labelClass="text-md" />
+                <DiscountPriceBadge
+                  sellPrice={sellPrice}
+                  comparePrice={comparePrice}
+                  hideLabel
+                  labelClass="text-md"
+                />
               </div>
 
               <Link href={`#${elId}`}>
@@ -85,14 +91,14 @@ const TransportDetails = async (context: { params: Promise<{ slug: string }>, se
                   Select Transport
                 </Button>
               </Link>
-            </div>
+            </div> */}
           </div>
 
           {/* Rating Section */}
-          <RatingBadgeHorizontal
+          {/* <RatingBadgeHorizontal
             total={Number(transport.review_data?.total_review || 0)}
             score={Number(transport.review_data?.score_total || 0)}
-          />
+          /> */}
 
           <ImageGallery
             images={transport.gallery}
@@ -110,7 +116,10 @@ const TransportDetails = async (context: { params: Promise<{ slug: string }>, se
           className="flex gap-8 w-full my-6 lg:flex-row flex-col-reverse"
           id={elId}
         >
-          <TransportTabSection selectedLocations={selectedLocations} car={transport} />
+          <TransportTabSection
+            selectedLocations={selectedLocations}
+            car={transport}
+          />
         </div>
       </main>
     </div>
