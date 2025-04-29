@@ -8,7 +8,7 @@ import {
 import { Card } from "@/components/ui/card";
 import { LandPlot } from "lucide-react";
 
-const GreatChoice = ({greatChoice}:any) => {
+const GreatChoice = ({ greatChoice }: any) => {
   return (
     <Card className="w-full border-none">
       <Accordion type="single" collapsible defaultValue="policies">
@@ -20,13 +20,10 @@ const GreatChoice = ({greatChoice}:any) => {
             </div>
           </AccordionTrigger>
           <AccordionContent className="px-6 pb-6">
-            <div className="space-y-3 border-none shadow-none">
-              <ul className="list-disc pl-5">
-                {greatChoice?.map((item:string, index:number) => (
-                  <li key={index} className="py-2">{item}</li>
-                ))}
-              </ul>
-            </div>
+            <div
+              className="text-sm font-normal leading-7"
+              dangerouslySetInnerHTML={{ __html: greatChoice }}
+            ></div>
           </AccordionContent>
         </AccordionItem>
       </Accordion>

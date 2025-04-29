@@ -67,6 +67,7 @@ import { useRouter } from "next/navigation";
 import { getErrorMessage } from "@/lib/handle-error";
 import { toast } from "sonner";
 import StickyTabs from "../activities/activitiesDetails/TabNav";
+import TermsAndC from "../cars/carDetails/TermsAndC";
 
 const formSchema = z.object({
   fullName: z
@@ -134,9 +135,9 @@ export default function TransportTabSection({
     { value: "overview", label: "Vehicle Overview" },
     { value: "choice", label: "Great choice!" },
     { value: "include", label: "What’s included" },
-    { value: "essentials", label: "Pre-Pick-Up Essentials" },
-    { value: "driverInfo", label: "Driver Information" },
-    { value: "t&c", label: "Transport T&C" },
+    { value: "essentials", label: "Service Provider" }, //essentials
+    { value: "driverInfo", label: "Terms and conditions" }, // Best option for ->
+    { value: "t&c", label: "Travelers Asking" },
   ];
 
   const handleIcons = (value: string) => {
@@ -204,20 +205,6 @@ export default function TransportTabSection({
               className="w-full"
             >
               <StickyTabs tabItems={tabItems} />
-              {/* <ScrollArea className="w-full">
-                <TabsList className="h-auto py-2 pb-1 bg-white w-full justify-between">
-                  {tabItems.map((tab) => (
-                    <TabsTrigger
-                      key={tab?.value}
-                      value={tab?.value}
-                      className=" px-5 py-3 text-sm font-bold text-muted-foreground data-[state=active]:text-primary data-[state=active]:shadow-none data-[state=active]:bg-transparent data-[state=active]:border-b-2 data-[state=active]:border-blue-600 rounded-none flex flex-col gap-3 justify-between"
-                    >
-                      <span className="text-dark">{tab?.label}</span>
-                    </TabsTrigger>
-                  ))}
-                </TabsList>
-                <ScrollBar orientation="horizontal" className="invisible" />
-              </ScrollArea> */}
               <ScrollArea className="w-full">
                 <TabsContent value="overview" className="border-none mt-0">
                   <CarOverview carTabData={car} />
@@ -235,7 +222,8 @@ export default function TransportTabSection({
                   value="driverInfo"
                   className="border-none space-y-2"
                 >
-                  <Card className="w-full border-none">
+                  <TermsAndC content={car?.term} />
+                  {/* <Card className="w-full border-none">
                     <Accordion
                       type="single"
                       collapsible
@@ -384,13 +372,13 @@ export default function TransportTabSection({
                         </AccordionContent>
                       </AccordionItem>
                     </Accordion>
-                  </Card>
+                  </Card> */}
 
-                  <TripExtras
+                  {/* <TripExtras
                     packages={car?.extra_price || []}
                     onChange={setSelectedPackage}
                     initialValue={selectedPackage}
-                  />
+                  /> */}
                 </TabsContent>
                 <TabsContent value="t&c" className="border-none">
                   <CarFAQs faqs={car?.faqs} />

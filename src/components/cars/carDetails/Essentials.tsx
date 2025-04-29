@@ -22,13 +22,11 @@ const Essentials = ({ essential }: { essential?: string }) => {
           <AccordionTrigger className="px-6 pt-4 hover:no-underline">
             <div className="flex items-center gap-2">
               <LandPlot color="blue" className="h-5 w-5" />
-              <span className="text-base font-bold">
-                Pre-Pick-Up Essentials
-              </span>
+              <span className="text-base font-bold">Service Provided</span>
             </div>
           </AccordionTrigger>
           <AccordionContent className="px-6 pb-6">
-          <div className="grid gap-4">
+            <div className="grid gap-4">
               {essential && essential.trim() ? (
                 <div
                   className="text-sm font-normal leading-7"

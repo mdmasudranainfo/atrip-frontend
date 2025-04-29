@@ -19,7 +19,7 @@ export default function CarFAQs({
           <AccordionTrigger className="px-6 py-4 hover:no-underline">
             <div className="flex items-center gap-2">
               <HelpCircle className="h-5 w-5 text-blue-600" />
-              <span className="text-base font-bold">FAQs</span>
+              <span className="text-base font-bold">Travelers Asking</span>
             </div>
           </AccordionTrigger>
           <AccordionContent className="px-6 pb-6">
