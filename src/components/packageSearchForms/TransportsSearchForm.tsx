@@ -59,14 +59,6 @@ const TransportsSearchForm = ({
           onSubmit={handleTransportFormSubmit}
           className="flex lg:flex-row flex-col items-start justify-start gap-2 "
         >
-          <SearchLocation
-            error={locationError}
-            locationId={selectedLocation}
-            placeholder="Search Your location..."
-            initialLocations={locations}
-            onChangeValue={setSelectedLocation}
-          />
-
           {/* Check-in, Nights, Check-out Container */}
           <div className="md:w-5/12  w-full">
             {/* <DatePickerWithRange
@@ -75,6 +67,13 @@ const TransportsSearchForm = ({
             /> */}
             <SearchTransport />
           </div>
+          <SearchLocation
+            error={locationError}
+            locationId={selectedLocation}
+            placeholder="Search Your location..."
+            initialLocations={locations}
+            onChangeValue={setSelectedLocation}
+          />
 
           {/* Search Button */}
           <Button
