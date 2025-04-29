@@ -16,7 +16,7 @@ export default function TransportExtraService({
   info: TransportExtraInfo;
 }) {
   return (
-    <div className="services flex gap-5 mt-3 text-dark text-sm  flex-wrap">
+    <div className="services flex gap-3 mt-3 text-dark text-sm  flex-wrap">
       {!!info?.passenger ? (
         <div className="service-single flex items-center gap-2">
           <Sofa className="md:h-5 md:w-5 h-4 w-4 text-primary-dark" />

@@ -1,16 +1,17 @@
 "use client";
 
-import { MapPin, CheckCircle } from "lucide-react";
+import { MapPin, CheckCircle, ArrowRight } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
 import { ITransport } from "@/types/transportTypes";
-import RatingStar from "@/components/rating-star";
-import { formatPrice, getSellPrice } from "@/lib/utils";
+import { formatPrice, getSellPrice, getComparePrice } from "@/lib/utils";
 import TransportExtraService from "@/components/cards/transports/transport-extra-service";
 import { useMediaQuery } from "@mantine/hooks";
 import { useSearchParams } from "next/navigation";
+import RatingBadge from "@/components/rating-badge";
+import DiscountPriceBadge from "@/components/booking/discount-price-badge";
 
 export default function TransportCard({
   transport,
@@ -18,56 +19,58 @@ export default function TransportCard({
   transport: ITransport;
 }) {
   const sellPrice = getSellPrice(transport.price, transport.sale_price);
+  const comparePrice = getComparePrice(transport.price, transport.sale_price);
   const isMobileDevice = useMediaQuery("(max-width: 425px)");
-
   const searchParams = useSearchParams();
   const queryString = searchParams.toString();
-  // console.log("transport", transport);
+  const url = `/transports/${transport.slug}?${queryString}`;
+
   return (
-    <>
-      {!isMobileDevice ? (
-        <Card className="card-wrapper car-card overflow-hidden sm:p-4 border-none w-full h-auto">
-          <div className="single-item flex gap-6 md:gap-10">
-            {/* Image Section */}
-            <div className="single-item-media relative w-32 h-auto sm:h-64 border sm:w-32 md:w-40 lg:w-[26%] rounded-xl overflow-hidden">
-              <Image
-                src={transport.image_url}
-                alt={transport?.title}
-                fill
-                className=""
-              />
-            </div>
+    <Link href={url}>
+      <Card className="card-wrapper overflow-hidden sm:p-4 border-none w-full h-auto">
+        <div className="single-item flex flex-col sm:flex-row gap-4">
+          {/* Image Section */}
+          <div className=" relative w-full sm:w-32 h-60 sm:h-auto md:w-40 lg:w-60 rounded-xl overflow-hidden">
+            <Image
+              src={transport.image_url || "/placeholder.svg"}
+              alt={transport.title}
+              fill
+              className="object-cover"
+            />
+          </div>
 
-            {/* Content Section */}
-            <div className="single-item-content flex flex-1 flex-col gap-0 justify-between">
-              <div className="content-wrapper flex justify-between items-stretch">
-                <div className="basis-[80%]">
-                  <div className="flex items-center gap-1 content-top">
-                    <h3 className="md:text-xl text-[15px] leading-[16px] md:leading-[28px] font-semibold text-dark">
-                      {transport?.title}
-                    </h3>
-
-                    {/* <RatingStar
-                      reviewScore={Number(transport.review_score || 0)}
-                    /> */}
-                  </div>
-                  {/* Location */}
-                  <div className="content-location flex items-center gap-2 md:text-sm text-[13px] text-primary-dark mt-2">
-                    <MapPin className="md:h-4 md:w-4 w-3 h-3" />
-                    <span>{transport.address}</span>
-                  </div>
-
-                  <div className="">
-                    <p> {transport?.sub_title}</p>
-                  </div>
-
-                  {/* Services Section */}
-                  {!!transport.extra_info && (
-                    <TransportExtraService info={transport.extra_info} />
-                  )}
+          {/* Content Section */}
+          <div className="single-item-content flex flex-1 flex-col gap-2 justify-between">
+            <div className="content-wrapper flex flex-col sm:flex-row justify-between">
+              <div className="basis-full sm:basis-[80%]">
+                <div className="flex items-center gap-1 content-top">
+                  <h3 className="text-[15px] leading-[16px] md:text-xl md:leading-[28px] font-semibold text-dark">
+                    {transport.title}
+                  </h3>
                 </div>
 
-                <div className="content-bottom flex flex-col justify-between">
+                {/* Location */}
+                <div className="content-location flex items-center gap-2 text-[13px] md:text-sm text-primary-dark mt-1">
+                  <MapPin className="h-3 w-3 md:h-4 md:w-4" />
+                  <span>{transport.address}</span>
+                </div>
+
+                {/* Subtitle */}
+                <div className="py-2">
+                  <p className="text-sm">{transport?.sub_title}</p>
+                </div>
+
+                {/* Services */}
+                {!!transport.extra_info && (
+                  <div className="services md:grid hidden grid-cols-1 gap-x-2 gap-y-2 mt-2 text-dark text-[13px] md:text-sm">
+                    <TransportExtraService info={transport.extra_info} />
+                  </div>
+                )}
+              </div>
+
+              {/* Rating badge */}
+              <div className="mt-2 sm:mt-0 sm:self-start">
+                <div className="content-bottom flex flex-col justify-between mt-3">
                   <div className="flex justify-end items-center gap-2 content-bottom-left">
                     <span className="block text-primary-dark text-sm font-sans">
                       {transport.total_review} reviews
@@ -78,94 +81,29 @@ export default function TransportCard({
                   </div>
                 </div>
               </div>
-              <div>
-                {/* Price and Book Section */}
-                <div className="item-price-wrapper mt-2 sm:mt-5 flex justify-end items-start sm:items-end gap-4">
-                  {/* Price Section */}
-                  <div className="flex flex-col">
-                    <div className="item-price text-sm font-bold">
-                      {formatPrice(sellPrice)}
-                      <span className="font-normal inline-block ml-1">/</span>
-                      <span className="font-normal inline-block">hour</span>
-                    </div>
-                  </div>
-                </div>
-                {/* Book Now Button */}
-                <div className="text-right mt-2 content-bottom-right">
-                  <Link href={`/transports/${transport?.slug}?${queryString}`}>
-                    <Button variant={"vcardBtn"}>
-                      <CheckCircle size={12} color="#fff" />
-                      Book Now
-                    </Button>
-                  </Link>
-                </div>
-              </div>
             </div>
-          </div>
-        </Card>
-      ) : (
-        <Card className="mobile-card car-card p-2 sm:p-4 flex justify-between items-end">
-          {/* Content Section */}
-          <div className="content-wrapper">
-            <div className="flex items-center gap-1 content-top">
-              <h3 className="md:text-xl text-[15px] leading-[16px] md:leading-[28px] font-semibold text-dark">
-                {transport?.title}
-              </h3>
-              <RatingStar reviewScore={Number(transport.review_score || 0)} />
-            </div>
-            {/* Location */}
-            <div className="content-location flex items-center gap-2 md:text-sm text-[13px] text-primary-dark mt-2">
-              <MapPin className="md:h-4 md:w-4 w-3 h-3" />
-              <span>{transport.address}</span>
-            </div>
-            {/* Services Section */}
-            {!!transport.extra_info && (
-              <TransportExtraService info={transport.extra_info} />
-            )}
-            <div className="content-bottom flex flex-col justify-between mt-3">
-              <div className="flex justify-end items-center gap-2 content-bottom-left">
-                <span className="block text-primary-dark text-sm font-sans">
-                  {transport.total_review} reviews
-                </span>
-                <p className="bg-info rounded-sm w-9 h-10 text-white flex justify-center items-center">
-                  {transport.review_score}
-                </p>
-              </div>
-            </div>
-          </div>
 
-          <div className="single-item-media">
-            <Image
-              src={transport.image_url}
-              alt={transport?.title}
-              fill
-              className="object-contain"
-            />
-            <div className="mt-5">
-              {/* Price and Book Section */}
-              <div className="item-price-wrapper flex gap-4">
-                {/* Price Section */}
-                <div className="flex flex-col">
-                  <div className="item-price text-sm font-bold">
-                    {formatPrice(sellPrice)}
-                    <span className="font-normal inline-block ml-1">/</span>
-                    <span className="font-normal inline-block">hour</span>
-                  </div>
-                </div>
-              </div>
-              {/* Book Now Button */}
-              <div className="mt-2 content-bottom-right">
-                <Link href={`/transports/${transport?.slug}`}>
-                  <Button variant={"vcardBtn"}>
-                    <CheckCircle size={12} color="#fff" />
-                    Book Now
-                  </Button>
-                </Link>
+            {/* Bottom Price & CTA */}
+            <div className="mt-3 sm:mt-2">
+              <DiscountPriceBadge
+                sellPrice={sellPrice}
+                comparePrice={comparePrice}
+                priceAfterText="/hour"
+              />
+              <div className="text-right mt-2">
+                <Button variant={"primary"} className="w-full sm:w-auto !py-4">
+                  Book Now
+                  <ArrowRight
+                    className="mt-[2px] ml-1"
+                    size={12}
+                    color="#fff"
+                  />
+                </Button>
               </div>
             </div>
           </div>
-        </Card>
-      )}
-    </>
+        </div>
+      </Card>
+    </Link>
   );
 }
