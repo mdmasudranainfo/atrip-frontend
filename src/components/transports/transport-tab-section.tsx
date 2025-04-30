@@ -74,7 +74,7 @@ const formSchema = z.object({
   // pickupLocation: z.number({ message: "Select pickup location" }),
   // returnLocation: z.number({ message: "Select return location" }),
   start_date: z.date(),
-  end_date: z.date(),
+  // end_date: z.date(),
 });
 
 type FormSchema = z.infer<typeof formSchema>;
@@ -116,7 +116,7 @@ export default function TransportTabSection({
       // returnLocation: location_id ? Number(location_id) : undefined,
 
       start_date: (_sDate ? parseUrlStrDate(_sDate) : undefined) || undefined,
-      end_date: (_eDate ? parseUrlStrDate(_sDate) : undefined) || undefined,
+      // end_date: (_eDate ? parseUrlStrDate(_sDate) : undefined) || undefined,
     },
   });
 
@@ -145,8 +145,8 @@ export default function TransportTabSection({
         start_date: formData.start_date
           ? format(formData.start_date, "yyyy-MM-dd")
           : null,
-        end_date: formData.end_date
-          ? format(formData.end_date, "yyyy-MM-dd")
+        end_date: formData.start_date
+          ? format(formData.start_date, "yyyy-MM-dd")
           : null,
         // extra_price: selectedPackage || [],
       };
@@ -224,7 +224,7 @@ export default function TransportTabSection({
                   name="start_date"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-base">Pick-up Date</FormLabel>
+                      {/* <FormLabel className="text-base">Pick-up Date</FormLabel> */}
                       <FormControl>
                         <Popover>
                           <PopoverTrigger asChild>
@@ -259,45 +259,6 @@ export default function TransportTabSection({
                   )}
                 />
 
-                <FormField
-                  control={form.control}
-                  name="end_date"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-base">Return Date</FormLabel>
-                      <FormControl>
-                        <Popover>
-                          <PopoverTrigger asChild>
-                            <Button
-                              variant="outline"
-                              className="w-full justify-start text-left font-normal"
-                            >
-                              <CalendarIcon className="mr-2 h-4 w-4" />
-                              {field.value ? (
-                                format(field.value, "yyyy-MM-dd")
-                              ) : (
-                                <span>Select date</span>
-                              )}
-                            </Button>
-                          </PopoverTrigger>
-                          <PopoverContent className="w-auto p-0" align="start">
-                            <Calendar
-                              mode="single"
-                              selected={field.value}
-                              onSelect={(val) => {
-                                if (val) {
-                                  field.onChange(val);
-                                }
-                              }}
-                              initialFocus
-                            />
-                          </PopoverContent>
-                        </Popover>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
                 {/* Book Now Button */}
                 <Button
                   disabled={isLoading}
@@ -361,9 +322,9 @@ export default function TransportTabSection({
                     name="start_date"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-base">
+                        {/* <FormLabel className="text-base">
                           Pick-up Date
-                        </FormLabel>
+                        </FormLabel> */}
                         <FormControl>
                           <Popover>
                             <PopoverTrigger asChild>
@@ -401,48 +362,6 @@ export default function TransportTabSection({
                     )}
                   />
 
-                  <FormField
-                    control={form.control}
-                    name="end_date"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="text-base">Return Date</FormLabel>
-                        <FormControl>
-                          <Popover>
-                            <PopoverTrigger asChild>
-                              <Button
-                                variant="outline"
-                                className="w-full justify-start text-left font-normal"
-                              >
-                                <CalendarIcon className="mr-2 h-4 w-4" />
-                                {field.value ? (
-                                  format(field.value, "yyyy-MM-dd")
-                                ) : (
-                                  <span>Select date</span>
-                                )}
-                              </Button>
-                            </PopoverTrigger>
-                            <PopoverContent
-                              className="w-auto p-0"
-                              align="start"
-                            >
-                              <Calendar
-                                mode="single"
-                                selected={field.value}
-                                onSelect={(val) => {
-                                  if (val) {
-                                    field.onChange(val);
-                                  }
-                                }}
-                                initialFocus
-                              />
-                            </PopoverContent>
-                          </Popover>
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
                   <Button
                     disabled={isLoading}
                     type="submit"
