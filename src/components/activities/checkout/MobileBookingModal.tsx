@@ -32,8 +32,6 @@ function MobileBookingModal({
 }) {
   if (!isOpen) return null;
 
-  console.log("Packages", packages);
-
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 lg:hidden overflow-y-auto">
       <div className="bg-white rounded-lg p-4 w-full max-w-md mx-auto my-8 shadow-lg">
