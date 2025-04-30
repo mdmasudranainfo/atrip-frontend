@@ -30,12 +30,12 @@ export default function TransportCard({
       <Card className="card-wrapper overflow-hidden sm:p-4 border-none w-full h-auto">
         <div className="single-item flex flex-col sm:flex-row gap-4">
           {/* Image Section */}
-          <div className=" relative w-full sm:w-32 h-60 sm:h-auto md:w-40 lg:w-60 rounded-xl overflow-hidden">
+          <div className="md:single-item-media relative w-full sm:w-32 h-60 sm:h-60 md:w-40 lg:w-60 rounded-xl overflow-hidden">
             <Image
               src={transport.image_url || "/placeholder.svg"}
               alt={transport.title}
               fill
-              className="object-cover"
+              className="object-contain"
             />
           </div>
 
@@ -92,7 +92,7 @@ export default function TransportCard({
               />
               <div className="text-right mt-2">
                 <Button variant={"primary"} className="w-full sm:w-auto !py-4">
-                  Book Now
+                  Check Availability
                   <ArrowRight
                     className="mt-[2px] ml-1"
                     size={12}
