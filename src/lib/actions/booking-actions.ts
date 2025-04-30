@@ -1,22 +1,23 @@
 "use server";
 
-import { headers } from 'next/headers';
-import { redirect } from 'next/navigation';
-import { auth } from '~/auth'
+import { headers } from "next/headers";
+import { redirect } from "next/navigation";
+import { auth } from "~/auth";
 
 // Booking add to cart
 export const bookingAddToCart = async (bookingPayload: any) => {
-  const session = await auth()
+  const session = await auth();
   const accessToken = session?.accessToken || null;
 
-  if (!accessToken) {    
-    const nextHeader = await headers()
+  if (!accessToken) {
+    const nextHeader = await headers();
     const referer = nextHeader.get("referer") || "/";
-    return redirect(`/api/auth/signin?callbackUrl=${encodeURIComponent(referer)}`);
+    return redirect(
+      `/api/auth/signin?callbackUrl=${encodeURIComponent(referer)}`
+    );
   }
 
   try {
-
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_ENDPOINT}/booking/addToCart`,
       {
@@ -28,21 +29,23 @@ export const bookingAddToCart = async (bookingPayload: any) => {
         },
         body: JSON.stringify(bookingPayload),
       }
-    )
+    );
 
     const data = await response.json();
 
-    if(data?.require_login == 1) {
+    if (data?.require_login == 1) {
       return {
         data: data ?? null,
         error: "Login required",
-      }
+      };
     }
 
     if (data.status == 0) {
       return {
         data: null,
-        error: data?.errors ? Object.values(data?.errors || {})[0] : data.message || 'Something went wrong!',
+        error: data?.errors
+          ? Object.values(data?.errors || {})[0]
+          : data.message || "Something went wrong!",
       };
     }
 
@@ -68,17 +71,18 @@ export const bookingAddToCart = async (bookingPayload: any) => {
 };
 
 export const bookingAddEnquiry = async (bookingPayload: any) => {
-  const session = await auth()
+  const session = await auth();
   const accessToken = session?.accessToken || null;
 
-  if (!accessToken) {    
-    const nextHeader = await headers()
+  if (!accessToken) {
+    const nextHeader = await headers();
     const referer = nextHeader.get("referer") || "/";
-    return redirect(`/api/auth/signin?callbackUrl=${encodeURIComponent(referer)}`);
+    return redirect(
+      `/api/auth/signin?callbackUrl=${encodeURIComponent(referer)}`
+    );
   }
 
   try {
-
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_ENDPOINT}/booking/addEnquiry`,
       {
@@ -90,21 +94,23 @@ export const bookingAddEnquiry = async (bookingPayload: any) => {
         },
         body: JSON.stringify(bookingPayload),
       }
-    )
+    );
 
     const data = await response.json();
 
-    if(data?.require_login == 1) {
+    if (data?.require_login == 1) {
       return {
         data: data ?? null,
         error: "Login required",
-      }
+      };
     }
 
     if (data?.status == 0) {
       return {
         data: null,
-        error: data?.errors ? Object.values(data?.errors || {})[0] : data.message || 'Something went wrong!',
+        error: data?.errors
+          ? Object.values(data?.errors || {})[0]
+          : data.message || "Something went wrong!",
       };
     }
 
@@ -129,14 +135,13 @@ export const bookingAddEnquiry = async (bookingPayload: any) => {
   }
 };
 
-
 // Booking update
 export const bookingUpdateCart = async (bookingPayload: any, slug: string) => {
-  const session = await auth()
+  const session = await auth();
   const accessToken = session?.accessToken || null;
 
-  if (!accessToken) {    
-    const nextHeader = await headers()
+  if (!accessToken) {
+    const nextHeader = await headers();
     const referer = nextHeader.get("referer") || "/";
     redirect(`/api/auth/signin?callbackUrl=${encodeURIComponent(referer)}`);
   }
@@ -144,20 +149,19 @@ export const bookingUpdateCart = async (bookingPayload: any, slug: string) => {
   const formData = new FormData();
 
   Object.entries(bookingPayload).forEach(([key, value]) => {
-      if (value !== undefined && value !== null) {
-          formData.append(
-              key, 
-              typeof File !== "undefined" && value instanceof File 
-                  ? value 
-                  : typeof value === "object" 
-                      ? JSON.stringify(value) 
-                      : value.toString()
-          );
-      }
+    if (value !== undefined && value !== null) {
+      formData.append(
+        key,
+        typeof File !== "undefined" && value instanceof File
+          ? value
+          : typeof value === "object"
+          ? JSON.stringify(value)
+          : value.toString()
+      );
+    }
   });
 
   try {
-
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_ENDPOINT}/booking/updateCart/${slug}`,
       {
@@ -176,7 +180,9 @@ export const bookingUpdateCart = async (bookingPayload: any, slug: string) => {
       if (data.status == 0) {
         return {
           data: null,
-          error: data?.errors ? Object.values(data?.errors || {})[0] : data.message || 'Something went wrong!',
+          error: data?.errors
+            ? Object.values(data?.errors || {})[0]
+            : data.message || "Something went wrong!",
         };
       }
 
@@ -202,11 +208,11 @@ export const bookingUpdateCart = async (bookingPayload: any, slug: string) => {
 
 // Booking checkout
 export const confirmBooking = async (confirmationdData: any) => {
-  const session = await auth()
+  const session = await auth();
 
   const accessToken = session?.accessToken || null;
   if (!accessToken) {
-    const nextHeader = await headers()
+    const nextHeader = await headers();
     const referer = nextHeader.get("referer") || "/";
     redirect(`/api/auth/signin?callbackUrl=${encodeURIComponent(referer)}`);
   }
@@ -223,7 +229,7 @@ export const confirmBooking = async (confirmationdData: any) => {
         },
         body: JSON.stringify(confirmationdData),
       }
-    )
+    );
 
     if (response.ok) {
       const data = await response.json();
@@ -231,10 +237,12 @@ export const confirmBooking = async (confirmationdData: any) => {
       if (data.status == 0) {
         return {
           data: null,
-          error: data?.errors ? Object.values(data?.errors || {})[0] : data.message || 'Something went wrong!',
+          error: data?.errors
+            ? Object.values(data?.errors || {})[0]
+            : data.message || "Something went wrong!",
         };
       }
-      
+
       return {
         data: data ?? null,
         error: null,
@@ -249,9 +257,7 @@ export const confirmBooking = async (confirmationdData: any) => {
       error: data.error ?? null,
     };
   } catch (error) {
-
-
-    console.log(error)
+    console.log(error);
     return {
       success: false,
       data: null,
@@ -262,7 +268,7 @@ export const confirmBooking = async (confirmationdData: any) => {
 
 // Fetch booking
 export const fetchBooking = async (slug: string) => {
-  const session = await auth()
+  const session = await auth();
   const accessToken = session?.accessToken || null;
   if (!accessToken) {
     throw new Error("Unauthorized");
@@ -307,7 +313,7 @@ export const fetchBooking = async (slug: string) => {
 
 // Fetch checkout data
 export const fetchBookingCheckoutData = async (slug: string) => {
-  const session = await auth()
+  const session = await auth();
   const accessToken = session?.accessToken || null;
   if (!accessToken) {
     return {
@@ -360,7 +366,7 @@ export const bookingGatewayCallbackConfirm = async (
   slug: string,
   sessionId: string
 ) => {
-  const session = await auth()
+  const session = await auth();
   const accessToken = session?.accessToken || null;
   if (!accessToken) {
     return {
@@ -415,7 +421,7 @@ export const bookingGatewayCallbackConfirm = async (
 
 // Fetch booking history
 export const getBookingHistory = async () => {
-  const session = await auth()
+  const session = await auth();
   const accessToken = session?.accessToken || null;
   if (!accessToken) {
     throw new Error("Unauthorized");
@@ -459,7 +465,7 @@ export const getBookingHistory = async () => {
 };
 
 export const getBookingHistoryById = async (id: string | number) => {
-  const session = await auth()
+  const session = await auth();
   const accessToken = session?.accessToken || null;
 
   if (!accessToken) {

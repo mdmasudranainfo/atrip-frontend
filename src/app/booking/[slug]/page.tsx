@@ -6,6 +6,7 @@ import HotelCheckoutFinalCard from "@/components/hotels/checkout/hotel-checkout-
 import HotelCheckoutFinalContainer from "@/components/hotels/checkout/hotel-checkout-final-container";
 import HotelCheckoutMain from "@/components/hotels/checkout/hotel-checkout-main";
 import TourGuestInfo from "@/components/tour/checkout/tour-guest-info";
+import TransportCheckoutFinal from "@/components/transports/checkout/transport-checkout";
 import UmrahCheckoutFinal from "@/components/umrah/checkout/umrah-checkout-final";
 import UmrahGuestInfo from "@/components/umrah/checkout/umrah-guest-info";
 import VisaCheckoutFinal from "@/components/visa/checkout/visa-checkout-final";
@@ -77,10 +78,15 @@ export default async function Page({
   // Car
   if (
     bookingData.booking.object_model == "car" ||
-    bookingData.booking.object_model == "transport" ||
+    // bookingData.booking.object_model == "transport" ||
     bookingData.booking.object_model == "flight"
   ) {
     return <CarCheckoutFinal bookingData={bookingData} />;
+  }
+
+  // TransportCheckoutFinal
+  if (bookingData.booking.object_model == "transport") {
+    return <TransportCheckoutFinal bookingData={bookingData} />;
   }
 
   // Event
