@@ -68,10 +68,11 @@ import { getErrorMessage } from "@/lib/handle-error";
 import { toast } from "sonner";
 import StickyTabs from "../activities/activitiesDetails/TabNav";
 import TermsAndC from "../cars/carDetails/TermsAndC";
+import BookingAttraction from "../layouts/booking-attraction";
 
 const formSchema = z.object({
-  pickupLocation: z.number({ message: "Select pickup location" }),
-  returnLocation: z.number({ message: "Select return location" }),
+  // pickupLocation: z.number({ message: "Select pickup location" }),
+  // returnLocation: z.number({ message: "Select return location" }),
   start_date: z.date(),
   end_date: z.date(),
 });
@@ -111,8 +112,8 @@ export default function TransportTabSection({
       // licenseCountry: "AE",
       // flightNumber: "",
 
-      pickupLocation: location_id ? Number(location_id) : undefined,
-      returnLocation: location_id ? Number(location_id) : undefined,
+      // pickupLocation: location_id ? Number(location_id) : undefined,
+      // returnLocation: location_id ? Number(location_id) : undefined,
 
       start_date: (_sDate ? parseUrlStrDate(_sDate) : undefined) || undefined,
       end_date: (_eDate ? parseUrlStrDate(_sDate) : undefined) || undefined,
@@ -147,7 +148,7 @@ export default function TransportTabSection({
         end_date: formData.end_date
           ? format(formData.end_date, "yyyy-MM-dd")
           : null,
-        extra_price: selectedPackage || [],
+        // extra_price: selectedPackage || [],
       };
 
       const { data, error } = await bookingAddToCart(payload);
@@ -163,6 +164,8 @@ export default function TransportTabSection({
     }
   }
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <div className="flex gap-8 w-full my-6 lg:flex-row flex-col-reverse">
       <div className="lg:w-[70%] w-full rounded-lg">
@@ -177,15 +180,18 @@ export default function TransportTabSection({
               <TabsContent value="overview" className="border-none mt-0">
                 <CarOverview carTabData={car} />
               </TabsContent>
+              <TabsContent value="essentials" className="border-none">
+                <Essentials essential={car?.pre_pick_up} />
+              </TabsContent>
+
+              {/* Provided */}
               <TabsContent value="choice" className="border-none">
                 <GreatChoice greatChoice={car?.great_choice} />
               </TabsContent>
               <TabsContent value="include" className="border-none">
                 <Included include={car?.include} />
               </TabsContent>
-              <TabsContent value="essentials" className="border-none">
-                <Essentials essential={car?.pre_pick_up} />
-              </TabsContent>
+
               <TabsContent value="term" className="border-none space-y-2">
                 <TermsAndC content={car?.term} />
               </TabsContent>
@@ -197,66 +203,21 @@ export default function TransportTabSection({
           </Tabs>
         </div>
       </div>
-      <div className="flex-1 lg:max-w-md w-full mx-auto">
+      <div className="md:block hidden flex-1 lg:max-w-md w-full mx-auto">
         <Card className="w-full  xl:max-w-md mx-auto shadow-none ">
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
-              <CardContent className="p-6 space-y-6">
+              <CardContent className="p-6 space-y-4">
                 {/* Header */}
-                <div className="space-y-1">
-                  <h2 className="text-xl font-semibold">{car.title}</h2>
+                <div className="">
+                  {/* <h2 className="text-xl font-semibold">{car.title}</h2> */}
                   <div className="flex justify-between items-center">
                     <p className="text-lg font-medium">
-                      {formatPrice(sellPrice)}
+                      {formatPrice(sellPrice)} /{" "}
+                      <span className="text-sm text-primary">Par Hour</span>
                     </p>
                   </div>
                 </div>
-
-                <FormField
-                  control={form.control}
-                  name="pickupLocation"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-base">
-                        Pick-Up Location
-                      </FormLabel>
-                      <FormControl>
-                        <SearchLocation
-                          error={undefined}
-                          locationId={field.value}
-                          placeholder="Select location"
-                          initialLocations={selectedLocations || []}
-                          onChangeValue={field.onChange}
-                          inputSize={2}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={form.control}
-                  name="returnLocation"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-base">
-                        Return Location
-                      </FormLabel>
-                      <FormControl>
-                        <SearchLocation
-                          error={undefined}
-                          locationId={field.value}
-                          placeholder="Select location"
-                          initialLocations={selectedLocations || []}
-                          onChangeValue={field.onChange}
-                          inputSize={2}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
 
                 <FormField
                   control={form.control}
@@ -303,7 +264,7 @@ export default function TransportTabSection({
                   name="end_date"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-base">Return Time</FormLabel>
+                      <FormLabel className="text-base">Return Date</FormLabel>
                       <FormControl>
                         <Popover>
                           <PopoverTrigger asChild>
@@ -337,60 +298,6 @@ export default function TransportTabSection({
                     </FormItem>
                   )}
                 />
-
-                {/* Location and Date Selection */}
-                <div className="space-y-4">
-                  <div className="pb-4 border-b border-b-[#dadfe6] flex justify-between items-center">
-                    <span className="font-medium text-[#1a1a1a] text-sm">
-                      Protection & Extra
-                    </span>
-                    <span className="font-medium text-[#1a1a1a] text-sm">
-                      {formatPrice(extraPrice)}
-                    </span>
-                  </div>
-                </div>
-
-                {/* Collapsible Sections */}
-                <div className="space-y-2">
-                  <Collapsible>
-                    <CollapsibleTrigger className="flex w-full justify-between items-center">
-                      <span className="font-medium">Deposit</span>
-                      <ChevronDown className="h-4 w-4" />
-                    </CollapsibleTrigger>
-                    <CollapsibleContent className="pt-2">
-                      <p className="text-sm text-gray-600">
-                        Deposit details here
-                      </p>
-                    </CollapsibleContent>
-                  </Collapsible>
-
-                  <Collapsible>
-                    <CollapsibleTrigger className="flex w-full justify-between items-center">
-                      <span className="font-medium">Fuel Policy</span>
-                      <ChevronDown className="h-4 w-4" />
-                    </CollapsibleTrigger>
-                    <CollapsibleContent className="pt-2">
-                      <p className="text-sm text-gray-600">
-                        Fuel policy details here
-                      </p>
-                    </CollapsibleContent>
-                  </Collapsible>
-
-                  <Collapsible>
-                    <CollapsibleTrigger className="flex w-full justify-between items-center">
-                      <span className="font-medium">
-                        Modification cancelation refund policy
-                      </span>
-                      <ChevronDown className="h-4 w-4" />
-                    </CollapsibleTrigger>
-                    <CollapsibleContent className="pt-2">
-                      <p className="text-sm text-gray-600">
-                        Cancellation policy details here
-                      </p>
-                    </CollapsibleContent>
-                  </Collapsible>
-                </div>
-
                 {/* Book Now Button */}
                 <Button
                   disabled={isLoading}
@@ -400,14 +307,159 @@ export default function TransportTabSection({
                   {isLoading ? (
                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                   ) : (
-                    "Reserve"
+                    "Check Availability"
                   )}
                 </Button>
               </CardContent>
             </form>
           </Form>
         </Card>
+
+        <BookingAttraction />
       </div>
+
+      {/* Mobile Responsive design  */}
+      {/* button */}
+      <div className="fixed flex justify-between items-center bottom-0 left-0 right-0 bg-white p-2 lg:hidden">
+        <p className="text-lg font-medium">
+          {formatPrice(sellPrice)} /{" "}
+          <span className="text-sm text-primary">Par Hour</span>
+        </p>
+        <Button
+          onClick={() => setIsModalOpen(true)}
+          disabled={isLoading}
+          type="button" // important to prevent form submit
+          className="h-11 bg-blue-600 hover:bg-blue-700 text-white font-bold"
+        >
+          {isLoading ? (
+            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+          ) : (
+            "Check Availability"
+          )}
+        </Button>
+      </div>
+
+      {/* modal */}
+
+      {isModalOpen && (
+        <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4">
+          <div className="bg-white w-full max-w-md rounded-lg shadow-lg">
+            <div className="flex justify-end items-center p-4">
+              <button
+                onClick={() => setIsModalOpen(false)}
+                className="text-gray-500 hover:text-black"
+              >
+                ✕
+              </button>
+            </div>
+            <CardContent className="p-6 pt-0 space-y-4">
+              {/* Reuse the same form here */}
+              <Form {...form}>
+                <form onSubmit={form.handleSubmit(onSubmit)}>
+                  <FormField
+                    control={form.control}
+                    name="start_date"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-base">
+                          Pick-up Date
+                        </FormLabel>
+                        <FormControl>
+                          <Popover>
+                            <PopoverTrigger asChild>
+                              <Button
+                                variant="outline"
+                                className="w-full justify-start text-left font-normal"
+                              >
+                                <CalendarIcon className="mr-2 h-4 w-4" />
+                                {field.value ? (
+                                  format(field.value, "yyyy-MM-dd")
+                                ) : (
+                                  <span>Select date</span>
+                                )}
+                              </Button>
+                            </PopoverTrigger>
+                            <PopoverContent
+                              className="w-auto p-0"
+                              align="start"
+                            >
+                              <Calendar
+                                mode="single"
+                                selected={field.value}
+                                onSelect={(val) => {
+                                  if (val) {
+                                    field.onChange(val);
+                                  }
+                                }}
+                                initialFocus
+                              />
+                            </PopoverContent>
+                          </Popover>
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={form.control}
+                    name="end_date"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-base">Return Date</FormLabel>
+                        <FormControl>
+                          <Popover>
+                            <PopoverTrigger asChild>
+                              <Button
+                                variant="outline"
+                                className="w-full justify-start text-left font-normal"
+                              >
+                                <CalendarIcon className="mr-2 h-4 w-4" />
+                                {field.value ? (
+                                  format(field.value, "yyyy-MM-dd")
+                                ) : (
+                                  <span>Select date</span>
+                                )}
+                              </Button>
+                            </PopoverTrigger>
+                            <PopoverContent
+                              className="w-auto p-0"
+                              align="start"
+                            >
+                              <Calendar
+                                mode="single"
+                                selected={field.value}
+                                onSelect={(val) => {
+                                  if (val) {
+                                    field.onChange(val);
+                                  }
+                                }}
+                                initialFocus
+                              />
+                            </PopoverContent>
+                          </Popover>
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <Button
+                    disabled={isLoading}
+                    type="submit"
+                    className="w-full h-11 mt-2 bg-blue-600 hover:bg-blue-700 text-white font-bold"
+                  >
+                    {isLoading ? (
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    ) : (
+                      "Check Availability"
+                    )}
+                  </Button>
+                </form>
+              </Form>
+            </CardContent>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

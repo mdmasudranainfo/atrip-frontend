@@ -71,34 +71,7 @@ const TransportDetails = async (context: {
               </div>
               {/* {!!transport.extra_info && <TransportExtraService info={transport.extra_info} />} */}
             </div>
-            {/* 
-            <div className="mt-4 md:mt-0 flex flex-col md:items-end items-start">
-              <div className="text-sm text-gray-600 mb-1">
-                Price starts from
-              </div>
-
-              <div className="text-xl font-semibold mb-2">
-                <DiscountPriceBadge
-                  sellPrice={sellPrice}
-                  comparePrice={comparePrice}
-                  hideLabel
-                  labelClass="text-md"
-                />
-              </div>
-
-              <Link href={`#${elId}`}>
-                <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6 font-bold">
-                  Select Transport
-                </Button>
-              </Link>
-            </div> */}
           </div>
-
-          {/* Rating Section */}
-          {/* <RatingBadgeHorizontal
-            total={Number(transport.review_data?.total_review || 0)}
-            score={Number(transport.review_data?.score_total || 0)}
-          /> */}
 
           <ImageGallery
             images={transport.gallery}
