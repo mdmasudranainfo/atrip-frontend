@@ -69,6 +69,8 @@ import { toast } from "sonner";
 import StickyTabs from "../activities/activitiesDetails/TabNav";
 import TermsAndC from "../cars/carDetails/TermsAndC";
 import BookingAttraction from "../layouts/booking-attraction";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../ui/dialog";
+import { Calendar2 } from "../ui/calendar2";
 
 const formSchema = z.object({
   // pickupLocation: z.number({ message: "Select pickup location" }),
@@ -165,6 +167,7 @@ export default function TransportTabSection({
   }
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [calendarOpen, setCalendarOpen] = useState(false);
 
   return (
     <div className="flex gap-8 w-full my-6 lg:flex-row flex-col-reverse">
@@ -230,6 +233,7 @@ export default function TransportTabSection({
                           <PopoverTrigger asChild>
                             <Button
                               variant="outline"
+                              onClick={() => setCalendarOpen(true)} // open modal instead
                               className="w-full justify-start text-left font-normal"
                             >
                               <CalendarIcon className="mr-2 h-4 w-4" />
@@ -240,7 +244,7 @@ export default function TransportTabSection({
                               )}
                             </Button>
                           </PopoverTrigger>
-                          <PopoverContent className="w-auto p-0" align="start">
+                          {/* <PopoverContent className="w-auto p-0" align="start">
                             <Calendar
                               mode="single"
                               selected={field.value}
@@ -251,7 +255,7 @@ export default function TransportTabSection({
                               }}
                               initialFocus
                             />
-                          </PopoverContent>
+                          </PopoverContent> */}
                         </Popover>
                       </FormControl>
                       <FormMessage />
@@ -330,6 +334,7 @@ export default function TransportTabSection({
                             <PopoverTrigger asChild>
                               <Button
                                 variant="outline"
+                                onClick={() => setCalendarOpen(true)} // open modal instead
                                 className="w-full justify-start text-left font-normal"
                               >
                                 <CalendarIcon className="mr-2 h-4 w-4" />
@@ -340,7 +345,7 @@ export default function TransportTabSection({
                                 )}
                               </Button>
                             </PopoverTrigger>
-                            <PopoverContent
+                            {/* <PopoverContent
                               className="w-auto p-0"
                               align="start"
                             >
@@ -354,7 +359,7 @@ export default function TransportTabSection({
                                 }}
                                 initialFocus
                               />
-                            </PopoverContent>
+                            </PopoverContent> */}
                           </Popover>
                         </FormControl>
                         <FormMessage />
@@ -379,6 +384,27 @@ export default function TransportTabSection({
           </div>
         </div>
       )}
+
+      <Dialog open={calendarOpen} onOpenChange={setCalendarOpen}>
+        <DialogContent className="sm:max-w-[450px]">
+          <DialogHeader>
+            <DialogTitle>Select a Date</DialogTitle>
+          </DialogHeader>
+          <div className="flex justify-center items-center">
+            <Calendar2
+              mode="single"
+              selected={form.watch("start_date")}
+              onSelect={(val: any) => {
+                if (val) {
+                  form.setValue("start_date", val, { shouldValidate: true });
+                  setCalendarOpen(false);
+                }
+              }}
+              initialFocus
+            />
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
