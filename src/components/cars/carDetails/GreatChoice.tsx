@@ -10,7 +10,7 @@ import { LandPlot } from "lucide-react";
 
 const GreatChoice = ({ greatChoice }: any) => {
   return (
-    <Card className="w-full border-none">
+    <Card className="w-full border-none none rounded-none">
       <Accordion type="single" collapsible defaultValue="policies">
         <AccordionItem value="policies" className="border-none">
           <AccordionTrigger className="px-6 py-4 hover:no-underline">

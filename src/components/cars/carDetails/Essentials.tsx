@@ -11,7 +11,7 @@ import React from "react";
 
 const Essentials = ({ essential }: { essential?: string }) => {
   return (
-    <Card className="w-full border-none">
+    <Card className="w-full border-none none rounded-none">
       <Accordion
         type="single"
         collapsible

@@ -13,7 +13,7 @@ export default function CarFAQs({
   faqs: { title: string; content: string }[];
 }) {
   return (
-    <Card className="w-full border-none">
+    <Card className="w-full border-none none rounded-none">
       <Accordion type="single" value="header" collapsible>
         <AccordionItem value="header" className="border-0">
           <AccordionTrigger className="px-6 py-4 hover:no-underline">

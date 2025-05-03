@@ -16,7 +16,7 @@ import TermsAndC from "./TermsAndC";
 const CarOverview = ({ carTabData }: any) => {
   return (
     <div>
-      <Card className="w-full border-none">
+      <Card className="w-full border-none rounded-none border -t">
         <Accordion type="single" collapsible defaultValue="policies">
           <AccordionItem value="policies" className="border-none">
             <AccordionTrigger className="px-6 py-4 hover:no-underline">
@@ -36,19 +36,19 @@ const CarOverview = ({ carTabData }: any) => {
           </AccordionItem>
         </Accordion>
       </Card>
-      <div className="pt-5">
+      <div className="border-t">
         <GreatChoice greatChoice={carTabData?.great_choice} />
       </div>
-      <div className="pt-5">
+      <div className="border-t">
         <Included include={carTabData?.include} />
       </div>
-      <div className="pt-5">
+      <div className="border-t">
         <Essentials essential={carTabData?.pre_pick_up} />
       </div>
-      <div className="pt-5">
+      <div className="border-t">
         <TermsAndC content={carTabData?.term} />
       </div>
-      <div className="pt-5">
+      <div className="border-t">
         <CarFAQs faqs={carTabData?.faqs} />
       </div>
     </div>
