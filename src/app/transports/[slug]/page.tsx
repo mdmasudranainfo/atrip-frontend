@@ -50,7 +50,7 @@ const TransportDetails = async (context: {
         <TransparentNavbar isBgWhite={false} />
       </div>
       <main className="w-[96%] sm:container m-auto min-h-screen  py-8  ">
-        <div className="bg-white p-6 rounded-xl  ">
+        <div className="bg-white pt-6 md:p-6 rounded-xl  ">
           {/* Back Link */}
           <Link
             href="/transports"
@@ -60,7 +60,7 @@ const TransportDetails = async (context: {
           </Link>
 
           {/* Header Section */}
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-4">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-4 ">
             <div>
               <h1 className="text-2xl font-semibold text-gray-900 mb-2">
                 {transport?.title}
