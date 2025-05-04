@@ -85,7 +85,14 @@ export default async function Page({
   }
 
   // TransportCheckoutFinal
+  // if (bookingData.booking.object_model == "transport") {
+  //   return <TransportCheckoutFinal bookingData={bookingData} />;
+  // }
+
   if (bookingData.booking.object_model == "transport") {
+    if (bookingData.booking.step == 1) {
+      return <ActivityCheckoutFinal bookingData={bookingData} />;
+    }
     return <TransportCheckoutFinal bookingData={bookingData} />;
   }
 
