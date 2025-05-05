@@ -207,44 +207,45 @@ export default function TransportTabSection({
         </div>
       </div>
       <div className="md:block hidden flex-1 lg:max-w-md w-full mx-auto">
-        <Card className="w-full  xl:max-w-md mx-auto shadow-none ">
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)}>
-              <CardContent className="p-6 space-y-4">
-                {/* Header */}
-                <div className="">
-                  {/* <h2 className="text-xl font-semibold">{car.title}</h2> */}
-                  <div className="flex justify-between items-center">
-                    <p className="text-lg font-medium">
-                      {formatPrice(sellPrice)} /{" "}
-                      <span className="text-sm text-primary">Par Hour</span>
-                    </p>
+        <div className=" sticky top-0">
+          <Card className="w-full  xl:max-w-md mx-auto shadow-none  ">
+            <Form {...form}>
+              <form onSubmit={form.handleSubmit(onSubmit)}>
+                <CardContent className="p-6 space-y-4">
+                  {/* Header */}
+                  <div className="">
+                    {/* <h2 className="text-xl font-semibold">{car.title}</h2> */}
+                    <div className="flex justify-between items-center">
+                      <p className="text-lg font-medium">
+                        {formatPrice(sellPrice)} /{" "}
+                        <span className="text-sm text-primary">Par Hour</span>
+                      </p>
+                    </div>
                   </div>
-                </div>
 
-                <FormField
-                  control={form.control}
-                  name="start_date"
-                  render={({ field }) => (
-                    <FormItem>
-                      {/* <FormLabel className="text-base">Pick-up Date</FormLabel> */}
-                      <FormControl>
-                        <Popover>
-                          <PopoverTrigger asChild>
-                            <Button
-                              variant="outline"
-                              onClick={() => setCalendarOpen(true)} // open modal instead
-                              className="w-full justify-start text-left font-normal"
-                            >
-                              <CalendarIcon className="mr-2 h-4 w-4" />
-                              {field.value ? (
-                                format(field.value, "yyyy-MM-dd")
-                              ) : (
-                                <span>Select date</span>
-                              )}
-                            </Button>
-                          </PopoverTrigger>
-                          {/* <PopoverContent className="w-auto p-0" align="start">
+                  <FormField
+                    control={form.control}
+                    name="start_date"
+                    render={({ field }) => (
+                      <FormItem>
+                        {/* <FormLabel className="text-base">Pick-up Date</FormLabel> */}
+                        <FormControl>
+                          <Popover>
+                            <PopoverTrigger asChild>
+                              <Button
+                                variant="outline"
+                                onClick={() => setCalendarOpen(true)} // open modal instead
+                                className="w-full justify-start text-left font-normal"
+                              >
+                                <CalendarIcon className="mr-2 h-4 w-4" />
+                                {field.value ? (
+                                  format(field.value, "yyyy-MM-dd")
+                                ) : (
+                                  <span>Select date</span>
+                                )}
+                              </Button>
+                            </PopoverTrigger>
+                            {/* <PopoverContent className="w-auto p-0" align="start">
                             <Calendar
                               mode="single"
                               selected={field.value}
@@ -256,31 +257,32 @@ export default function TransportTabSection({
                               initialFocus
                             />
                           </PopoverContent> */}
-                        </Popover>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+                          </Popover>
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
 
-                {/* Book Now Button */}
-                <Button
-                  disabled={isLoading}
-                  type="submit"
-                  className="w-full h-11 bg-blue-600 hover:bg-blue-700 text-white font-bold"
-                >
-                  {isLoading ? (
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  ) : (
-                    "Check Availability"
-                  )}
-                </Button>
-              </CardContent>
-            </form>
-          </Form>
-        </Card>
+                  {/* Book Now Button */}
+                  <Button
+                    disabled={isLoading}
+                    type="submit"
+                    className="w-full h-11 bg-blue-600 hover:bg-blue-700 text-white font-bold"
+                  >
+                    {isLoading ? (
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    ) : (
+                      "Check Availability"
+                    )}
+                  </Button>
+                </CardContent>
+              </form>
+            </Form>
+          </Card>
 
-        <BookingAttraction />
+          <BookingAttraction />
+        </div>
       </div>
 
       {/* Mobile Responsive design  */}

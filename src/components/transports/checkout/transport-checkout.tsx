@@ -73,7 +73,7 @@ const FormSchema = z.object({
     .string()
     .min(8, { message: "Please enter a valid phone number." }),
   pickupLocation: z.number(),
-  dropLocation: z.number(),
+  dropLocation: z.number().optional(),
   start_date: z.date(),
   end_date: z.date(),
   time_slot: z.string(),
@@ -218,11 +218,11 @@ export default function TransportCheckoutFinal({
               >
                 {/* Guest Packages */}
                 {!!packages.length && (
-                  <Card className="p-4 space-y-6">
+                  <Card className="md:p-4 p-2 space-y-6">
                     <CardHeader className="pb-0">
                       <CardTitle className="flex items-center gap-2 md:text-xl">
                         <User className="h-5 w-5 text-blue-600" />
-                        Guests
+                        Packages
                       </CardTitle>
                     </CardHeader>
 
@@ -252,10 +252,10 @@ export default function TransportCheckoutFinal({
                                   : "border-gray-300"
                               }`}
                             >
-                              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                              <div className="flex flex-row md:flex-row md:items-center md:justify-between justify-between  md:gap-4">
                                 {/* Title & Description */}
                                 <div className="flex items-center gap-4">
-                                  <div className="w-16 h-12 relative">
+                                  <div className="w-16 h-12 relative hidden md:block">
                                     <Image
                                       src="/images/imageCar.png"
                                       alt={pkg.name}
@@ -276,7 +276,7 @@ export default function TransportCheckoutFinal({
                                 {/* Quantity Controls (only show if first item) */}
                                 {i === 0 && (
                                   <div
-                                    className={`  flex items-center justify-end gap-2 md:gap-4 ${
+                                    className={`  flex items-center md:justify-end gap-0 md:gap-4 ${
                                       val >= 3 ? `block` : `hidden`
                                     }`}
                                   >
@@ -318,7 +318,7 @@ export default function TransportCheckoutFinal({
                                 )}
 
                                 {/* Price */}
-                                <div className="text-right text-base font-semibold text-gray-800 min-w-[70px]">
+                                <div className="text-right text-base font-semibold text-gray-800 w-[70px] max-w-full">
                                   {formatPrice(pkg.price)}
                                 </div>
                               </div>
@@ -363,30 +363,35 @@ export default function TransportCheckoutFinal({
                         )}
                       />
                     </div>
-                    <FormField
-                      control={form.control}
-                      name="dropLocation"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel className="text-base">
-                            Drop Off Location
-                          </FormLabel>
+                    <div className="md:col-span-2">
+                      <FormField
+                        control={form.control}
+                        name="dropLocation"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className="text-base">
+                              Drop Off Location
+                            </FormLabel>
+                            <FormDescription className="text-xs mt-0">
+                              Optional, Required for one way transfer only
+                            </FormDescription>
 
-                          <FormControl>
-                            <SearchLocation
-                              locationId={
-                                field.value ? Number(field.value) : undefined
-                              }
-                              placeholder="Select location"
-                              inputSize={2}
-                              onChangeValue={field.onChange}
-                              initialLocations={[]}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
+                            <FormControl>
+                              <SearchLocation
+                                locationId={
+                                  field.value ? Number(field.value) : undefined
+                                }
+                                placeholder="Select location"
+                                inputSize={2}
+                                onChangeValue={field.onChange}
+                                initialLocations={[]}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </div>
 
                     <FormField
                       control={form.control}
