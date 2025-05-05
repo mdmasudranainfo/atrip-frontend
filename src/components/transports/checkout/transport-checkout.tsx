@@ -275,10 +275,14 @@ export default function TransportCheckoutFinal({
 
                                 {/* Quantity Controls (only show if first item) */}
                                 {i === 0 && (
-                                  <div className="flex items-center justify-end gap-2 md:gap-4">
+                                  <div
+                                    className={`  flex items-center justify-end gap-2 md:gap-4 ${
+                                      val >= 3 ? `block` : `hidden`
+                                    }`}
+                                  >
                                     <button
                                       type="button"
-                                      disabled={val <= 0}
+                                      disabled={val <= 3}
                                       onClick={(e) => {
                                         e.stopPropagation();
                                         updateQuantity(pkg, val - 1);
