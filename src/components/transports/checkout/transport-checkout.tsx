@@ -8,10 +8,12 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import PhoneInput from "react-phone-number-input";
+import { format } from "date-fns";
 
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -20,7 +22,13 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Loader2, User, UserRoundCog } from "lucide-react";
+import {
+  Calendar1Icon,
+  CalendarIcon,
+  Loader2,
+  User,
+  UserRoundCog,
+} from "lucide-react";
 import { TransparentNavbar } from "@/components/header/transparentNav/TransparentNav";
 import ActivityPriceSummery from "@/components/activities/checkout/activity-price-summery";
 
@@ -29,6 +37,29 @@ import { getErrorMessage } from "@/lib/handle-error";
 import { bookingUpdateCart } from "@/lib/actions/booking-actions";
 import { BookingTicketType } from "@/types/activity";
 import Image from "next/image";
+import SearchLocation from "@/components/filter/search-location";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { Calendar } from "@/components/ui/calendar";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
+const timeSlots = [
+  "08:00 AM",
+  "10:00 AM",
+  "12:00 PM",
+  "02:00 PM",
+  "04:00 PM",
+  "06:00 PM",
+];
 
 const FormSchema = z.object({
   firstName: z
@@ -41,6 +72,11 @@ const FormSchema = z.object({
   phoneNumber: z
     .string()
     .min(8, { message: "Please enter a valid phone number." }),
+  pickupLocation: z.number(),
+  dropLocation: z.number(),
+  start_date: z.date(),
+  end_date: z.date(),
+  time_slot: z.string(),
 });
 
 type FormSchema = z.infer<typeof FormSchema>;
@@ -61,6 +97,8 @@ export default function TransportCheckoutFinal({
       lastName: "",
       email: "",
       phoneNumber: "",
+      start_date: new Date(bookingData?.booking?.start_date),
+      end_date: new Date(bookingData?.booking?.end_date),
     },
   });
 
@@ -131,10 +169,13 @@ export default function TransportCheckoutFinal({
         service_type: bookingData?.booking?.object_model,
         ticket_types: selectedPackage,
         ...formData,
+        start_date: formData.start_date
+          ? format(formData.start_date, "yyyy-MM-dd")
+          : null,
+        end_date: formData.start_date
+          ? format(formData.start_date, "yyyy-MM-dd")
+          : null,
       };
-
-      // console.log("Payload:", payload);
-      // return;
 
       const { data, error } = await bookingUpdateCart(
         payload,
@@ -167,7 +208,6 @@ export default function TransportCheckoutFinal({
               </h1>
               <h2 className="pt-1 md:text-md text-sm font-semibold">
                 {dayjs(bookingData?.booking?.start_date).format("D MMMM YYYY")}{" "}
-                <span>({bookingData?.booking?.time_slot})</span>
               </h2>
             </div>
 
@@ -296,6 +336,174 @@ export default function TransportCheckoutFinal({
                   </CardHeader>
 
                   <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div className="md:col-span-2">
+                      <FormField
+                        control={form.control}
+                        name="pickupLocation"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className="text-base">
+                              Pick-Up Location
+                            </FormLabel>
+                            <FormControl>
+                              <SearchLocation
+                                locationId={Number(field.value)}
+                                placeholder="Select location"
+                                inputSize={2}
+                                onChangeValue={field.onChange}
+                                initialLocations={[]}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </div>
+                    <FormField
+                      control={form.control}
+                      name="dropLocation"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="text-base">
+                            Drop Off Location
+                          </FormLabel>
+
+                          <FormControl>
+                            <SearchLocation
+                              locationId={
+                                field.value ? Number(field.value) : undefined
+                              }
+                              placeholder="Select location"
+                              inputSize={2}
+                              onChangeValue={field.onChange}
+                              initialLocations={[]}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name="start_date"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="text-base">
+                            Pickup Date
+                          </FormLabel>
+                          <FormControl>
+                            <Popover>
+                              <PopoverTrigger asChild>
+                                <Button
+                                  variant="outline"
+                                  className="w-full justify-start text-left font-normal"
+                                >
+                                  <CalendarIcon className="mr-2 h-4 w-4" />
+                                  {field.value
+                                    ? format(field.value, "yyyy-MM-dd")
+                                    : "Select date"}
+                                </Button>
+                              </PopoverTrigger>
+                              <PopoverContent
+                                className="w-auto p-0"
+                                align="start"
+                              >
+                                <Calendar
+                                  mode="single"
+                                  selected={field.value}
+                                  onSelect={(val) => {
+                                    if (val) {
+                                      form.setValue("start_date", val, {
+                                        shouldValidate: true,
+                                      });
+                                    }
+                                  }}
+                                  initialFocus
+                                />
+                              </PopoverContent>
+                            </Popover>
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name="end_date"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="text-base">
+                            Return Date
+                          </FormLabel>
+                          <FormControl>
+                            <Popover>
+                              <PopoverTrigger asChild>
+                                <Button
+                                  variant="outline"
+                                  className="w-full justify-start text-left font-normal"
+                                >
+                                  <Calendar1Icon className="mr-2 h-4 w-4" />
+                                  {field.value
+                                    ? format(field.value, "yyyy-MM-dd")
+                                    : "Select date"}
+                                </Button>
+                              </PopoverTrigger>
+                              <PopoverContent
+                                className="w-auto p-0"
+                                align="start"
+                              >
+                                <Calendar
+                                  mode="single"
+                                  selected={field.value}
+                                  onSelect={(val) => {
+                                    if (val) {
+                                      form.setValue("end_date", val, {
+                                        shouldValidate: true,
+                                      });
+                                    }
+                                  }}
+                                  initialFocus
+                                />
+                              </PopoverContent>
+                            </Popover>
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name="time_slot"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="text-base">
+                            Pickup Time
+                          </FormLabel>
+                          <Select
+                            onValueChange={field.onChange}
+                            defaultValue={field.value}
+                          >
+                            <FormControl>
+                              <SelectTrigger>
+                                <SelectValue placeholder="Time Slot" />
+                              </SelectTrigger>
+                            </FormControl>
+                            <SelectContent>
+                              {timeSlots.map((time) => (
+                                <SelectItem key={time} value={time}>
+                                  {time}
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
                     {["firstName", "lastName", "email", "phoneNumber"].map(
                       (fieldName) => (
                         <FormField
@@ -312,7 +520,11 @@ export default function TransportCheckoutFinal({
                                   <PhoneInput
                                     international
                                     defaultCountry="AE"
-                                    value={field.value}
+                                    value={
+                                      typeof field.value === "string"
+                                        ? field.value
+                                        : ""
+                                    }
                                     onChange={field.onChange}
                                     className="phone-input w-full"
                                   />
@@ -323,6 +535,11 @@ export default function TransportCheckoutFinal({
                                     }
                                     placeholder={`Enter your ${fieldName}`}
                                     {...field}
+                                    value={
+                                      field.value instanceof Date
+                                        ? field.value.toISOString()
+                                        : field.value
+                                    }
                                     className="w-full h-11 px-4 text-sm border-gray-300 rounded-lg focus:ring-2 focus:ring-primary"
                                   />
                                 )}

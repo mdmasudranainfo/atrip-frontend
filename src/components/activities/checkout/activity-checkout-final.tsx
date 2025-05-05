@@ -118,6 +118,7 @@ export default function ActivityCheckoutFinal({
       setIsLoading(true);
       const { data, error } = await confirmBooking(payload);
       if (error) {
+        console.log("Error:", error);
         toast.error(`Error: ${getErrorMessage(error)}`);
       } else if (data) {
         window.location = data.url;
