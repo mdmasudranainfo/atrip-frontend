@@ -12,6 +12,7 @@ import Essentials from "@/components/cars/carDetails/Essentials";
 import GreatChoice from "@/components/cars/carDetails/GreatChoice";
 import Included from "@/components/cars/carDetails/Include";
 import TermsAndC from "./TermsAndC";
+import BestOption from "./Best_option";
 
 const CarOverview = ({ carTabData }: any) => {
   return (
@@ -41,6 +42,9 @@ const CarOverview = ({ carTabData }: any) => {
       </div>
       <div className="border-t">
         <Included include={carTabData?.include} />
+      </div>
+      <div className="border-t">
+        <BestOption content={carTabData?.best_option} />
       </div>
       <div className="border-t">
         <Essentials essential={carTabData?.pre_pick_up} />

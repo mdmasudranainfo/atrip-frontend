@@ -71,6 +71,7 @@ import TermsAndC from "../cars/carDetails/TermsAndC";
 import BookingAttraction from "../layouts/booking-attraction";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../ui/dialog";
 import { Calendar2 } from "../ui/calendar2";
+import BestOption from "../cars/carDetails/Best_option";
 
 const formSchema = z.object({
   // pickupLocation: z.number({ message: "Select pickup location" }),
@@ -193,6 +194,9 @@ export default function TransportTabSection({
               </TabsContent>
               <TabsContent value="include" className="border-none">
                 <Included include={car?.include} />
+              </TabsContent>
+              <TabsContent value="Best_option_for" className="border-none">
+                <BestOption content={car?.best_option} />
               </TabsContent>
 
               <TabsContent value="term" className="border-none space-y-2">
