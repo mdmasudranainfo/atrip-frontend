@@ -48,9 +48,9 @@ export default function FilterServiceGroup({
         <div className=" w-full mx-auto md:mt-5">
           <Tabs defaultValue={defaultValue} className=" w-full mx-auto">
             <TabsList
-              className={`page-main-tablist flex lg:mx-auto flex-row items-start lg:items-center gap-4 lg:gap-10 py-2 px-3 bg-primary-dark text-white rounded-b-none ${
-                defaultValue === "activities" ? "hidden" : ""
-              }`}
+              className={`page-main-tablist flex lg:mx-auto flex-row items-start lg:items-center gap-4 lg:gap-10 py-2 px-3 bg-primary-dark text-white rounded-b-none `}
+
+              // ${defaultValue === "activities" ? "hidden" : ""}
             >
               <div className="md:grid grid-cols-8 flex xsm: w-full md:overflow-hidden overflow-x-auto md:pb-0 pb-2 md:gap-0 gap-[22px]">
                 <TabsTrigger
