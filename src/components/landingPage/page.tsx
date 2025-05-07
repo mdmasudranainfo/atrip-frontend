@@ -27,14 +27,14 @@ const LandingPage = () => {
 
       <main>
         {/* carosol */}
-        <section className="md:mt-[50px] mt-0 mb-[70px]">
+        {/* <section className="md:mt-[50px] mt-0 mb-[70px]">
           <div className="container mx-auto px-6 sm:px-0 overflow-hidden">
             <OfferSlide />
           </div>
-        </section>
+        </section> */}
 
         {/* hotel section */}
-        <section className="container mx-auto mt-0 sm:mt-[62px] overflow-hidden pb-5">
+        <section className="pt-11 container mx-auto mt-0 sm:mt-[62px] overflow-hidden pb-5">
           <h1 className="md:landingHeaderTxt md:mb-6 md:text-[40px] text-[22px] leading-[23px] text-center mb-3 font-semibold mx-2">
             Recommended Attractions{" "}
           </h1>
