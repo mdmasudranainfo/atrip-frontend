@@ -60,7 +60,16 @@ export default function FilterServiceGroup({
                   <span>{icons.activitiesIcon}</span>
                   Attractions
                 </TabsTrigger>
+
                 <TabsTrigger
+                  className="h-[46px] flex items-center lg:justify-center justify-start gap-2 font-semibold text-sm leading-4 tracking-tight"
+                  value="Transport"
+                >
+                  <span>{icons.activitiesIcon}</span>
+                  Transport
+                </TabsTrigger>
+
+                {/* <TabsTrigger
                   className="h-[46px] flex items-center lg:justify-center justify-start gap-2 font-semibold text-sm leading-4 tracking-tight"
                   value="holiday"
                 >
@@ -85,7 +94,6 @@ export default function FilterServiceGroup({
                   </span>
                   Visa
                 </TabsTrigger>
-
                 <TabsTrigger
                   className="h-[46px] flex items-center lg:justify-center justify-start gap-2 font-semibold text-sm leading-4 tracking-tight"
                   value="cars"
@@ -104,7 +112,6 @@ export default function FilterServiceGroup({
                   </span>{" "}
                   Flight
                 </TabsTrigger>
-
                 <TabsTrigger
                   className="h-[46px] flex items-center lg:justify-center justify-start gap-2 font-semibold text-sm leading-4 tracking-tight"
                   value="umrah"
@@ -112,20 +119,22 @@ export default function FilterServiceGroup({
                   <span>{icons.umrahIcon}</span>
                   Umrah
                 </TabsTrigger>
-
                 <TabsTrigger
                   className="h-[46px] flex items-center lg:justify-center justify-start gap-2 font-semibold text-sm leading-4 tracking-tight"
                   value="chauffeur"
                 >
                   <span>{icons.carDriverIcon}</span>
                   Chauffeur
-                </TabsTrigger>
+                </TabsTrigger> */}
               </div>
             </TabsList>
             {/* <MobileMenuSlider /> */}
             <div className="container mx-auto !px-0">
               <TabsContent className="h-28 mt-0 text-dark" value="activities">
                 <ActivitiesSearchForm locations={selectedLocations} />
+              </TabsContent>
+              <TabsContent className="h-28 mt-0 text-dark" value="Transport">
+                <TransportsSearchForm locations={selectedLocations} />
               </TabsContent>
               <TabsContent className="h-28 mt-0 text-dark" value="holiday">
                 <HolidaySearchForm locations={selectedLocations} />
