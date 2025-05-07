@@ -11,6 +11,7 @@ import DefaultVisaCard from "../cards/visa/defaultVisaCard/page";
 import { TransparentNavbar } from "../header/transparentNav/TransparentNav";
 import OfferSlide from "./sliders/offerSlide/page";
 import { Button } from "../ui/button";
+import RecommendedTransportCard from "../cards/recommendedCard/RecommendedTransportCard";
 
 const LandingPage = () => {
   return (
@@ -33,7 +34,7 @@ const LandingPage = () => {
           </div>
         </section> */}
 
-        {/* hotel section */}
+        {/* Attractions section */}
         <section className="pt-11 container mx-auto mt-0 sm:mt-[62px] overflow-hidden pb-5">
           <h1 className="md:landingHeaderTxt md:mb-6 md:text-[40px] text-[22px] leading-[23px] text-center mb-3 font-semibold mx-2">
             Recommended Attractions{" "}
@@ -49,8 +50,23 @@ const LandingPage = () => {
           </div>
         </section>
 
+        <section className="pt-11 container mx-auto mt-0 sm:mt-[62px] overflow-hidden pb-5">
+          <h1 className="md:landingHeaderTxt md:mb-6 md:text-[40px] text-[22px] leading-[23px] text-center mb-3 font-semibold mx-2">
+            Recommended Transports{" "}
+          </h1>
+          <div className="flex justify-end md:mb-6 mb-2">
+            <Link href={"/transports"}>
+              <Button variant={"primary"}>See More</Button>
+            </Link>
+          </div>
+
+          <div className="recommended-slick-area mx-auto">
+            <RecommendedTransportCard />
+          </div>
+        </section>
+
         {/* Chauffeur section */}
-        <div className=" mt-5 sm:mt-24 w-full bg-white-cloudy overflow-hidden">
+        {/* <div className=" mt-5 sm:mt-24 w-full bg-white-cloudy overflow-hidden">
           <section className="container mx-auto pt-7 sm:pt-[100px] pb-8 sm:pb-20 overflow-hidden">
             <h1 className="md:landingHeaderTxt md:mb-12 md:text-[40px] text-[22px] leading-[23px] text-center mb-3 font-semibold mx-2">
               Your Private Chauffeur for all your journeys
@@ -59,10 +75,10 @@ const LandingPage = () => {
               <DefaultCarCard path={"chauffeur-with-car"} />
             </div>
           </section>
-        </div>
+        </div> */}
 
         {/* Vacation/Tour card section */}
-        <div className="w-full pt-5 sm:pt-24  overflow-hidden">
+        {/* <div className="w-full pt-5 sm:pt-24  overflow-hidden">
           <section className=" container mx-auto pb-8 sm:pb-[110px] px-2 sm:px-0 overflow-hidden">
             <h1 className="md:landingHeaderTxt md:mb-12 md:text-[40px] md:leading-[40px] text-[22px] leading-[25px] text-center mb-3 font-semibold">
               Top Destination for your Vacation
@@ -71,10 +87,10 @@ const LandingPage = () => {
               <DefaultTourCardSlider />
             </div>
           </section>
-        </div>
+        </div> */}
 
         {/* Hotel section */}
-        <div className="w-full bg-white-cloudy overflow-hidden">
+        {/* <div className="w-full bg-white-cloudy overflow-hidden">
           <section className="container mx-auto pt-10 sm:pt-[100px] pb-10 sm:pb-[110px] px-2 sm:px-0 overflow-hidden">
             <h1 className="md:landingHeaderTxt md:mb-12 md:text-[40px] text-[25px] leading-[25px] text-center mb-3 font-semibold">
               Best Hotels for Your Next Trip
@@ -83,23 +99,22 @@ const LandingPage = () => {
               <DefaultHotelCard featured={true} />
             </div>
           </section>
-        </div>
+        </div> */}
 
         {/* Fleets for rent  */}
-        <div className="w-full bg-white-lightSlate overflow-hidden">
+        {/* <div className="w-full bg-white-lightSlate overflow-hidden">
           <section className="container mx-auto pt-10 sm:pt-[100px] pb-10 sm:pb-[20px] px-2 sm:px-0">
             <h1 className="md:landingHeaderTxt md:mb-12 md:text-[40px] text-[25px] leading-[25px] text-center mb-3 font-semibold">
-              {/* Top Destination for your Vacation */}
               Fleets for Rentals
             </h1>
             <div className="rental-fleets-slick-area mx-auto px-0 sm:px-3 ">
               <RentalCarCard cardItemNumber={3} />
             </div>
           </section>
-        </div>
+        </div> */}
 
         {/* Chauffeur with car section */}
-        <div className=" mt-5 sm:mt-20 w-full bg-white-cloudy overflow-hidden">
+        {/* <div className=" mt-5 sm:mt-20 w-full bg-white-cloudy overflow-hidden">
           <section className="container mx-auto pt-7 sm:pt-[100px] pb-8 sm:pb-20 overflow-hidden">
             <h1 className="md:landingHeaderTxt md:mb-12 md:text-[40px] text-[22px] leading-[23px] text-center mb-3 font-semibold mx-2">
               Your Private Chauffeur for all your journeys
@@ -108,10 +123,10 @@ const LandingPage = () => {
               <DefaultCarCard path={"chauffeur"} />
             </div>
           </section>
-        </div>
+        </div> */}
 
         {/* Visa card section  */}
-        <div className="w-full bg-white-lightSlate overflow-hidden">
+        {/* <div className="w-full bg-white-lightSlate overflow-hidden">
           <section className="container mx-auto pt-10 sm:pt-[100px] pb-10 sm:pb-[110px] px-2 sm:px-0 overflow-hidden">
             <h1 className="md:landingHeaderTxt md:mb-12 md:text-[40px] text-[25px] leading-[25px] text-center mb-3 font-semibold">
               Visa Services
@@ -120,10 +135,10 @@ const LandingPage = () => {
               <DefaultVisaCard />
             </div>
           </section>
-        </div>
+        </div> */}
 
         {/* umrah section */}
-        <div className="w-full bg-white-cloudy overflow-hidden">
+        {/* <div className="w-full bg-white-cloudy overflow-hidden">
           <section className="container mx-auto pt-10 sm:pt-[100px] pb-10 sm:pb-[90px] px-2 sm:px-0">
             <h1 className="md:landingHeaderTxt md:mb-12 md:text-[40px] text-[25px] leading-[25px] text-center mb-3 font-semibold">
               Umrah Packages
@@ -132,10 +147,10 @@ const LandingPage = () => {
               <DefaultUmrahCard />
             </div>
           </section>
-        </div>
+        </div> */}
 
         {/* Visa card section  */}
-        <div className="w-full bg-white-lightSlate">
+        {/* <div className="w-full bg-white-lightSlate">
           <section className="container mx-auto pb-10 sm:pb-[80px] pt-10 sm:pt-[100px] px-3 sm:px-0">
             <h1 className="font-medium md:text-[28px] text-[20px] leading-7 md:mb-10 mb-3 text-center">
               Helping to grow the next generation of{" "}
@@ -145,7 +160,7 @@ const LandingPage = () => {
               <Brands />
             </div>
           </section>
-        </div>
+        </div> */}
       </main>
     </section>
   );
