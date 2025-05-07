@@ -138,7 +138,7 @@ export function TransparentNavbar({
           >
             Transport
           </NavLink>
-          <NavLink
+          {/* <NavLink
             isBgWhite={isBgWhite}
             href="/tour"
             isActive={pathname.startsWith("/tour")}
@@ -179,9 +179,9 @@ export function TransparentNavbar({
             isActive={pathname.startsWith("/hotels")}
           >
             Hotel
-          </NavLink>
+          </NavLink> */}
 
-          <div className="relative">
+          {/* <div className="relative">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <div
@@ -225,7 +225,7 @@ export function TransparentNavbar({
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
-          </div>
+          </div> */}
         </nav>
 
         {/* Right - Buttons */}
