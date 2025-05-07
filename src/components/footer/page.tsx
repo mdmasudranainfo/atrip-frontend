@@ -1,40 +1,47 @@
-"use client"
-import { Facebook, Instagram, Linkedin, Youtube, Twitter } from "lucide-react"
-import Link from "next/link"
-import Image from "next/image"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import { JoinNewsletterForm } from "./join-newsletter-form"
-import { useState, useEffect } from "react"
+"use client";
+import { Facebook, Instagram, Linkedin, Youtube, Twitter } from "lucide-react";
+import Link from "next/link";
+import Image from "next/image";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { JoinNewsletterForm } from "./join-newsletter-form";
+import { useState, useEffect } from "react";
 import { getAllDestinations } from "@/lib/actions/destination-actions";
 
 // Define a type for the payment method object
 interface PaymentMethod {
-  name: string
-  path: string
-  image?: string // The `image` field is optional
+  name: string;
+  path: string;
+  image?: string; // The `image` field is optional
 }
 interface LinkItem {
-  name: string
-  path: string
-  slug: string
+  name: string;
+  path: string;
+  slug: string;
 }
 
 const destinations = [
-  { name: "Refund Policy", path: "/refund-and-cancellation-policy" },
-  { name: "Terms And Condition", path: "/terms-and-condition" },
-  { name: "Terms Of Service", path: "/terms-of-service" },
-  { name: "Dispute Resolution Policy", path: "/dispute-resolution-policy" },
-  { name: "Acceptable Use Policy", path: "/acceptable-use-policy" },
-  { name: "Blog", path: "/blog" },
+  // { name: "Refund Policy", path: "/refund-and-cancellation-policy" },
+  // { name: "Terms And Condition", path: "/terms-and-condition" },
+  // { name: "Terms Of Service", path: "/terms-of-service" },
+  // { name: "Dispute Resolution Policy", path: "/dispute-resolution-policy" },
+  // { name: "Acceptable Use Policy", path: "/acceptable-use-policy" },
+  // { name: "Blog", path: "/blog" },
   { name: "About Us", path: "/about-us" },
-  { name: "Careers", path: "/careers" },
+  // { name: "Careers", path: "/careers" },
   { name: "Partners", path: "/partners" },
   { name: "Contact Us", path: "/contact-us" },
-]
+];
 
-const paymentMethods: PaymentMethod[] = [{ name: "", path: "/payment/stripe", image: "/images/stripe.png" }]
+const paymentMethods: PaymentMethod[] = [
+  { name: "", path: "/payment/stripe", image: "/images/paymentCard.png" },
+];
 
-const titles = ["Top Destinations", "Discover", "Payment Methods"]
+const titles = ["Top Destinations", "Discover", "Payment Methods"];
 
 export default function Footer() {
   const [links, setLinks] = useState<LinkItem[]>([]);
@@ -43,14 +50,14 @@ export default function Footer() {
     const fetchLinks = async () => {
       try {
         const { data } = await getAllDestinations();
-        setLinks(data)
+        setLinks(data);
       } catch (error) {
-        console.error("Error fetching links:", error)
+        console.error("Error fetching links:", error);
       }
-    }
+    };
 
-    fetchLinks()
-  }, [])
+    fetchLinks();
+  }, []);
 
   const sectionLinks = [
     links,
@@ -77,7 +84,6 @@ export default function Footer() {
       </div>
 
       <div className="container mx-auto px-4 pt-10 sm:pt-24 pb-8">
-
         <div className="w-full">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 mb-5">
             {/* Left section - Logo, social, subscription */}
@@ -126,7 +132,7 @@ export default function Footer() {
 
               {/* Subscription card */}
               <div className="relative mt-8">
-                <div className="rounded-xl bg-white p-6 dark:bg-slate-800">
+                <div className="rounded-xl bg-white p-6 m-0 dark:bg-slate-800">
                   <div className="space-y-4">
                     <div className="space-y-1">
                       <h3 className="font-inter text-lg lg:text-xl font-semibold leading-7 tracking-[-0.02em] text-slate-800 dark:text-slate-200">
@@ -160,7 +166,11 @@ export default function Footer() {
                         <li key={idx} className="flex items-start gap-3">
                           {link.name && (
                             <Link
-                              href={title === "Top Destinations" ? `/destination/${link.path}` : link.path}
+                              href={
+                                title === "Top Destinations"
+                                  ? `/destination/${link.path}`
+                                  : link.path
+                              }
                               className="text-slate-700 hover:text-blue-600 transition-colors relative overflow-hidden group dark:text-slate-300 dark:hover:text-blue-400"
                             >
                               <span>{link.name}</span>
@@ -172,17 +182,10 @@ export default function Footer() {
                               <Image
                                 src={link.image || "/placeholder.svg"}
                                 alt={`Payment method logo`}
-                                width={120}
-                                height={30}
+                                width={700}
+                                height={400}
                                 className="object-contain"
                               />
-                              {/* <Image
-                                src="/images/paypal.png"
-                                alt="Another logo"
-                                width={120}
-                                height={30}
-                                className="object-contain"
-                              /> */}
                             </div>
                           )}
                         </li>
@@ -200,41 +203,47 @@ export default function Footer() {
           <div>
             <Accordion type="single" collapsible className="w-full">
               {[1, 2, 3].map((column) => (
-                <AccordionItem key={`column-${column}`} value={`item-${column}`} className="mb-3 p-4 bg-white rounded-lg footer-accordion">
+                <AccordionItem
+                  key={`column-${column}`}
+                  value={`item-${column}`}
+                  className="mb-3 p-4 bg-white rounded-lg footer-accordion"
+                >
                   <AccordionTrigger className="!no-underline font-inter text-md !mb-0 font-semibold leading-5 tracking-[-0.02em] text-dark mt-0 pt-0">
                     {titles[column - 1]} {/* Titles for each column */}
                   </AccordionTrigger>
                   <AccordionContent>
                     <div className="mt-2 space-y-2">
                       {/* Render only the content for the specific column */}
-                      {sectionLinks[column - 1].map((link: PaymentMethod, idx) => (
-                        <div key={idx} className="space-y-6">
-                          <ul className="space-y-3">
-                            <li>
-                              {link.name && (
-                                <Link
-                                  href={link.path}
-                                  className="text-slate-700 hover:text-blue-600 transition-colors relative overflow-hidden group dark:text-slate-300 dark:hover:text-blue-400"
-                                >
-                                  <span>{link.name}</span>
-                                  <span className="absolute bottom-0 left-0 w-full h-0.5 bg-blue-600 transform scale-x-0 origin-left transition-transform group-hover:scale-x-100 dark:bg-blue-400"></span>
-                                </Link>
-                              )}
-                              {link.image && (
-                                <div className="transition-transform hover:scale-105">
-                                  <Image
-                                    src={link.image || "/placeholder.svg"}
-                                    alt={`Payment method logo`}
-                                    width={150}
-                                    height={30}
-                                    className="object-contain"
-                                  />
-                                </div>
-                              )}
-                            </li>
-                          </ul>
-                        </div>
-                      ))}
+                      {sectionLinks[column - 1].map(
+                        (link: PaymentMethod, idx) => (
+                          <div key={idx} className="space-y-6">
+                            <ul className="space-y-3">
+                              <li>
+                                {link.name && (
+                                  <Link
+                                    href={link.path}
+                                    className="text-slate-700 hover:text-blue-600 transition-colors relative overflow-hidden group dark:text-slate-300 dark:hover:text-blue-400"
+                                  >
+                                    <span>{link.name}</span>
+                                    <span className="absolute bottom-0 left-0 w-full h-0.5 bg-blue-600 transform scale-x-0 origin-left transition-transform group-hover:scale-x-100 dark:bg-blue-400"></span>
+                                  </Link>
+                                )}
+                                {link.image && (
+                                  <div className="transition-transform hover:scale-105">
+                                    <Image
+                                      src={link.image || "/placeholder.svg"}
+                                      alt={`Payment method logo`}
+                                      width={150}
+                                      height={30}
+                                      className="object-contain"
+                                    />
+                                  </div>
+                                )}
+                              </li>
+                            </ul>
+                          </div>
+                        )
+                      )}
                     </div>
                   </AccordionContent>
                 </AccordionItem>
@@ -255,5 +264,5 @@ export default function Footer() {
         </div>
       </div>
     </footer>
-  )
+  );
 }
