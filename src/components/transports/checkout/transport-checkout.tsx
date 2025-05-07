@@ -549,7 +549,7 @@ export default function TransportCheckoutFinal({
                                         ? field.value.toISOString()
                                         : field.value
                                     }
-                                    className="w-full h-11 px-4 text-sm border-gray-300 rounded-lg focus:ring-2 focus:ring-primary"
+                                    className="w-full h-[36px] px-4 text-sm border-gray-300 rounded-lg focus:ring-2 focus:ring-primary"
                                   />
                                 )}
                               </FormControl>
