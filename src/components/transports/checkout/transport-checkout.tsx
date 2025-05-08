@@ -51,6 +51,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import SearchLocation2 from "@/components/filter/search-location2";
 
 const timeSlots = [
   "08:00 AM",
@@ -72,8 +73,8 @@ const FormSchema = z.object({
   phoneNumber: z
     .string()
     .min(8, { message: "Please enter a valid phone number." }),
-  pickupLocation: z.number(),
-  dropLocation: z.number().optional(),
+  pickupLocation: z.string(),
+  dropLocation: z.string().optional(),
   start_date: z.date(),
   end_date: z.date(),
   time_slot: z.string(),
@@ -176,6 +177,9 @@ export default function TransportCheckoutFinal({
           ? format(formData.start_date, "yyyy-MM-dd")
           : null,
       };
+
+      // console.log("payload", payload);
+      // return;
 
       const { data, error } = await bookingUpdateCart(
         payload,
@@ -350,7 +354,7 @@ export default function TransportCheckoutFinal({
                               Pick-Up Location
                             </FormLabel>
                             <FormControl>
-                              <SearchLocation
+                              <SearchLocation2
                                 locationId={Number(field.value)}
                                 placeholder="Select location"
                                 inputSize={2}
@@ -377,7 +381,7 @@ export default function TransportCheckoutFinal({
                             </FormDescription>
 
                             <FormControl>
-                              <SearchLocation
+                              <SearchLocation2
                                 locationId={
                                   field.value ? Number(field.value) : undefined
                                 }
