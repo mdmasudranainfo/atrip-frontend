@@ -23,7 +23,7 @@ const CarOverview = ({ carTabData }: any) => {
             <AccordionTrigger className="px-6 py-4 hover:no-underline">
               <div className="flex items-center gap-2">
                 <LandPlot color="blue" className="h-5 w-5" />
-                <span className="text-base font-bold">Overview</span>
+                <span className="text-base font-bold">Car Overview</span>
               </div>
             </AccordionTrigger>
             <AccordionContent className="px-6 pb-6">
