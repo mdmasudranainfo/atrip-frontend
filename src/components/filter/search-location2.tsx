@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { Check, ChevronsUpDown, MapPin } from "lucide-react";
+import { Check, MapPin } from "lucide-react";
 import { getAllLocations, Location } from "@/lib/actions/location-action";
 import { cn } from "@/lib/utils";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -14,7 +14,7 @@ interface SearchProps {
   placeholder: string;
   initialLocations: Location[];
   error?: string;
-  onChangeValue?: (locationId: string) => void;
+  onChangeValue?: (input: string) => void;
   inputSize?: number;
 }
 
@@ -41,6 +41,7 @@ export default function SearchLocation2({
   const [inputValue, setInputValue] = React.useState(value?.title || "");
   const [query, setQuery] = React.useState("");
   const [selectedIndex, setSelectedIndex] = React.useState(-1);
+
   const debouncedQuery = useDebounce(query, 300);
   const inputRef = React.useRef<HTMLInputElement>(null);
   const dropdownRef = React.useRef<HTMLDivElement>(null);
@@ -72,12 +73,10 @@ export default function SearchLocation2({
 
     updateWidth();
     window.addEventListener("resize", updateWidth);
-
-    return () => {
-      window.removeEventListener("resize", updateWidth);
-    };
+    return () => window.removeEventListener("resize", updateWidth);
   }, [open]);
 
+  // Fetch locations on search
   React.useEffect(() => {
     async function fetchData() {
       setLoading(true);
@@ -98,7 +97,7 @@ export default function SearchLocation2({
   }, [debouncedQuery]);
 
   const valid_locations = desabledId
-    ? locations.filter((_item) => _item.id != desabledId)
+    ? locations.filter((item) => item.id !== desabledId)
     : locations;
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -123,6 +122,10 @@ export default function SearchLocation2({
           setInputValue(selectedLocation.title);
           onChangeValue?.(selectedLocation.title);
           setOpen(false);
+        } else {
+          setValue(undefined);
+          onChangeValue?.(inputValue); // send raw input
+          setOpen(false);
         }
         break;
       case "Escape":
@@ -145,8 +148,10 @@ export default function SearchLocation2({
           placeholder={placeholder}
           value={inputValue}
           onChange={(e) => {
-            setInputValue(e.target.value);
-            setQuery(e.target.value);
+            const val = e.target.value;
+            setInputValue(val);
+            setQuery(val);
+            onChangeValue?.(val); // call change handler immediately
             setOpen(true);
           }}
           onFocus={() => setOpen(true)}
@@ -206,7 +211,6 @@ export default function SearchLocation2({
                         />
                       </div>
                     )}
-
                     <span>{location.title}</span>
                   </div>
                   <Check
