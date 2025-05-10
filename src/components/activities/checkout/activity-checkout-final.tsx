@@ -308,6 +308,11 @@ export default function ActivityCheckoutFinal({
               </div>
 
               <ActivityPriceSummery
+                text={
+                  bookingData.booking.object_model == "transport"
+                    ? "Par Hour"
+                    : "Par Parson"
+                }
                 timeSlot={bookingData?.booking?.time_slot}
                 title={bookingData?.service?.title}
                 date={bookingData?.date} // ← Add this line
