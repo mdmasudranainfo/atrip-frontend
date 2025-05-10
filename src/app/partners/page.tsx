@@ -2,11 +2,12 @@ import { TransparentNavbar } from "@/components/header/transparentNav/Transparen
 import ChaufferLanding from "@/components/partners/chaufferLanding/CommittedExcellence";
 import PartnerContactForm from "@/components/partners/committedContactFrom/page";
 import OurPartners from "@/components/partners/ourPartners/page";
+import PartnerWIth from "@/components/partners/PartnerWIth/PartnerWIth";
 import { getTicketCat } from "@/lib/actions/auth";
 
 const Partners = async () => {
-  const result = await getTicketCat() || { data: [] };
-  const {data} = result;
+  const result = (await getTicketCat()) || { data: [] };
+  const { data } = result;
   return (
     <>
       <div className="relative h-full :max-h-[600px] bg-about-us w-full  from-blue-900 via-blue-950 to-blue-950">
@@ -24,13 +25,17 @@ const Partners = async () => {
         <ChaufferLanding />
       </section>
 
-      <section className="!min-h-auto">
-        <OurPartners />
+      <section className="bg-white">
+        <PartnerWIth />
       </section>
 
-      <section className=" bg-white">
+      {/* <section className="!min-h-auto">
+        <OurPartners />
+      </section> */}
+
+      {/* <section className=" bg-white">
         <PartnerContactForm ticketCat={data} />
-      </section>
+      </section> */}
     </>
   );
 };
