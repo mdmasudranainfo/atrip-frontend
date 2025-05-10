@@ -118,7 +118,7 @@ const RecommendedTransportCard = () => {
 
           return (
             <Link
-              href={`activities/${card?.slug}`}
+              href={`transports/${card?.slug}`}
               key={card?.id}
               className="px-2 h-full"
             >
