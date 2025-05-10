@@ -7,60 +7,14 @@ export default function WhyChooseUs() {
         <div className="grid grid-cols-1 md:grid-cols-2 md:gap-8 gap-0 items-center">
           {/* Image Section */}
 
-          <div className="flex flex-col items-center justify-center ">
-            <div className="relative  ">
-              {/* Top images */}
-              <div className="md:grid grid-cols-2 gap-4">
-                {/* Left Image */}
-                <div className="relative md:block hidden">
-                  <Image
-                    src="/images/whoochoose_3.jpg"
-                    alt="Professional Driver"
-                    width={300}
-                    height={400}
-                    className="md:h-[500px] md:w-[300px]  object-cover"
-                  />
-                </div>
-
-                {/* Right Image */}
-                <div className="md:absolute right-1 -top-10">
-                  <Image
-                    src="/images/whoochoose_2.jpg"
-                    alt="Professional Driver"
-                    width={300}
-                    height={400}
-                    className=" md:h-[370px] h-full md:w-[298px] w-full object-cover"
-                  />
-                </div>
-                <Image
-                  src="/images/Vector-angel-1.png"
-                  alt="Professional Driver"
-                  width={100}
-                  height={100}
-                  className=" md:h-[100px] h-[50px] md:w-[100px] w-[50px] object-cover absolute z-[9] md:right-[46%] md:-top-14 -top-6"
-                />
-              </div>
-
-              {/* Bottom image */}
-              <div className="relative ">
-                <div className=" md:flex hidden absolute -bottom-8 right-10  items-center justify-end">
-                  <Image
-                    src="/images/misston.jpg"
-                    alt="Professional Driver"
-                    width={300}
-                    height={400}
-                    className=" w-[300px]"
-                  />
-                </div>
-                <Image
-                  src="/images/Vector-angel-2.png"
-                  alt="Professional Driver"
-                  width={100}
-                  height={100}
-                  className=" md:h-[100px] h-[50px] md:w-[100px] w-[50px] object-cover absolute z-[9] md:right-0 md:-top-20 right-0 -bottom-5"
-                />
-              </div>
-            </div>
+          <div className=" md:h-[500px] h-[300px]">
+            <Image
+              src="/images/contact.jpg"
+              alt="Professional Driver"
+              width={800}
+              height={800}
+              className=" object-cover max-h-full"
+            />
           </div>
 
           {/* Text Section */}
