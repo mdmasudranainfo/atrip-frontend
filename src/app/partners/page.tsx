@@ -25,16 +25,16 @@ const Partners = async () => {
         <ChaufferLanding />
       </section>
 
+      <section className=" bg-white">
+        <PartnerContactForm ticketCat={data} />
+      </section>
+
       <section className="bg-white">
         <PartnerWIth />
       </section>
 
       {/* <section className="!min-h-auto">
         <OurPartners />
-      </section> */}
-
-      {/* <section className=" bg-white">
-        <PartnerContactForm ticketCat={data} />
       </section> */}
     </>
   );

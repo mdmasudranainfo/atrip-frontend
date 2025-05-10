@@ -42,7 +42,7 @@ const PartnerWIth = () => {
 
         <div className="py-2 my-6">
           <h4 className="text-xl font-semibold">
-            Marketing Promotional Support::
+            Marketing Promotional Support:
           </h4>
           <p>
             Our marketing campaign produces website visitors that result in
@@ -79,7 +79,7 @@ const PartnerWIth = () => {
         </div>
 
         <div className="py-2 my-6">
-          <h4 className="text-xl font-semibold">Holiday Packages::</h4>
+          <h4 className="text-xl font-semibold">Holiday Packages:</h4>
           <p>
             Our business creates personalized travel bundles that meet the needs
             of different tourist groups, including families, couples, and
@@ -88,7 +88,7 @@ const PartnerWIth = () => {
         </div>
 
         <div className="py-2 my-6">
-          <h4 className="text-xl font-semibold">Car Rentals::</h4>
+          <h4 className="text-xl font-semibold">Car Rentals:</h4>
           <p>
             The rental company must offer economy cars for affordable prices
             along with luxury vehicles for high-end customers.
@@ -104,7 +104,7 @@ const PartnerWIth = () => {
         </div>
 
         <div className="py-2 my-6">
-          <h4 className="text-xl font-semibold">Rent a Car with Driver::</h4>
+          <h4 className="text-xl font-semibold">Rent a Car with Driver:</h4>
           <p>
             Your company should provide vehicle rentals that include
             professional driving services for either brief periods or extended
@@ -122,7 +122,7 @@ const PartnerWIth = () => {
         </div>
 
         <div className="py-2 my-6">
-          <h4 className="text-xl font-semibold">Visa Services::</h4>
+          <h4 className="text-xl font-semibold">Visa Services:</h4>
           <p>
             Through your service clients can easily submit visa applications and
             renewals and perform visa processes.
