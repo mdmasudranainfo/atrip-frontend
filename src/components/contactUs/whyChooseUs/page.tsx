@@ -14,7 +14,7 @@ export default function WhyChooseUs() {
                 {/* Left Image */}
                 <div className="relative md:block hidden">
                   <Image
-                    src="/images/whoochoose_3.png"
+                    src="/images/whoochoose_3.jpg"
                     alt="Professional Driver"
                     width={300}
                     height={400}
@@ -25,7 +25,7 @@ export default function WhyChooseUs() {
                 {/* Right Image */}
                 <div className="md:absolute right-1 -top-10">
                   <Image
-                    src="/images/whoochoose_2.png"
+                    src="/images/whoochoose_2.jpg"
                     alt="Professional Driver"
                     width={300}
                     height={400}
@@ -43,13 +43,13 @@ export default function WhyChooseUs() {
 
               {/* Bottom image */}
               <div className="relative ">
-                <div className=" md:block hidden absolute -bottom-8 right-12 flex items-center justify-end">
+                <div className=" md:flex hidden absolute -bottom-8 right-10  items-center justify-end">
                   <Image
-                    src="/images/whoochoose_1.png"
+                    src="/images/misston.jpg"
                     alt="Professional Driver"
                     width={300}
                     height={400}
-                    className=" w-[250px]"
+                    className=" w-[300px]"
                   />
                 </div>
                 <Image
