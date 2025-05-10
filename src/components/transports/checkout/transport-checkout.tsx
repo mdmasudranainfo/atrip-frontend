@@ -585,6 +585,7 @@ export default function TransportCheckoutFinal({
 
           {/* Price Summary */}
           <ActivityPriceSummery
+            text={"Par Hour"}
             timeSlot={bookingData?.booking?.time_slot}
             title={bookingData?.service?.title}
             date={bookingData?.booking?.start_date}

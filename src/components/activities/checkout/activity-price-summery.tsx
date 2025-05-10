@@ -14,6 +14,7 @@ import { BookingTicketType } from "@/types/activity";
 import MobileBookingModal from "./MobileBookingModal";
 
 export default function ActivityPriceSummery({
+  text = "Per Person",
   timeSlot,
   date,
   title,
@@ -24,6 +25,7 @@ export default function ActivityPriceSummery({
   isValid,
   onSubmit,
 }: {
+  text: string;
   timeSlot: string;
   date: string;
   title: string;
@@ -45,7 +47,7 @@ export default function ActivityPriceSummery({
             <span className="text-sm text-dark font-medium">
               {formatPrice(totalPrice)}
             </span>
-            <span className="text-sm text-primary ml-1">/ Per Person</span>
+            <span className="text-sm text-primary ml-1">/ {text}</span>
           </div>
         </div>
 
