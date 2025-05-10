@@ -3,7 +3,7 @@ import { ImageGallery } from "@/components/imageGellery/ImageGellery";
 import { Button } from "@/components/ui/button";
 import { getTransportsBySlug } from "@/lib/actions/transport-actions";
 import { getComparePrice, getSellPrice } from "@/lib/utils";
-import { MapPin } from "lucide-react";
+import { ArrowLeft, MapPin } from "lucide-react";
 import Link from "next/link";
 import TransportExtraService from "@/components/cards/transports/transport-extra-service";
 import RatingBadgeHorizontal from "@/components/rating-badge-horizontal";
@@ -53,12 +53,12 @@ const TransportDetails = async (context: {
         <div className="bg-white pt-6 md:p-6 rounded-xl  ">
           {/* Back Link */}
           <Link
-            href="/transports"
-            className="text-blue-600 hover:text-blue-800 text-sm mb-4 inline-block"
+            href="/activities"
+            className="text-blue-600 hover:text-blue-800 text-sm mb-4 inline-block  "
           >
-            Revisit the search list
+            <ArrowLeft className="h-4 w-4 inline-block mr-1 mb-[2px]" />
+            Back
           </Link>
-
           {/* Header Section */}
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-4 ">
             <div>
