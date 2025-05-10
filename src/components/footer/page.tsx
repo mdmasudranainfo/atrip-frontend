@@ -26,7 +26,7 @@ interface LinkItem {
 
 const destinations = [
   // { name: "Refund Policy", path: "/refund-and-cancellation-policy" },
-  // { name: "Terms And Condition", path: "/terms-and-condition" },
+  { name: "Terms And Condition", path: "/terms-and-condition" },
   // { name: "Terms Of Service", path: "/terms-of-service" },
   // { name: "Dispute Resolution Policy", path: "/dispute-resolution-policy" },
   // { name: "Acceptable Use Policy", path: "/acceptable-use-policy" },
