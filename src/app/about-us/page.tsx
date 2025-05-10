@@ -1,6 +1,9 @@
 import FAQSection from "@/components/aboutUs/faq/page";
 import GlobalBands from "@/components/aboutUs/globalBrands/page";
 import CarFleet from "@/components/aboutUs/ourFleetsRentals/page";
+import WhatWeOffer from "@/components/aboutUs/What-We-Offer/What-We-Offer";
+import Who from "@/components/aboutUs/who/who-we-are";
+import YourJourney from "@/components/aboutUs/your-journey /YourJourney ";
 import YourBusiness from "@/components/aboutUs/yourBusiness/page";
 import { TransparentNavbar } from "@/components/header/transparentNav/TransparentNav";
 
@@ -24,16 +27,28 @@ const AboutUs = () => {
       </section>
 
       <section>
+        <Who />
+      </section>
+      <section className="bg-white">
+        <WhatWeOffer />
+      </section>
+
+      {/* Our Mission  And  Vision  */}
+      <section className="">
         <GlobalBands />
       </section>
 
-      <section>
-        <CarFleet />
+      <section className="bg-white">
+        <YourJourney />
       </section>
 
-      <section className="bg-white">
+      {/* <section>
+        <CarFleet />
+      </section> */}
+
+      {/* <section className="bg-white">
         <FAQSection />
-      </section>
+      </section> */}
     </>
   );
 };

@@ -31,18 +31,21 @@ const YourBusiness = () => {
 
         {/* Content */}
         <div className="space-y-6">
-          <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
-            Place to develop your business growth
+          <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-5xl">
+            About Atrip. Ae (Arip Life Tourism LLC)
           </h1>
           <div className="space-y-4">
             <p className="text-lg text-dark font-thin">
-              Design Season is a collaboration between Leicesters creative hub
-              LCB based in the citys cultural quarter and designers and design
-              businesses all over the city & county
+              Arip Life Tourism LLC invites you to become their trusted choice
+              for extraordinary adventure experiences throughout Dubai, the UAE
+              territory, and international locations. Atrip Ae (Arip Life
+              Tourism LLC) commenced operations on January 1st, 2024, as a
+              leading travel and tourism company based in Dubai.
             </p>
             <p className="text-lg text-dark">
-              By creating a strong brand presence on social media, you can reach
-              broader audience get partners brand advocates
+              Atrip.ae uses its local market expertise in harmony with
+              international networking capabilities and its deep commitment to
+              travel to construct perfect travel experiences for any customer.
             </p>
           </div>
           <Button className="bg-primary px-5 py-6 font-semibold rounded-lg text-white">
@@ -52,7 +55,8 @@ const YourBusiness = () => {
       </div>
 
       {/* Stats Section */}
-      <div className="grid gap-8 sm:grid-cols-2 justify-center items-center lg:grid-cols-3 mt-28">
+      {/* grid */}
+      <div className=" hidden gap-8 sm:grid-cols-2 justify-center items-center lg:grid-cols-3 mt-28">
         <div className="space-y-2 flex gap-5 items-start justify-center">
           <h2 className="text-5xl font-bold text-dark">+1354</h2>
           <p className="text-dark text-wrap text-xl w-[40%] !mt-0 !pt-0">
