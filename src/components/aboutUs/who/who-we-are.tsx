@@ -15,12 +15,12 @@ const Who = () => {
           <div className="space-y-4">
             <p className="text-lg text-dark ">
               Atrip. Ae (Arip Life Tourism LLC) is a fully approved and esteemed
-              travel agency under Trade License Number 1302010. Our travel
-              company develops personalized travel programs from Dubai, which
-              serve all customer segments, from individual travelers to
-              companies. Our organization exists to inspire travelers to explore
-              new destinations, and we aim to provide enjoyable and trouble-free
-              experiences to all our clients.
+              travel agency under Trade License Number 1302010. <br /> Our
+              travel company develops personalized travel programs from Dubai,
+              which serve all customer segments, from individual travelers to
+              companies. <br /> Our organization exists to inspire travelers to
+              explore new destinations, and we aim to provide enjoyable and
+              trouble-free experiences to all our clients.
             </p>
           </div>
         </div>
@@ -28,7 +28,7 @@ const Who = () => {
 
         <div className="rounded-lg overflow-hidden ">
           <Image
-            src="/images/who.jpg"
+            src="/images/whoare.jpg"
             alt=""
             className="w-full h-full object-cover "
             width={500}

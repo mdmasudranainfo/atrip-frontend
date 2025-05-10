@@ -65,27 +65,38 @@ export default function WhyChooseUs() {
 
           {/* Text Section */}
           <div className="space-y-6">
-            <h2 className="md:text-6xl text-lg md:leading-[65px] leading-4 md:mt-0 mt-10 font-bold text-gray-900">
-              Here is why we are the right choice for you
+            <h2 className="md:text-4xl text-lg  md:mt-0 mt-10 font-bold text-gray-900">
+              Reaching out to Atrip. Ae through telephone will find immediate
+              help.
             </h2>
             <p className="text-dark !md:mt-4 md:pt-3 !mt-1 md:text-lg text-sm">
-              Our commitment to ethical practices has been a driving force.
-              Clients rely on us for clear communication, honest collaboration,
-              and reliable results. This foundation of trust has been key to our
-              journey, fostering relationships and fueling our enduring success.
+              Reaching out to Atrip. Ae through telephone will find immediate
+              help. You can contact Atrip. Ae You should contact Atrip. Ae
+              without delay in case of any emergency during your travel or when
+              you need to ask questions. Atrip.
             </p>
             <p className="text-dark !md:mt-4 md:pt-2 !mt-1 md:text-lg text-sm">
-              Trust our seasoned professionals to deliver measurable targeted
-              messaging and data-driven optimizations. Lets make your goals a
-              reality.
+              Ae is just a call away! Your requests regarding bookings and all
+              questions about travel issues you may need help with will be
+              received by our team of professionals who operate 24 hours a day.
             </p>
-            <div className="flex space-x-12">
+            <p className="text-dark !md:mt-4 md:pt-2 !mt-1 md:text-lg text-sm">
+              Our top goal is to create peaceful interactions between our
+              customers and the service. Your travel experience will be entirely
+              enjoyable because our team will tackle all obstacles.
+            </p>
+            {/* flex */}
+            <div className=" space-x-12 hidden">
               <div>
-                <h3 className="md:text-5xl md:leading-[48px] text-[23px] leading-[20px] font-bold text-dark">10K+</h3>
+                <h3 className="md:text-5xl md:leading-[48px] text-[23px] leading-[20px] font-bold text-dark">
+                  10K+
+                </h3>
                 <p className="text-dark">Completed drives</p>
               </div>
               <div>
-                <h3 className="md:text-5xl md:leading-[48px] text-[23px] leading-[20px] font-bold text-dark">87%</h3>
+                <h3 className="md:text-5xl md:leading-[48px] text-[23px] leading-[20px] font-bold text-dark">
+                  87%
+                </h3>
                 <p className="text-dark">Client satisfaction</p>
               </div>
             </div>

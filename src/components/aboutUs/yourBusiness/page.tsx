@@ -11,7 +11,7 @@ const YourBusiness = () => {
         <div className="grid gap-4 grid-cols-2">
           <div className="aspect-[3/5] relative rounded-lg overflow-hidden">
             <Image
-              src="/images/business_1.png"
+              src="/images/cupple_travel.jpg"
               alt=""
               className="w-full h-full object-cover"
               width={500}
@@ -20,7 +20,7 @@ const YourBusiness = () => {
           </div>
           <div className="aspect-[3/5] relative rounded-lg overflow-hidden">
             <Image
-              src="/images/business_2.png"
+              src="/images/happy-beautiful.jpg"
               alt=""
               className="w-full h-full object-cover"
               width={500}

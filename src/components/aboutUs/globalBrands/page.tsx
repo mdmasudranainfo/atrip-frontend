@@ -11,11 +11,11 @@ const GlobalBands = () => {
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-12 items-center">
           <div className="relative aspect-[3/3] w-full overflow-hidden rounded-lg">
             <Image
-              src="/images/global_bands.png"
+              src="/images/misston.jpg"
               alt=""
               className="h-full w-full object-cover"
-              width={500}
-              height={500}
+              width={800}
+              height={900}
             />
           </div>
           <div className="space-y-3">

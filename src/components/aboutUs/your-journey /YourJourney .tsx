@@ -27,7 +27,7 @@ const YourJourney = () => {
         {/* Image Grid */}
         <div className="rounded-lg h-ful overflow-hidden ">
           <Image
-            src="/images/start.jpg"
+            src="/images/start_jurny.jpg"
             alt=""
             className="w-full h-full object-cover "
             width={500}
