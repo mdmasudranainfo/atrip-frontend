@@ -361,6 +361,7 @@ export default function ActivityGuestInfo({
           </div>
 
           <ActivityPriceSummery
+            text={"Par Parson"}
             timeSlot={bookingData?.booking?.time_slot}
             title={bookingData?.service?.title}
             date={bookingData?.booking?.start_date}

@@ -29,7 +29,7 @@ const destinations = [
   { name: "Terms And Condition", path: "/terms-and-condition" },
   // { name: "Terms Of Service", path: "/terms-of-service" },
   // { name: "Dispute Resolution Policy", path: "/dispute-resolution-policy" },
-  // { name: "Acceptable Use Policy", path: "/acceptable-use-policy" },
+  { name: "Acceptable Use Policy", path: "/acceptable-use-policy" },
   // { name: "Blog", path: "/blog" },
   { name: "About Us", path: "/about-us" },
   // { name: "Careers", path: "/careers" },

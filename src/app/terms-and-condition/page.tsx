@@ -478,7 +478,7 @@ const termsData2 = {
   ],
 };
 
-export const termsData3 = {
+const termsData3 = {
   terms: [
     {
       id: 1,
