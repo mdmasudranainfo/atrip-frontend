@@ -95,8 +95,8 @@ const RecommendedTransportCard = () => {
   const cardFeatures = [
     {
       icon: <TbCalendarTime size={20} />,
-      text: "hours activity duration",
-      value: 3,
+      text: "Free Cancellation",
+      value: null,
     },
     {
       icon: <CiMobile2 size={20} />,
