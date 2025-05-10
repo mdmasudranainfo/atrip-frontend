@@ -268,7 +268,7 @@ export default function TransportCheckoutFinal({
                                     />
                                   </div>
                                   <div>
-                                    <h3 className="font-medium text-base md:text-lg">
+                                    <h3 className="font-medium text-sm md:text-lg">
                                       {pkg.name}
                                     </h3>
                                     <p className="text-sm text-gray-500">
