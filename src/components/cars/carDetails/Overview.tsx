@@ -38,6 +38,9 @@ const CarOverview = ({ carTabData }: any) => {
         </Accordion>
       </Card>
       <div className="border-t">
+        <Essentials essential={carTabData?.pre_pick_up} />
+      </div>
+      <div className="border-t">
         <GreatChoice greatChoice={carTabData?.great_choice} />
       </div>
       <div className="border-t">
@@ -46,9 +49,7 @@ const CarOverview = ({ carTabData }: any) => {
       <div className="border-t">
         <BestOption content={carTabData?.best_option} />
       </div>
-      <div className="border-t">
-        <Essentials essential={carTabData?.pre_pick_up} />
-      </div>
+
       <div className="border-t">
         <TermsAndC content={carTabData?.term} />
       </div>
