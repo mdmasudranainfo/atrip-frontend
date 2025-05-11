@@ -92,6 +92,8 @@ export default function PriceFilter({
     debouncedUpdateURL(query);
   };
 
+  range[0] = 0; // This is my code
+
   return (
     <div className="w-full px-4 py-4 pb-6">
       {/* Header with Toggle Button */}
