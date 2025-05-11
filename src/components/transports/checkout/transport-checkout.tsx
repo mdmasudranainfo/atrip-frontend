@@ -52,6 +52,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import SearchLocation2 from "@/components/filter/search-location2";
+import DatePickerModal from "@/components/dataPiker/DatePickerModal";
 
 const timeSlots = [
   "08:00 AM",
@@ -173,8 +174,8 @@ export default function TransportCheckoutFinal({
         start_date: formData.start_date
           ? format(formData.start_date, "yyyy-MM-dd")
           : null,
-        end_date: formData.start_date
-          ? format(formData.start_date, "yyyy-MM-dd")
+        end_date: formData.end_date
+          ? format(formData.end_date, "yyyy-MM-dd")
           : null,
       };
 
@@ -197,6 +198,8 @@ export default function TransportCheckoutFinal({
       setIsLoading(false);
     }
   };
+
+  const [calendarOpen, setCalendarOpen] = useState(false);
 
   return (
     <div className="bg-white">
@@ -403,46 +406,84 @@ export default function TransportCheckoutFinal({
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel className="text-base">
-                            Pickup Date
+                            PickUp Date
                           </FormLabel>
                           <FormControl>
-                            <Popover>
-                              <PopoverTrigger asChild>
-                                <Button
-                                  variant="outline"
-                                  className="w-full justify-start text-left font-normal"
-                                >
-                                  <CalendarIcon className="mr-2 h-4 w-4" />
-                                  {field.value
-                                    ? format(field.value, "yyyy-MM-dd")
-                                    : "Select date"}
-                                </Button>
-                              </PopoverTrigger>
-                              <PopoverContent
-                                className="w-auto p-0"
-                                align="start"
+                            <>
+                              <Button
+                                variant="outline"
+                                onClick={() => setCalendarOpen(true)}
+                                className="w-full justify-start text-left font-normal"
                               >
-                                <Calendar
-                                  mode="single"
-                                  selected={field.value}
-                                  onSelect={(val) => {
-                                    if (val) {
-                                      form.setValue("start_date", val, {
-                                        shouldValidate: true,
-                                      });
-                                    }
-                                  }}
-                                  initialFocus
-                                />
-                              </PopoverContent>
-                            </Popover>
+                                <CalendarIcon className="mr-2 h-4 w-4" />
+                                {field.value ? (
+                                  format(field.value, "yyyy-MM-dd")
+                                ) : (
+                                  <span>Select date</span>
+                                )}
+                              </Button>
+
+                              <DatePickerModal
+                                open={calendarOpen}
+                                onOpenChange={setCalendarOpen}
+                                value={field.value}
+                                onSelect={(val) => {
+                                  form.setValue("start_date", val, {
+                                    shouldValidate: true,
+                                  });
+                                }}
+                              />
+                            </>
                           </FormControl>
                           <FormMessage />
                         </FormItem>
                       )}
                     />
 
+                    {/* end data  */}
                     <FormField
+                      control={form.control}
+                      name="end_date"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="text-base">
+                            Return Date
+                          </FormLabel>
+                          <FormControl>
+                            <>
+                              <Button
+                                variant="outline"
+                                onClick={() => setCalendarOpen(true)}
+                                className="w-full justify-start text-left font-normal"
+                              >
+                                <CalendarIcon className="mr-2 h-4 w-4" />
+                                {field.value ? (
+                                  format(field.value, "yyyy-MM-dd")
+                                ) : (
+                                  <span>Select date</span>
+                                )}
+                              </Button>
+
+                              <DatePickerModal
+                                open={calendarOpen}
+                                onOpenChange={setCalendarOpen}
+                                value={field.value}
+                                onSelect={(val) => {
+                                  form.setValue("end_date", val, {
+                                    shouldValidate: true,
+                                  });
+                                }}
+                              />
+                            </>
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    {/*  */}
+
+                    {/* <FormField
                       control={form.control}
                       name="end_date"
                       render={({ field }) => (
@@ -485,7 +526,7 @@ export default function TransportCheckoutFinal({
                           <FormMessage />
                         </FormItem>
                       )}
-                    />
+                    /> */}
 
                     <FormField
                       control={form.control}

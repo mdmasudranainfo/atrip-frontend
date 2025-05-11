@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/dialog";
 import { Calendar } from "@/components/ui/calendar"; // or your Calendar2
 import { format } from "date-fns";
+import { Calendar2 } from "../ui/calendar2";
 
 interface DatePickerModalProps {
   open: boolean;
@@ -30,7 +31,7 @@ const DatePickerModal = ({
           <DialogTitle>Select a Date</DialogTitle>
         </DialogHeader>
         <div className="flex justify-center items-center">
-          <Calendar
+          <Calendar2
             mode="single"
             selected={value}
             onSelect={(val) => {
