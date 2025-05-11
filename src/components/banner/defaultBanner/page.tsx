@@ -17,7 +17,7 @@ export default async function DefaultBanner() {
           </p>
         </div>
 
-        <FilterServiceGroup defaultValue="hotel" selectedLocations={[]}/>
+        <FilterServiceGroup defaultValue="activities" selectedLocations={[]} />
       </div>
     </div>
   );
