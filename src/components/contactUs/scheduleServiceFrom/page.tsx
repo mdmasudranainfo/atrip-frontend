@@ -109,9 +109,7 @@ export default function ScheduleServiceFrom({ ticketCat }: any) {
                 {icons.location}
               </div>
               <div className="text-sm sm:text-[15px] text-[#344054] font-medium">
-                4886 Stroman Drives, California,
-                <br />
-                South Stanton, Dubai
+                Dubai, United Arab Emirates
               </div>
             </div>
 
