@@ -43,6 +43,10 @@ const TransportDetails = async (context: {
 
   const elId = "transport-checkout";
 
+  const GelleryImage = [...transport.gallery].reverse();
+
+  console.log("images", transport);
+
   return (
     <div>
       <div className="relative h-full :max-h-[600px] bg-about-us w-full  from-blue-900 via-blue-950 to-blue-950">
@@ -74,7 +78,7 @@ const TransportDetails = async (context: {
           </div>
 
           <ImageGallery
-            images={transport.gallery}
+            images={GelleryImage}
             title={"Activities"}
             star_rate={5}
             review_score={transport?.review_score}
