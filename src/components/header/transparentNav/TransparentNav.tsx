@@ -444,7 +444,8 @@ export function TransparentNavbar({
                 >
                   Transport
                 </NavLink>
-                <NavLink
+                {/*  */}
+                {/* <NavLink
                   isBgWhite={isBgWhite}
                   href="/tour"
                   isActive={pathname === "/tour"}
@@ -486,7 +487,7 @@ export function TransparentNavbar({
                 >
                   Hotel
                 </NavLink>
-                {/*  */}
+
                 <NavLink
                   isBgWhite={isBgWhite}
                   href="/a2a-visa"
@@ -507,7 +508,7 @@ export function TransparentNavbar({
                   isActive={pathname === "/flight"}
                 >
                   Flights
-                </NavLink>
+                </NavLink> */}
               </nav>
 
               {/* Right - Buttons */}
