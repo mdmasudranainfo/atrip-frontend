@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 
 const TravelFaqAccordion = () => {
   return (
-    <div className="container mx-auto pt-4">
+    <div className="container mx-auto py-4">
       <Accordion.Root type="single" collapsible className="w-full space-y-4">
         {accordionItems.map((item) => (
           <Accordion.Item
