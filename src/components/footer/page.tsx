@@ -33,6 +33,7 @@ const destinations = [
   // { name: "Blog", path: "/blog" },
   { name: "About Us", path: "/about-us" },
   // { name: "Careers", path: "/careers" },
+  { name: "How We Works", path: "/works" },
   { name: "Partners", path: "/partners" },
   { name: "Contact Us", path: "/contact-us" },
 ];
