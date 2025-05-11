@@ -72,6 +72,7 @@ import BookingAttraction from "../layouts/booking-attraction";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../ui/dialog";
 import { Calendar2 } from "../ui/calendar2";
 import BestOption from "../cars/carDetails/Best_option";
+import DatePickerModal from "../dataPiker/DatePickerModal";
 
 const formSchema = z.object({
   // pickupLocation: z.number({ message: "Select pickup location" }),
@@ -332,41 +333,32 @@ export default function TransportTabSection({
                     name="start_date"
                     render={({ field }) => (
                       <FormItem>
-                        {/* <FormLabel className="text-base">
-                          Pick-up Date
-                        </FormLabel> */}
                         <FormControl>
-                          <Popover>
-                            <PopoverTrigger asChild>
-                              <Button
-                                variant="outline"
-                                onClick={() => setCalendarOpen(true)} // open modal instead
-                                className="w-full justify-start text-left font-normal"
-                              >
-                                <CalendarIcon className="mr-2 h-4 w-4" />
-                                {field.value ? (
-                                  format(field.value, "yyyy-MM-dd")
-                                ) : (
-                                  <span>Select date</span>
-                                )}
-                              </Button>
-                            </PopoverTrigger>
-                            {/* <PopoverContent
-                              className="w-auto p-0"
-                              align="start"
+                          <>
+                            <Button
+                              variant="outline"
+                              onClick={() => setCalendarOpen(true)}
+                              className="w-full justify-start text-left font-normal"
                             >
-                              <Calendar
-                                mode="single"
-                                selected={field.value}
-                                onSelect={(val) => {
-                                  if (val) {
-                                    field.onChange(val);
-                                  }
-                                }}
-                                initialFocus
-                              />
-                            </PopoverContent> */}
-                          </Popover>
+                              <CalendarIcon className="mr-2 h-4 w-4" />
+                              {field.value ? (
+                                format(field.value, "yyyy-MM-dd")
+                              ) : (
+                                <span>Select date</span>
+                              )}
+                            </Button>
+
+                            <DatePickerModal
+                              open={calendarOpen}
+                              onOpenChange={setCalendarOpen}
+                              value={field.value}
+                              onSelect={(val) => {
+                                form.setValue("start_date", val, {
+                                  shouldValidate: true,
+                                });
+                              }}
+                            />
+                          </>
                         </FormControl>
                         <FormMessage />
                       </FormItem>
