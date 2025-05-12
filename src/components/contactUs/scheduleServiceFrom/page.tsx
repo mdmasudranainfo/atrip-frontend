@@ -173,15 +173,17 @@ export default function ScheduleServiceFrom({ ticketCat }: any) {
             <div className="space-y-1.5">
               <Select
                 name="cat_id"
-                value={formData.cat_id}
-                onValueChange={handleServiceChange}
+                value={String(formData.cat_id)}
+                onValueChange={(value) =>
+                  setFormData((prev) => ({ ...prev, cat_id: value }))
+                }
               >
                 <SelectTrigger className="h-12 rounded-[10px] font-bold bg-white border-gray-200">
                   <SelectValue placeholder="Select Service" />
                 </SelectTrigger>
                 <SelectContent>
                   {ticketCat.map((cat: any) => (
-                    <SelectItem key={cat.id} value={cat.id}>
+                    <SelectItem key={cat.id} value={String(cat.id)}>
                       {cat.name}
                     </SelectItem>
                   ))}
