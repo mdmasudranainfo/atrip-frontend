@@ -333,18 +333,19 @@ export default function PartnerContactForm({ ticketCat }: any) {
                 Select a service <span className="text-red-500">*</span>
               </Label>
               <Select
-                name="service_id"
-                value={selectedService}
-                onValueChange={handleServiceChange}
+                name="cat_id"
+                value={String(formData.service_id)}
+                onValueChange={(value) =>
+                  setFormData((prev) => ({ ...prev, service_id: value }))
+                }
               >
                 <SelectTrigger className="h-12 rounded-[10px] font-bold bg-white border-gray-200">
                   <SelectValue placeholder="Select Service" />
                 </SelectTrigger>
                 <SelectContent>
-                  {/* <SelectItem value="service1">Service 1</SelectItem> */}
-                  {ticketCat.map((service: any) => (
-                    <SelectItem key={service.id} value={service.id}>
-                      {service.name}
+                  {ticketCat.map((cat: any) => (
+                    <SelectItem key={cat.id} value={String(cat.id)}>
+                      {cat.name}
                     </SelectItem>
                   ))}
                 </SelectContent>
