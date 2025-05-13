@@ -165,7 +165,7 @@ export function TransparentNavbar({
             isActive={pathname.startsWith("/umrah")}
           >
             Umrah
-          </NavLink>
+          </NavLink> */}
           <NavLink
             isBgWhite={isBgWhite}
             href="/chauffeur-with-car"
@@ -173,7 +173,7 @@ export function TransparentNavbar({
           >
             Car+Driver
           </NavLink>
-          <NavLink
+          {/* <NavLink
             isBgWhite={isBgWhite}
             href="/hotels"
             isActive={pathname.startsWith("/hotels")}
