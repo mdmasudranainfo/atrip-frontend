@@ -16,6 +16,7 @@ import { Filter, X } from "lucide-react";
 import FilterServiceGroup from "@/components/filter/filter-service-group";
 import ItemSorting from "@/components/hotels/hotelFilter/ItemSorting";
 import { getSelectedLocation } from "@/lib/actions/location-action";
+import InfiniteTransportList from "@/components/transports/InfiniteTransportList";
 
 const Transports = async ({ searchParams }: any) => {
   const params = await searchParams;
@@ -85,7 +86,7 @@ const Transports = async ({ searchParams }: any) => {
         </div>
 
         <div className="w-full sm:flex-1 max-w-6xl">
-          <ItemSorting propertyCount={total || 0} label="transports" />
+          {/* <ItemSorting propertyCount={total || 0} label="transports" />
           {data?.length > 0 ? (
             <div>
               {data.map((transport: ITransport, index: number) => (
@@ -102,7 +103,15 @@ const Transports = async ({ searchParams }: any) => {
             </div>
           ) : (
             <ResultNotFound />
-          )}
+          )} */}
+
+          <InfiniteTransportList
+            initialData={data}
+            initialTotal={total}
+            initialParams={params}
+            // priceRange={priceRange}
+            // attributes={attributes}
+          />
         </div>
       </div>
     </div>
