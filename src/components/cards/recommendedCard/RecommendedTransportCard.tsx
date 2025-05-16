@@ -197,7 +197,7 @@ const RecommendedTransportCard = () => {
                         <span className="font-bold  text-md md:leading-[22px] leading-[16px] text-dark">
                           {formatPrice(sellPrice)}
                         </span>
-                        <span className="text-sm">/Per person</span>
+                        <span className="text-sm">/Per Hour</span>
                       </div>
                     </div>
 
