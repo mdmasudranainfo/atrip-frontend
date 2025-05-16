@@ -75,7 +75,7 @@ const ActivitiesDetails = async (context: {
         <TransparentNavbar isBgWhite={false} />
       </div>
       {/*  */}
-      <main className="w-[96%] sm:container m-auto min-h-screen  py-8   ">
+      <main className="container m-auto min-h-screen  py-8   ">
         <div className="bg-white py-6 rounded-xl  ">
           <Link
             href="/activities"
