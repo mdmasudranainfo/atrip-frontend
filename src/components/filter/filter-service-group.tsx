@@ -65,7 +65,7 @@ export default function FilterServiceGroup({
                   className="h-[46px] flex items-center lg:justify-center justify-start gap-2 font-semibold text-sm leading-4 tracking-tight"
                   value="Transport"
                 >
-                  <span>{icons.activitiesIcon}</span>
+                  <span>{icons.transportIcon}</span>
                   Transport
                 </TabsTrigger>
 
