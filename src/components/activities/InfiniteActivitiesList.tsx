@@ -49,7 +49,7 @@ export default function InfiniteActivitiesList({
   initialTotal,
   initialParams,
 }: {
-  initialData: EventActivityRow[];
+  initialData: any;
   initialTotal: number;
   initialParams: any;
 }) {
