@@ -100,7 +100,7 @@ export default function Footer() {
                 />
                 <div className="relative">
                   <p className="font-inter text-lg lg:text-xl font-semibold leading-7 tracking-[-0.02em] text-slate-800 dark:text-slate-200">
-                    Travel safety everywhere
+                    Travel safely everywhere
                   </p>
                   <div className="absolute -bottom-1 left-0 h-1 w-20 bg-gradient-to-r from-blue-600 to-blue-400 rounded-full"></div>
                 </div>
