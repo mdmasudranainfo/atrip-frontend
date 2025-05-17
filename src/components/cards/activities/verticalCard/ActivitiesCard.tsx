@@ -13,19 +13,19 @@ import DiscountPriceBadge from "@/components/booking/discount-price-badge";
 
 export default function ActivitiesCard({
   activity,
-  location_id,
-}: {
+}: // location_id,
+{
   activity: EventActivityRow;
-  location_id: number;
+  // location_id: number;
 }) {
-  const url = location_id
-    ? `/activities/${activity.slug}?location_id=${location_id}`
-    : `/activities/${activity.slug}`;
+  // const url = location_id
+  //   ? `/activities/${activity.slug}?location_id=${location_id}`
+  //   : `/activities/${activity.slug}`;
   const sellPrice = getSellPrice(activity.price, activity.sale_price);
   const comparePrice = getComparePrice(activity.price, activity.sale_price);
 
   return (
-    <Link href={url}>
+    <Link href={"/"}>
       <Card className="card-wrapper overflow-hidden sm:p-4 border-none w-full h-auto">
         <div className="single-item flex flex-col sm:flex-row gap-4">
           {/* Image Section */}
@@ -97,7 +97,7 @@ export default function ActivitiesCard({
                 priceAfterText="/person"
               />
               <div className="text-right mt-2">
-                <Link href={url}>
+                <Link href={"/"}>
                   <Button
                     variant={"primary"}
                     className=" w-full sm:w-auto !py-4"

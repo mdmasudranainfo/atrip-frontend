@@ -18,6 +18,7 @@ import Pagination from "@/components/pagination/Pagination";
 import ResultNotFound from "@/components/notFound/page";
 import ItemSorting from "@/components/hotels/hotelFilter/ItemSorting";
 import { getSelectedLocation } from "@/lib/actions/location-action";
+import InfiniteActivitiesList from "@/components/activities/InfiniteActivitiesList";
 
 export const metadata: Metadata = {
   title: `Activities | ${siteConfig.name}`,
@@ -97,7 +98,7 @@ const Activities = async ({ searchParams }: any) => {
 
         {/* Activities List */}
         <div className="w-full sm:flex-1 max-w-6xl">
-          <ItemSorting propertyCount={total || 0} label="activities" />
+          {/* <ItemSorting propertyCount={total || 0} label="activities" />
           {data && data?.length > 0 ? (
             <div>
               {data?.map((activity, index) => (
@@ -117,7 +118,12 @@ const Activities = async ({ searchParams }: any) => {
             </div>
           ) : (
             <ResultNotFound />
-          )}
+          )} */}
+          <InfiniteActivitiesList
+            initialData={data}
+            initialTotal={total}
+            initialParams={params}
+          />
         </div>
       </div>
     </div>
