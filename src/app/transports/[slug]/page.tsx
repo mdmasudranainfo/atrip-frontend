@@ -53,7 +53,7 @@ const TransportDetails = async (context: {
         <div className="bg-[#00000066] h-full w-full absolute top-0 bottom-0"></div>
         <TransparentNavbar isBgWhite={false} />
       </div>
-      <main className="w-[96%] sm:container m-auto min-h-screen  py-8  ">
+      <main className="container m-auto min-h-screen  py-8  ">
         <div className="bg-white pt-6 md:p-6 rounded-xl  ">
           {/* Back Link */}
           <Link
