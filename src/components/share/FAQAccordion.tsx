@@ -6,7 +6,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Card, CardContent } from "../ui/card";
 import { LandPlot } from "lucide-react";
 
 interface FAQItem {
@@ -21,70 +20,31 @@ export default function FAQAccordion({ faqs }: { faqs: string }) {
   }));
 
   return (
-    <div className="w-full bg-white border-t-2">
-      <Accordion type="single" collapsible defaultValue="policies">
-        <AccordionItem value="policies" className="border-none">
-          <AccordionTrigger className="px-6 py-4 hover:no-underline">
-            <div className="flex items-center gap-2">
-              <LandPlot color="blue" className="h-5 w-5" />
-              <h3 className="text-base font-bold">
-                Frequently Asked Questions
-              </h3>
-            </div>
-          </AccordionTrigger>
-          <AccordionContent className="px-6 border-none ">
-            <Card className="w-full border-none bg-white shadow-none ">
-              <CardContent className="shadow-none border-none ">
-                <div className="w-full">
-                  <section className="w-full px-4">
-                    <Accordion type="single" collapsible className="space-y-4">
-                      {data?.map((faq: FAQItem, index: number) => (
-                        <AccordionItem
-                          key={index}
-                          value={`item-${index}`}
-                          className="rounded-lg px-6"
-                        >
-                          <AccordionTrigger className="hover:no-underline py-4 text-base font-bold text-[#1A1A1A]">
-                            {faq.title}
-                          </AccordionTrigger>
-                          <AccordionContent className="text-gray-600 pb-4">
-                            {faq.content}
-                          </AccordionContent>
-                        </AccordionItem>
-                      ))}
-                    </Accordion>
-                  </section>
-                </div>
-              </CardContent>
-            </Card>
-          </AccordionContent>
-        </AccordionItem>
-      </Accordion>
+    <div className="w-full bg-white border-t-2 py-8">
+      <div className="px-4">
+        <div className="flex items-center gap-2 mb-6 px-2">
+          <LandPlot color="blue" className="h-6 w-6" />
+          <h3 className="text-md font-bold text-[#1A1A1A]">
+            Frequently Asked Questions
+          </h3>
+        </div>
+        <Accordion type="single" collapsible className="space-y-4">
+          {data?.map((faq: FAQItem, index: number) => (
+            <AccordionItem
+              key={index}
+              value={`item-${index}`}
+              className="rounded-2xl bg-white shadow border border-gray-100"
+            >
+              <AccordionTrigger className="flex justify-between items-center px-6 py-4 text-base font-semibold text-[#1A1A1A] hover:bg-blue-50 rounded-2xl transition">
+                {faq.title}
+              </AccordionTrigger>
+              <AccordionContent className="px-6 pb-4 text-gray-600 text-[15px] leading-relaxed">
+                {faq.content}
+              </AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
+      </div>
     </div>
   );
-}
-
-const FAQItem = <></>;
-
-{
-  /* <Card className="bg-white border-none border-t">
-<section className="w-full px-4 py-16">
-  <Accordion type="single" collapsible className="space-y-4">
-    {data?.map((faq: FAQItem, index: number) => (
-      <AccordionItem
-        key={index}
-        value={`item-${index}`}
-        className="rounded-lg px-6"
-      >
-        <AccordionTrigger className="hover:no-underline py-4 text-base font-bold text-[#1A1A1A]">
-          {faq.title}
-        </AccordionTrigger>
-        <AccordionContent className="text-gray-600 pb-4">
-          {faq.content}
-        </AccordionContent>
-      </AccordionItem>
-    ))}
-  </Accordion>
-</section>
-</Card> */
 }

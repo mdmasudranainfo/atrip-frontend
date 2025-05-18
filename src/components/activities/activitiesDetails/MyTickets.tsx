@@ -15,7 +15,9 @@ export default function MyTickets({ myTicket }: any) {
           <AccordionTrigger className="px-6 py-4 hover:no-underline">
             <div className="flex items-center gap-2">
               <Ticket color="blue" className="h-5 w-5" />
-              <p className="font-bold">Your Tickets</p>
+              <p className="text-lg leading-[26px] font-semibold">
+                Your Tickets
+              </p>
             </div>
           </AccordionTrigger>
           <AccordionContent className="px-6 pb-6">
