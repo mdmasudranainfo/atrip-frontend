@@ -18,6 +18,7 @@ import ActivitiesSearchForm from "@/components/packageSearchForms/ActivitiesSear
 import TransportsSearchForm from "@/components/packageSearchForms/TransportsSearchForm";
 import CarWithDeiverSearchForm from "@/components/packageSearchForms/CarWithDeiverSearchForm";
 import A2aVisaSearchForm from "@/components/packageSearchForms/A2aVisaSearchForm";
+import Link from "next/link";
 
 export default function FilterServiceGroup({
   selectedLocations,
@@ -54,19 +55,29 @@ export default function FilterServiceGroup({
             >
               <div className="md:grid grid-cols-8 flex xsm: w-full md:overflow-hidden overflow-x-auto md:pb-0 pb-2 md:gap-0 gap-[22px]">
                 <TabsTrigger
-                  className="h-[46px] flex items-center lg:justify-center justify-start gap-2 font-semibold text-sm leading-4 tracking-tight"
+                  className="h-[46px] cursor-default flex items-center lg:justify-center justify-start gap-2 font-semibold text-sm leading-4 tracking-tight"
                   value="activities"
                 >
-                  <span>{icons.activitiesIcon}</span>
-                  Attractions
+                  <Link
+                    href={"/activities"}
+                    className="flex items-center gap-1"
+                  >
+                    <span>{icons.activitiesIcon}</span>
+                    Attractions
+                  </Link>
                 </TabsTrigger>
 
                 <TabsTrigger
-                  className="h-[46px] flex items-center lg:justify-center justify-start gap-2 font-semibold text-sm leading-4 tracking-tight"
-                  value="Transport"
+                  className="h-[46px] cursor-default flex items-center lg:justify-center justify-start gap-2 font-semibold text-sm leading-4 tracking-tight"
+                  value="transports"
                 >
-                  <span>{icons.transportIcon}</span>
-                  Transport
+                  <Link
+                    href={"/transports"}
+                    className="flex items-center gap-1"
+                  >
+                    <span>{icons.transportIcon}</span>
+                    Transport
+                  </Link>
                 </TabsTrigger>
 
                 {/* <TabsTrigger

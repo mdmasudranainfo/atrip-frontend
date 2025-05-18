@@ -8,12 +8,10 @@ interface MultiFilterProps {
   attribute: FilterAttribute;
   onChange?: (key: string, values: string[]) => void;
   isExpanded?: boolean;
-  params: any,
+  params: any;
 }
 
-
-const extractParams = (paramValue?: string[]|string): string[] => {
-
+const extractParams = (paramValue?: string[] | string): string[] => {
   if (!paramValue) return []; // Return an empty array if undefined/null
 
   if (Array.isArray(paramValue)) {
@@ -21,7 +19,7 @@ const extractParams = (paramValue?: string[]|string): string[] => {
   }
 
   return [paramValue]; // Convert a single string to an array
-}
+};
 
 export default function MultiFilter({
   params,
@@ -31,9 +29,11 @@ export default function MultiFilter({
 }: MultiFilterProps) {
   const [expanded, setExpanded] = useState(isExpanded);
 
-  const key = `attrs_${attribute.id}[]`
+  const key = `attrs_${attribute.id}[]`;
 
-  const [selected, setSelected] = useState<string[]>(() => extractParams(params[key]))
+  const [selected, setSelected] = useState<string[]>(() =>
+    extractParams(params[key])
+  );
 
   return (
     <div>
@@ -51,27 +51,26 @@ export default function MultiFilter({
 
       {expanded && (
         <div className="px-4 pb-4">
-          {attribute.terms.map((term: FilterAttributeTerm) => (
+          {attribute.terms.map((term: FilterAttributeTerm, i: number) => (
             <label
-              key={term.name}
+              key={i}
               className="flex items-center space-x-3 py-2 cursor-pointer text-primary-dark font-semibold"
             >
               <Checkbox
-                  checked={selected.includes(term.slug)}
-                  onCheckedChange={(val: boolean) => {
+                checked={selected.includes(term.slug)}
+                onCheckedChange={(val: boolean) => {
+                  let newValues: string[] = selected;
 
-                    let newValues: string[] = selected;
+                  if (val) {
+                    newValues = [...newValues, term.slug];
+                  } else {
+                    newValues = newValues.filter((it) => it !== term.slug);
+                  }
 
-                    if(val) {
-                      newValues = [...newValues, term.slug]
-                    } else {
-                      newValues = newValues.filter(it => it !== term.slug)
-                    }
-
-                    setSelected(newValues)
-                    onChange?.(key, newValues);
-                  }}
-                />
+                  setSelected(newValues);
+                  onChange?.(key, newValues);
+                }}
+              />
               <span className="text-sm font-medium leading-[22px]">
                 {term.name}
               </span>
@@ -80,5 +79,5 @@ export default function MultiFilter({
         </div>
       )}
     </div>
-  )
+  );
 }
