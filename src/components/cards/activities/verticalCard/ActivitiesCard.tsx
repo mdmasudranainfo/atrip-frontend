@@ -47,6 +47,8 @@ export default function ActivitiesCard({
     },
   ];
 
+  console.log("activity", activity);
+
   return (
     <Link href={`activities/${activity.slug}`}>
       <Card className="card-wrapper overflow-hidden sm:p-4 border-none w-full h-auto">
@@ -78,7 +80,7 @@ export default function ActivitiesCard({
                 </div>
 
                 {/* Subtitle */}
-                <div className="py-2">
+                <div className="py-2 md:block hidden">
                   <p className="text-sm ">{activity?.sub_title}</p>
                 </div>
 
@@ -97,7 +99,7 @@ export default function ActivitiesCard({
               </div>
 
               {/* Rating badge (place under title on small screens) */}
-              <div className="mt-2 sm:mt-0 sm:self-start">
+              <div className="mt-2 sm:mt-0 sm:self-start md:block hidden">
                 <RatingBadge
                   total={activity.total_review}
                   score={activity.review_score}
@@ -110,7 +112,7 @@ export default function ActivitiesCard({
               <DiscountPriceBadge
                 sellPrice={sellPrice}
                 comparePrice={comparePrice}
-                priceAfterText="/person"
+                priceAfterText="/Par person"
               />
               <div className="text-right mt-2">
                 <Link href={`activities/${activity.slug}`}>
