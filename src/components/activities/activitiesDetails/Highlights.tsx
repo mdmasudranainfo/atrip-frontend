@@ -59,7 +59,7 @@ const ActivitiesHighlights = ({ data }: { data: any }) => {
         <NeedToKnow NeedToKnowData={data?.need_to_know} />
       </div>
       <div className="">
-        <CancelationPolicy cancelationPolicyData={data?.faqs} />
+        <CancelationPolicy cancelationPolicyData={data?.cancellation_policy} />
       </div>
       <div className="">
         <ActivitiesMap

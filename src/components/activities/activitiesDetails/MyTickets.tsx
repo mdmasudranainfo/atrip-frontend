@@ -21,10 +21,12 @@ export default function MyTickets({ myTicket }: any) {
           <AccordionContent className="px-6 pb-6">
             <CardContent className="space-y-6 text-base font-normal leading-6 text-dark">
               <div className="w-full">
-                <div
-                  className=" font-normal leading-7"
-                  dangerouslySetInnerHTML={{ __html: myTicket }}
-                />
+                <article className="prose prose-slate prose-lead:text-secondary-foreground dark:prose-invert xl:prose-md w-full mx-auto max-w-4xl">
+                  <div
+                    className="font-normal leading-7"
+                    dangerouslySetInnerHTML={{ __html: myTicket }}
+                  />
+                </article>
               </div>
             </CardContent>
           </AccordionContent>

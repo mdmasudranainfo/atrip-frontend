@@ -172,7 +172,9 @@ const ActivitiesDetails = async (context: {
                       value="cancellation_policy"
                       className="border-none"
                     >
-                      <CancelationPolicy cancelationPolicyData={data?.faqs} />
+                      <CancelationPolicy
+                        cancelationPolicyData={data?.cancellation_policy}
+                      />
                     </TabsContent>
 
                     <TabsContent value="location" className="border-none">

@@ -39,6 +39,7 @@ export interface EventRow {
   gallery: GalleryImage[];
   video: string;
   faqs: any;
+  cancellation_policy: string;
   asking: string;
   ticket_types: TicketType[];
   duration: number;
