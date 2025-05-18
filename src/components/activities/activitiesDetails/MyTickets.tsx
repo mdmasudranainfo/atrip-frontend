@@ -15,14 +15,14 @@ export default function MyTickets({ myTicket }: any) {
           <AccordionTrigger className="px-6 py-4 hover:no-underline">
             <div className="flex items-center gap-2">
               <Ticket color="blue" className="h-5 w-5" />
-              <p className="text-base font-bold">My Tickets</p>
+              <p className="font-bold">Your Tickets</p>
             </div>
           </AccordionTrigger>
           <AccordionContent className="px-6 pb-6">
             <CardContent className="space-y-6 text-base font-normal leading-6 text-dark">
               <div className="w-full">
                 <div
-                  className="text-base font-normal leading-7"
+                  className=" font-normal leading-7"
                   dangerouslySetInnerHTML={{ __html: myTicket }}
                 />
               </div>

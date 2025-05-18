@@ -21,14 +21,12 @@ export default function NeedToKnow({ NeedToKnowData }: any) {
           </AccordionTrigger>
           <AccordionContent className="px-6 pb-6">
             <div className="w-full">
-              {NeedToKnowData ? (
+              <article className="prose prose-slate prose-lead:text-secondary-foreground dark:prose-invert xl:prose-md w-full mx-auto max-w-4xl">
                 <div
-                  className="text-base font-normal leading-7"
+                  className="font-normal leading-7"
                   dangerouslySetInnerHTML={{ __html: NeedToKnowData }}
                 />
-              ) : (
-                <p className="text-gray-500">No information available.</p>
-              )}
+              </article>
             </div>
           </AccordionContent>
         </AccordionItem>

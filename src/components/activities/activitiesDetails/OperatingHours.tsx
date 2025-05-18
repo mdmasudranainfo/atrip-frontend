@@ -25,7 +25,7 @@ export default function OperatingHours({ data, operatingHours }: any) {
           </AccordionTrigger>
           <AccordionContent className="px-7 pb-6 font-inter">
             <div className="w-full ">
-              <h3 className="text-base font-semibold text-dark mb-4">{data}</h3>
+              <h3 className=" font-semibold text-dark mb-4">{data}</h3>
               <ul className="space-y-4 w-full sm:w-6/12">
                 {operatingHours?.map(
                   (
@@ -34,12 +34,10 @@ export default function OperatingHours({ data, operatingHours }: any) {
                   ) => (
                     <li
                       key={index}
-                      className="flex items-start justify-between text-dark font-normal hover:font-semibold  "
+                      className="md:text-[18px]  flex items-start justify-between text-dark font-normal hover:font-semibold  "
                     >
-                      <span className="text-base leading-7">
-                        {feature.weekday}
-                      </span>
-                      <span className="text-base leading-7">
+                      <span className=" leading-7">{feature.weekday}</span>
+                      <span className=" leading-7">
                         {feature.time ? feature.time : "Closed"}
                       </span>
                     </li>
