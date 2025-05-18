@@ -6,7 +6,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { LandPlot } from "lucide-react";
+import { LandPlot, ShieldQuestion } from "lucide-react";
 
 interface FAQItem {
   title: string;
@@ -23,7 +23,10 @@ export default function FAQAccordion({ faqs }: { faqs: string }) {
     <div className="w-full bg-white border-t-2 py-8">
       <div className="px-4">
         <div className="flex items-center gap-2 mb-6 px-2">
-          <LandPlot color="blue" className="h-6 w-6" />
+          <ShieldQuestion
+            color="blue"
+            className="h-10 w-10 bg-blue-50 p-2 rounded-lg"
+          />
           <h3 className="text-md font-bold text-[#1A1A1A]">
             Frequently Asked Questions
           </h3>

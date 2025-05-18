@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/accordion";
 import { Card } from "@/components/ui/card";
 import { console } from "inspector";
-import { LandPlot } from "lucide-react";
+import { LandPlot, MapPinned } from "lucide-react";
 
 export default function ActivitiesMap({
   address,
@@ -27,7 +27,10 @@ export default function ActivitiesMap({
         <AccordionItem value="policies" className="border-0">
           <AccordionTrigger className="px-6 py-4 hover:no-underline">
             <div className="flex items-center gap-2">
-              <LandPlot color="blue" className="h-5 w-5" />
+              <MapPinned
+                color="blue"
+                className="h-10 w-10 bg-blue-50 p-2 rounded-lg"
+              />
               <span className="text-base font-bold">Location Map</span>
             </div>
           </AccordionTrigger>

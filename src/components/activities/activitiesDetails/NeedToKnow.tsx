@@ -1,4 +1,4 @@
-import { ArrowDownWideNarrow } from "lucide-react";
+import { BookOpenCheck } from "lucide-react";
 import type React from "react";
 import {
   Accordion,
@@ -15,7 +15,10 @@ export default function NeedToKnow({ NeedToKnowData }: any) {
         <AccordionItem value="policies" className="border-0">
           <AccordionTrigger className="px-6 py-4 hover:no-underline">
             <div className="flex items-center gap-2">
-              <ArrowDownWideNarrow className="h-5 w-5" />
+              <BookOpenCheck
+                color="blue"
+                className="h-10 w-10 bg-blue-50 p-2 rounded-lg"
+              />
               <span className="text-base font-bold">Need to know</span>
             </div>
           </AccordionTrigger>

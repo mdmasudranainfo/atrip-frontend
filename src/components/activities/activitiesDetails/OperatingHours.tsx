@@ -1,4 +1,4 @@
-import { AppWindowMac } from "lucide-react";
+import { AppWindowMac, BetweenVerticalStart } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import {
   Accordion,
@@ -14,7 +14,7 @@ export default function OperatingHours({ data, operatingHours }: any) {
         <AccordionItem value="policies" className="border-0">
           <AccordionTrigger className="px-6 py-4 hover:no-underline">
             <div className="flex items-center gap-2">
-              <AppWindowMac
+              <BetweenVerticalStart
                 color="blue"
                 className="h-10 w-10 bg-blue-50 p-2 rounded-lg"
               />

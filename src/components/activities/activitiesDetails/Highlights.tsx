@@ -6,7 +6,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Card } from "@/components/ui/card";
-import { AppWindowMac } from "lucide-react";
+import { AppWindowMac, SquareKanban } from "lucide-react";
 import CancelationPolicy from "@/components/activities/activitiesDetails/CancelationPolicy";
 import Inclusions from "@/components/activities/activitiesDetails/Inclusions";
 import MyTickets from "@/components/activities/activitiesDetails/MyTickets";
@@ -24,7 +24,7 @@ const ActivitiesHighlights = ({ data }: { data: any }) => {
           <AccordionItem value="policies" className="border-0">
             <AccordionTrigger className="px-6 py-4 hover:no-underline">
               <div className="flex items-center gap-2">
-                <AppWindowMac
+                <SquareKanban
                   color="blue"
                   className="h-10 w-10 bg-blue-50 p-2 rounded-lg"
                 />

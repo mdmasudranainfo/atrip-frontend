@@ -5,7 +5,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Card } from "@/components/ui/card";
-import { LandPlot } from "lucide-react";
+import { LandPlot, MessageSquareX } from "lucide-react";
 
 export default function CancelationPolicy({ cancelationPolicyData }: any) {
   const isArray = Array.isArray(cancelationPolicyData);
@@ -15,7 +15,10 @@ export default function CancelationPolicy({ cancelationPolicyData }: any) {
         <AccordionItem value="policies" className="border-0">
           <AccordionTrigger className="px-6 py-4 hover:no-underline">
             <div className="flex items-center gap-2">
-              <LandPlot color="blue" className="h-5 w-5" />
+              <MessageSquareX
+                color="blue"
+                className="h-10 w-10 bg-blue-50 p-2 rounded-lg"
+              />
               <span className="text-base font-bold">Cancellation policy</span>
             </div>
           </AccordionTrigger>

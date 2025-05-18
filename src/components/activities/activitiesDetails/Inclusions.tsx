@@ -7,7 +7,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Card, CardContent } from "@/components/ui/card";
-import { LandPlot } from "lucide-react";
+import { PackagePlus } from "lucide-react";
 import React from "react";
 
 interface InclusionsProps {
@@ -24,7 +24,10 @@ const Inclusions = ({ content }: InclusionsProps) => {
         <AccordionItem value="policies" className="border-none">
           <AccordionTrigger className="px-6 py-4 hover:no-underline">
             <div className="flex items-center gap-2">
-              <LandPlot color="blue" className="h-5 w-5" />
+              <PackagePlus
+                color="blue"
+                className="h-10 w-10 bg-blue-50 p-2 rounded-lg"
+              />
               <h3 className="text-base font-bold">Inclusions</h3>
             </div>
           </AccordionTrigger>
