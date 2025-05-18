@@ -24,6 +24,29 @@ export default function ActivitiesCard({
   const sellPrice = getSellPrice(activity.price, activity.sale_price);
   const comparePrice = getComparePrice(activity.price, activity.sale_price);
 
+  const services = [
+    {
+      icon: <BsCalendarX className="h-4 w-4 text-primary-dark md:h-5 md:w-5" />,
+      label: "Free cancellation",
+    },
+    {
+      icon: (
+        <BsBookmarkStar className="h-4 w-4 text-primary-dark md:h-5 md:w-5" />
+      ),
+      label: "Instant confirmation",
+    },
+    {
+      icon: <BsPhone className="h-4 w-4 text-primary-dark md:h-5 md:w-5" />,
+      label: "Mobile ticket",
+    },
+    {
+      icon: (
+        <TbCalendarTime className="h-4 w-4 text-primary-dark md:h-5 md:w-5" />
+      ),
+      label: "Flexible duration",
+    },
+  ];
+
   return (
     <Link href={`activities/${activity.slug}`}>
       <Card className="card-wrapper overflow-hidden sm:p-4 border-none w-full h-auto">
@@ -60,23 +83,16 @@ export default function ActivitiesCard({
                 </div>
 
                 {/* Services */}
-                <div className="services md:grid hidden  grid-cols-2 gap-x-4 gap-y-2 mt-2 text-dark text-[13px] md:text-sm">
-                  <div className="service-single flex items-center gap-2">
-                    <BsCalendarX className="h-4 w-4 text-primary-dark md:h-5 md:w-5" />
-                    <span>Free cancellation</span>
-                  </div>
-                  <div className="service-single flex items-center gap-2">
-                    <BsBookmarkStar className="h-4 w-4 text-primary-dark md:h-5 md:w-5" />
-                    <span>Instant confirmation</span>
-                  </div>
-                  <div className="service-single flex items-center gap-2">
-                    <BsPhone className="h-4 w-4 text-primary-dark md:h-5 md:w-5" />
-                    <span>Mobile ticket</span>
-                  </div>
-                  <div className="service-single flex items-center gap-2">
-                    <TbCalendarTime className="h-4 w-4 text-primary-dark md:h-5 md:w-5" />
-                    <span>Flexible duration</span>
-                  </div>
+                <div className="services md:grid hidden grid-cols-2 gap-x-4 gap-y-2 mt-2 text-dark text-[13px] md:text-sm">
+                  {services.map((service, index) => (
+                    <div
+                      key={index}
+                      className="service-single flex items-center gap-2"
+                    >
+                      {service.icon}
+                      <span>{service.label}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
 

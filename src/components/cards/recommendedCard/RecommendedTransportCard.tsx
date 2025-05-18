@@ -3,7 +3,7 @@ import Image from "next/image";
 import Slider from "react-slick";
 import { TbCalendarTime } from "react-icons/tb";
 import { CiMobile2 } from "react-icons/ci";
-import { BsBookmarkStar } from "react-icons/bs";
+import { BsBookmarkStar, BsCalendarX, BsPhone } from "react-icons/bs";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import useFeaturedCards from "@/lib/hooks/useFeaturedData";
@@ -94,18 +94,27 @@ const RecommendedTransportCard = () => {
 
   const cardFeatures = [
     {
-      icon: <TbCalendarTime size={20} />,
-      text: "Free Cancellation",
+      icon: <BsCalendarX className="h-4 w-4 text-primary-dark md:h-5 md:w-5" />,
+      label: "Free cancellation",
       value: null,
     },
     {
-      icon: <CiMobile2 size={20} />,
-      text: "Mobile ticket",
+      icon: (
+        <BsBookmarkStar className="h-4 w-4 text-primary-dark md:h-5 md:w-5" />
+      ),
+      label: "Instant confirmation",
       value: null,
     },
     {
-      icon: <BsBookmarkStar size={20} />,
-      text: "Instant confirmation",
+      icon: <BsPhone className="h-4 w-4 text-primary-dark md:h-5 md:w-5" />,
+      label: "Mobile ticket",
+      value: null,
+    },
+    {
+      icon: (
+        <TbCalendarTime className="h-4 w-4 text-primary-dark md:h-5 md:w-5" />
+      ),
+      label: "Flexible duration",
       value: null,
     },
   ];
@@ -179,8 +188,8 @@ const RecommendedTransportCard = () => {
                       {feature?.icon}
                       <p className="font-inter font-medium text-[12px] leading-6 text-dark">
                         {feature?.value
-                          ? `${feature?.value} ${feature?.text}`
-                          : feature?.text}
+                          ? `${feature?.value} ${feature?.label}`
+                          : feature?.label}
                       </p>
                     </div>
                   ))}
