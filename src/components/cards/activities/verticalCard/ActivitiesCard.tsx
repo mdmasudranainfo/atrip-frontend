@@ -108,12 +108,13 @@ export default function ActivitiesCard({
             </div>
 
             {/* Bottom Price & CTA */}
-            <div className="mt-3 sm:mt-2">
+            <div className="md:mt-3">
               <DiscountPriceBadge
                 sellPrice={sellPrice}
                 comparePrice={comparePrice}
                 priceAfterText="Includes VAT"
               />
+
               <div className="text-right mt-2">
                 <Link href={`activities/${activity.slug}`}>
                   <Button

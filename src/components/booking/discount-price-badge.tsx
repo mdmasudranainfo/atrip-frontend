@@ -20,7 +20,7 @@ export default function DiscountPriceBadge({
     <div className="text-right space-y-1">
       {/* Discount Badge */}
       {!hideLabel && hasDiscount && (
-        <div className="flex items-center justify-end mb-1">
+        <div className="md:flex hidden items-center justify-end mb-1 ">
           <div className="bg-pink-100 text-pink-500 px-2 py-0.5 rounded-l-md me-1 text-xs">
             Special Discount
           </div>
@@ -36,7 +36,10 @@ export default function DiscountPriceBadge({
           <>
             {/* <p className="text-xs text-gray-500">Price from</p> */}
             <span
-              className={cn("line-through text-pink-500 text-sm", labelClass)}
+              className={cn(
+                "line-through text-pink-500 text-sm md:block hidden",
+                labelClass
+              )}
             >
               {formatPrice(comparePrice)}
             </span>
@@ -45,7 +48,7 @@ export default function DiscountPriceBadge({
 
         <span
           className={cn(
-            "text-green-600 font-bold text-xl leading-tight",
+            "text-primary font-bold md:text-xl leading-tight",
             labelClass
           )}
         >
