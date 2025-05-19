@@ -127,7 +127,7 @@ export default function InfiniteActivitiesList({
   }
 
   return (
-    <div>
+    <div className="mb-4">
       <ItemSorting propertyCount={total} label="activities" />
 
       {activities.map((activity, idx) => (

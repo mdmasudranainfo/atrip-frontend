@@ -83,6 +83,7 @@ export default function ActivitiesCard({
                 <div className="py-2 md:block hidden">
                   <p className="text-sm ">{activity?.sub_title}</p>
                 </div>
+                <p className="text-sm ">{activity?.duration}</p>
 
                 {/* Services */}
                 <div className="services md:grid hidden grid-cols-2 gap-x-4 gap-y-2 mt-2 text-dark text-[13px] md:text-sm">
