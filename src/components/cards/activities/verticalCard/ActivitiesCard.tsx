@@ -112,7 +112,7 @@ export default function ActivitiesCard({
               <DiscountPriceBadge
                 sellPrice={sellPrice}
                 comparePrice={comparePrice}
-                priceAfterText="/Par person"
+                priceAfterText="Includes VAT"
               />
               <div className="text-right mt-2">
                 <Link href={`activities/${activity.slug}`}>

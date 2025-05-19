@@ -13,7 +13,8 @@ export default async function DefaultBanner() {
             Welcome to <span className="font-bold">atrip.ae!</span>
           </h1>
           <p className=" md:mt-4 text-white mt-0 font-medium md:text-xl text-md leading-7 font-sans tracking-wider">
-            Find cars, flights, hotels, visa & holidays
+            {/* Find cars, flights, hotels, visa & holidays */}
+            Find transports and attractions
           </p>
         </div>
 
