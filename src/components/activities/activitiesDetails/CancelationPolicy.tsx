@@ -23,15 +23,22 @@ export default function CancelationPolicy({ cancelationPolicyData }: any) {
             </div>
           </AccordionTrigger>
           <AccordionContent className="px-6 pb-6">
-            <div className="w-full">
-              {!isArray && cancelationPolicyData ? (
+            {/* {!isArray && cancelationPolicyData ? (
                 <div
                   className="text-base font-normal leading-7"
                   dangerouslySetInnerHTML={{ __html: cancelationPolicyData }}
                 />
               ) : (
                 <p className="text-gray-500">No information available.</p>
-              )}
+              )} */}
+
+            <div className="w-full">
+              <article className="prose prose-slate prose-lead:text-secondary-foreground dark:prose-invert xl:prose-md w-full mx-auto max-w-4xl">
+                <div
+                  className="font-normal leading-7"
+                  dangerouslySetInnerHTML={{ __html: cancelationPolicyData }}
+                />
+              </article>
             </div>
           </AccordionContent>
         </AccordionItem>

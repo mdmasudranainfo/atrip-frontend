@@ -10,7 +10,7 @@ export default {
   theme: {
     extend: {
       backgroundImage: {
-        'about-us': "url('/images/bradcomed-banner.png')", // Replace with your image path
+        "about-us": "url('/images/bradcomed-banner.png')", // Replace with your image path
       },
       colors: {
         background: "hsl(var(--background))",
@@ -39,7 +39,7 @@ export default {
           secondary: "#183A6D",
           deep: "#231C19",
           gray: "#455873",
-          deepSlate: '#334155'
+          deepSlate: "#334155",
         },
         white: {
           DEFAULT: "#fff",
@@ -105,5 +105,6 @@ export default {
       },
     },
   },
-  plugins: [require('@tailwindcss/typography'), require("tailwindcss-animate")],
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  plugins: [require("@tailwindcss/typography"), require("tailwindcss-animate")],
 } satisfies Config;

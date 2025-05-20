@@ -47,8 +47,6 @@ export default function ActivitiesCard({
     },
   ];
 
-  console.log("activity", activity);
-
   return (
     <Link href={`activities/${activity.slug}`}>
       <Card className="card-wrapper overflow-hidden sm:p-4 border-none w-full h-auto">
@@ -117,7 +115,7 @@ export default function ActivitiesCard({
               />
 
               <div className="text-right mt-2">
-                <Link href={`activities/${activity.slug}`}>
+                <span>
                   <Button
                     variant={"primary"}
                     className=" w-full sm:w-auto !py-4"
@@ -129,7 +127,7 @@ export default function ActivitiesCard({
                       color="#fff"
                     />
                   </Button>
-                </Link>
+                </span>
               </div>
             </div>
           </div>
