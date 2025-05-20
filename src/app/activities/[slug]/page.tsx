@@ -76,17 +76,26 @@ const ActivitiesDetails = async (context: {
       </div>
       {/*  */}
       <main className="container m-auto min-h-screen  py-8   ">
-        <div className="bg-white py-6 rounded-xl  ">
+        <div className="bg-white pb-6 rounded-xl  ">
           <Link
             href="/activities"
-            className="text-blue-600 hover:text-blue-800 text-sm mb-4 inline-block px-6 "
+            className="text-blue-600 hover:text-blue-800 text-sm mb-4 inline-block md:px-6 px-2 pt-2 "
           >
             <ArrowLeft className="h-4 w-4 inline-block mr-1 mb-[2px]" />
             Back
           </Link>
+          {/* <ImageGallery
+            images={data.gallery}
+            title={"Activities"}
+            star_rate={0}
+            review_score={Number(data.review_data?.score_total || 0)}
+            alt="Activities Images"
+            reviews={reviews || []}
+            review_count={Number(data.review_data?.total_review || 0)}
+          /> */}
 
           {/*  */}
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-3 px-6 ">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-3 md:px-6 px-2 ">
             <div>
               <h1 className="text-2xl font-semibold text-gray-900 mb-2">
                 {data.title}
@@ -230,7 +239,7 @@ const ActivitiesDetails = async (context: {
         <Dialog.Root>
           <Dialog.Trigger asChild>
             {/* mobile checkout button */}
-            <div className="px-2 py-2 rounded-t-md fixed bottom-0 z-50 border-t md:hidden flex justify-between items-center bg-white w-full">
+            <div className="px-6 py-2 rounded-t-md fixed bottom-0 z-50 border-t md:hidden flex justify-between items-center bg-white w-full">
               <p className="text-lg leading-6 font-medium text-dark">
                 {formatPrice(sellPrice)}/{" "}
                 <span className="text-sm text-primary">Per Person</span>

@@ -22,7 +22,7 @@ export default function CancelationPolicy({ cancelationPolicyData }: any) {
               <span className="text-base font-bold">Cancellation policy</span>
             </div>
           </AccordionTrigger>
-          <AccordionContent className="px-6 pb-6">
+          <AccordionContent className="md:px-6 px-2 pb-6">
             {/* {!isArray && cancelationPolicyData ? (
                 <div
                   className="text-base font-normal leading-7"

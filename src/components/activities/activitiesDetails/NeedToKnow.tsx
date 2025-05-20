@@ -22,7 +22,7 @@ export default function NeedToKnow({ NeedToKnowData }: any) {
               <span className="text-base font-bold">Need to know</span>
             </div>
           </AccordionTrigger>
-          <AccordionContent className="px-6 pb-6">
+          <AccordionContent className="md:px-6 px-2 pb-6">
             <div className="w-full">
               <article className="prose prose-slate prose-lead:text-secondary-foreground dark:prose-invert xl:prose-md w-full mx-auto max-w-4xl">
                 <div
