@@ -31,7 +31,7 @@ const Inclusions = ({ content }: InclusionsProps) => {
               <h3 className="text-base font-bold">Inclusions</h3>
             </div>
           </AccordionTrigger>
-          <AccordionContent className="px-6 border-none ">
+          <AccordionContent className="border-none ">
             <Card className="w-full border-none bg-white shadow-none ">
               <CardContent className="shadow-none border-none ">
                 <div className="w-full">

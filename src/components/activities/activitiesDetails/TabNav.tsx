@@ -44,7 +44,7 @@ export default function StickyTabs({ tabItems }: { tabItems: any }) {
                 <TabsTrigger
                   key={tab?.value}
                   value={tab?.value}
-                  className="group px-3 py-1.5 text-sm font-medium text-gray-600 
+                  className="group px-2 py-1.5 text-sm font-medium text-gray-600 
                 whitespace-nowrap
                 data-[state=active]:text-blue-600 
                 data-[state=active]:border-b-2 data-[state=active]:border-blue-600 
