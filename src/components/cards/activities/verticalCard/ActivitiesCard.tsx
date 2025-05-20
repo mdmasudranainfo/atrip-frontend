@@ -50,7 +50,7 @@ export default function ActivitiesCard({
   return (
     <Link href={`activities/${activity.slug}`}>
       <Card className="card-wrapper overflow-hidden sm:p-4 border-none w-full h-auto">
-        <div className="single-item flex flex-col sm:flex-row gap-4">
+        <div className="md:single-item flex flex-col sm:flex-row gap-4">
           {/* Image Section */}
           <div className="md:single-item-media relative w-full sm:w-32 h-60 sm:h-60 md:w-40 lg:w-60 rounded-xl overflow-hidden">
             <Image
@@ -81,7 +81,14 @@ export default function ActivitiesCard({
                 <div className="py-2 md:block hidden">
                   <p className="text-sm ">{activity?.sub_title}</p>
                 </div>
-                <p className="text-sm ">{activity?.duration}</p>
+
+                {activity?.duration ? (
+                  <p className="text-sm px-1">
+                    {activity?.duration} Hour activity
+                  </p>
+                ) : (
+                  ""
+                )}
 
                 {/* Services */}
                 <div className="services md:grid hidden grid-cols-2 gap-x-4 gap-y-2 mt-2 text-dark text-[13px] md:text-sm">

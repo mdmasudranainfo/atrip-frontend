@@ -9,7 +9,7 @@ import ItemSorting from "@/components/hotels/hotelFilter/ItemSorting";
 import { useSearchParams } from "next/navigation";
 import { Skeleton } from "../ui/skeleton";
 
-const ITEMS_PER_PAGE = 2;
+const ITEMS_PER_PAGE = 5;
 
 const fetchActivities = async (params: any = {}) => {
   const searchParams = new URLSearchParams();
@@ -131,7 +131,10 @@ export default function InfiniteActivitiesList({
       <ItemSorting propertyCount={total} label="activities" />
 
       {activities.map((activity, idx) => (
-        <div className="mt-4" key={idx}>
+        <div
+          className="p-4 md:p-0 md:border-none border md:rounded-none rounded-lg md:shadow-none shadow-md  my-4"
+          key={idx}
+        >
           <ActivitiesCard activity={activity} />
         </div>
       ))}
@@ -143,7 +146,8 @@ export default function InfiniteActivitiesList({
           className="h-10 mt-8 flex justify-center items-center text-gray-500 text-sm"
         >
           {loading ? (
-            <Skeleton className="w-6 h-6 rounded-full" />
+            // <Skeleton className="w-6 h-6 rounded-full" />
+            <p>Loading....</p>
           ) : (
             "Scroll to load more"
           )}
