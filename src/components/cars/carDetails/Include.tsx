@@ -18,12 +18,15 @@ const Included = ({ include }: any) => {
               <span className="text-base font-bold">What’s included</span>
             </div>
           </AccordionTrigger>
-          <AccordionContent className="px-6 pb-6">
-            <div className="space-y-3 border-none shadow-none">
-              <div
-                className="text-sm font-normal leading-7"
-                dangerouslySetInnerHTML={{ __html: include }}
-              ></div>
+
+          <AccordionContent className="md:px-6 px-2 pb-6">
+            <div className="w-full">
+              <article className="prose prose-slate prose-lead:text-secondary-foreground dark:prose-invert xl:prose-md w-full mx-auto max-w-4xl">
+                <div
+                  className="font-normal leading-7"
+                  dangerouslySetInnerHTML={{ __html: include ?? "" }}
+                />
+              </article>
             </div>
           </AccordionContent>
         </AccordionItem>

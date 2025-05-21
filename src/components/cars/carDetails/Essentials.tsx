@@ -25,16 +25,15 @@ const Essentials = ({ essential }: { essential?: string }) => {
               <span className="text-base font-bold">Service Provided</span>
             </div>
           </AccordionTrigger>
-          <AccordionContent className="px-6 pb-6">
-            <div className="grid gap-4">
-              {essential && essential.trim() ? (
+
+          <AccordionContent className="md:px-6 px-2 pb-6">
+            <div className="w-full">
+              <article className="prose prose-slate prose-lead:text-secondary-foreground dark:prose-invert xl:prose-md w-full mx-auto max-w-4xl">
                 <div
-                  className="text-sm font-normal leading-7"
-                  dangerouslySetInnerHTML={{ __html: essential }}
-                ></div>
-              ) : (
-                <p className="text-gray-500">Loading...</p>
-              )}
+                  className="font-normal leading-7"
+                  dangerouslySetInnerHTML={{ __html: essential ?? "" }}
+                />
+              </article>
             </div>
           </AccordionContent>
         </AccordionItem>
