@@ -32,6 +32,18 @@ const MobilePhototSlider: React.FC<Props> = ({
     [emblaApi]
   );
 
+  // Auto slide effect
+  useEffect(() => {
+    if (!emblaApi) return;
+    const interval = setInterval(() => {
+      if (!emblaApi) return;
+      const nextIndex = (emblaApi.selectedScrollSnap() + 1) % slides.length;
+      emblaApi.scrollTo(nextIndex);
+    }, 3000); // Change slide every 3 seconds
+
+    return () => clearInterval(interval);
+  }, [emblaApi, slides.length]);
+
   useEffect(() => {
     if (!emblaApi) return;
 
