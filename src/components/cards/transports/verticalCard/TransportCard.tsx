@@ -28,7 +28,8 @@ export default function TransportCard({
   return (
     <Link href={url}>
       <Card className="card-wrapper overflow-hidden sm:p-4 border-none w-full h-auto">
-        <div className="single-item flex flex-col sm:flex-row gap-4">
+        {/* single-item */}
+        <div className=" flex flex-col sm:flex-row gap-4">
           {/* Image Section */}
           <div className="md:single-item-media relative w-full sm:w-32 h-60 sm:h-60 md:w-40 lg:w-60 rounded-xl overflow-hidden">
             <Image
@@ -56,7 +57,7 @@ export default function TransportCard({
                 </div>
 
                 {/* Subtitle */}
-                <div className="py-2">
+                <div className="py-1 md:block hidden">
                   <p className="text-sm">{transport?.sub_title}</p>
                 </div>
 
@@ -69,7 +70,7 @@ export default function TransportCard({
               </div>
 
               {/* Rating badge */}
-              <div className="mt-2 sm:mt-0 sm:self-start">
+              <div className="mt-2 sm:mt-0 sm:self-start md:block hidden">
                 <div className="content-bottom flex flex-col justify-between mt-3">
                   <div className="flex justify-end items-center gap-2 content-bottom-left">
                     <span className="block text-primary-dark text-sm font-sans">
@@ -84,11 +85,11 @@ export default function TransportCard({
             </div>
 
             {/* Bottom Price & CTA */}
-            <div className="mt-3 sm:mt-2">
+            <div className="">
               <DiscountPriceBadge
                 sellPrice={sellPrice}
                 comparePrice={comparePrice}
-                priceAfterText="/hour"
+                priceAfterText="Includes VAT"
               />
               <div className="text-right mt-2">
                 <Button variant={"primary"} className="w-full sm:w-auto !py-4">

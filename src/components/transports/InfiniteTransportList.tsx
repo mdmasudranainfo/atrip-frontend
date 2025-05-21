@@ -133,7 +133,10 @@ export default function InfiniteTransportList({
       <ItemSorting propertyCount={total || 0} label="transports" />
 
       {transports.map((transport, idx) => (
-        <div className="mt-4" key={idx}>
+        <div
+          className="mt-4 md:border-none border rounded-md md:rounded-none  md:p-0 p-4"
+          key={idx}
+        >
           <TransportCard transport={transport} />
         </div>
       ))}
