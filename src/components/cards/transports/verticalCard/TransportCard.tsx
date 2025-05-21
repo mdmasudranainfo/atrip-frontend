@@ -31,12 +31,21 @@ export default function TransportCard({
         {/* single-item */}
         <div className=" flex flex-col sm:flex-row gap-4">
           {/* Image Section */}
-          <div className="md:single-item-media relative w-full sm:w-32 h-60 sm:h-60 md:w-40 lg:w-60 rounded-xl overflow-hidden">
+          {/* <div className="md:single-item-media relative w-full sm:w-32 h-60 sm:h-60 md:w-40 lg:w-60 rounded-xl overflow-hidden">
             <Image
               src={transport.image_url || "/placeholder.svg"}
               alt={transport.title}
               fill
               className="object-contain"
+            />
+          </div> */}
+
+          <div className="md:single-item-media relative w-full sm:w-32 h-60 sm:h-60 md:w-40 lg:w-60 rounded-xl overflow-hidden">
+            <Image
+              src={transport.image_url || "/placeholder.svg"}
+              alt={transport.title}
+              fill
+              className="object-cover"
             />
           </div>
 

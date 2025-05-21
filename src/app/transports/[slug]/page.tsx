@@ -57,7 +57,7 @@ const TransportDetails = async (context: {
         <div className="bg-white py-6 md:p-6 rounded-xl  ">
           {/* Back Link */}
           <Link
-            href="/activities"
+            href="/transports"
             className="text-blue-600 hover:text-blue-800 text-sm mb-4 inline-block px-2 md:px-0 "
           >
             <ArrowLeft className="h-4 w-4 inline-block mr-1 mb-[2px]" />
@@ -79,7 +79,7 @@ const TransportDetails = async (context: {
 
           <ImageGallery
             images={GelleryImage}
-            title={"Activities"}
+            title={"Transports"}
             star_rate={5}
             review_score={transport?.review_score}
             alt="Activities Images"
