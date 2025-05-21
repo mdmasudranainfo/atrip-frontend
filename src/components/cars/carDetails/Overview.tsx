@@ -6,7 +6,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Card } from "@/components/ui/card";
-import { LandPlot } from "lucide-react";
+import { LandPlot, SquareKanban } from "lucide-react";
 import CarFAQs from "@/components/cars/carDetails/CarFaq";
 import Essentials from "@/components/cars/carDetails/Essentials";
 import GreatChoice from "@/components/cars/carDetails/GreatChoice";
@@ -31,7 +31,10 @@ const CarOverview = ({ carTabData }: any) => {
           <AccordionItem value="policies" className="border-none">
             <AccordionTrigger className="px-6 py-4 hover:no-underline">
               <div className="flex items-center gap-2">
-                <LandPlot color="blue" className="h-5 w-5" />
+                <SquareKanban
+                  color="blue"
+                  className="h-10 w-10 bg-blue-50 p-2 rounded-lg"
+                />
                 <span className="text-base font-bold">Car Overview</span>
               </div>
             </AccordionTrigger>

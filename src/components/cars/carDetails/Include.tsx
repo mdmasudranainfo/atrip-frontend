@@ -6,7 +6,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Card } from "@/components/ui/card";
-import { LandPlot } from "lucide-react";
+import { LandPlot, PackagePlus } from "lucide-react";
 const Included = ({ include }: any) => {
   const [showFullContent, setShowFullContent] = useState(false);
   const content = include || "";
@@ -22,7 +22,10 @@ const Included = ({ include }: any) => {
         <AccordionItem value="policies" className="border-none">
           <AccordionTrigger className="px-6 py-4 hover:no-underline">
             <div className="flex items-center gap-2">
-              <LandPlot color="blue" className="h-5 w-5" />
+              <PackagePlus
+                color="blue"
+                className="h-10 w-10 bg-blue-50 p-2 rounded-lg"
+              />
               <span className="text-base font-bold">What’s included</span>
             </div>
           </AccordionTrigger>

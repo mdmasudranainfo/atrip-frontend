@@ -6,7 +6,7 @@ import {
 } from "@/components/ui/accordion";
 import { Card } from "@/components/ui/card";
 import { formatStaticPrice } from "@/lib/utils";
-import { LandPlot } from "lucide-react";
+import { HandPlatter, LandPlot } from "lucide-react";
 import React, { useState } from "react";
 
 const Essentials = ({ essential }: { essential?: string }) => {
@@ -29,7 +29,10 @@ const Essentials = ({ essential }: { essential?: string }) => {
         <AccordionItem value="policies" className="border-none">
           <AccordionTrigger className="px-6 pt-4 hover:no-underline">
             <div className="flex items-center gap-2">
-              <LandPlot color="blue" className="h-5 w-5" />
+              <HandPlatter
+                color="blue"
+                className="h-10 w-10 bg-blue-50 p-2 rounded-lg"
+              />
               <span className="text-base font-bold">Service Provided</span>
             </div>
           </AccordionTrigger>

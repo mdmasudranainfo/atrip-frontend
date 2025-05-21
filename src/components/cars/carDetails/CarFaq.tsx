@@ -1,6 +1,6 @@
 "use client";
 
-import { HelpCircle } from "lucide-react";
+import { HelpCircle, ShieldQuestion } from "lucide-react";
 import {
   Accordion,
   AccordionContent,
@@ -18,7 +18,10 @@ export default function CarFAQs({
     <div className="w-full bg-white border-t-2 py-8">
       <div className="px-4">
         <div className="flex items-center gap-2 mb-6 px-2">
-          <HelpCircle className="h-10 w-10 text-blue-600 bg-blue-50 p-2 rounded-lg" />
+          <ShieldQuestion
+            color="blue"
+            className="h-10 w-10 bg-blue-50 p-2 rounded-lg"
+          />
           <h3 className="text-md font-bold text-[#1A1A1A]">Travelers Asking</h3>
         </div>
         <Accordion type="single" collapsible className="space-y-4">
