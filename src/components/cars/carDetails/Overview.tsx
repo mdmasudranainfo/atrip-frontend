@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Accordion,
   AccordionContent,
@@ -15,6 +15,15 @@ import TermsAndC from "./TermsAndC";
 import BestOption from "./Best_option";
 
 const CarOverview = ({ carTabData }: any) => {
+  const [showFullContent, setShowFullContent] = useState(false);
+  const content = carTabData?.content || "";
+  const charLimit = 1500;
+
+  const shouldTruncate = content.length > charLimit;
+  const visibleContent = showFullContent
+    ? content
+    : content.slice(0, charLimit);
+
   return (
     <div>
       <Card className="w-full border-none rounded-none border -t">
@@ -31,14 +40,23 @@ const CarOverview = ({ carTabData }: any) => {
                 <article className="prose prose-slate prose-lead:text-secondary-foreground dark:prose-invert xl:prose-md w-full mx-auto max-w-4xl">
                   <div
                     className="font-normal leading-7"
-                    dangerouslySetInnerHTML={{ __html: carTabData?.content }}
+                    dangerouslySetInnerHTML={{ __html: visibleContent }}
                   />
+                  {shouldTruncate && (
+                    <button
+                      onClick={() => setShowFullContent(!showFullContent)}
+                      className="mt-4 text-blue-600 hover:underline"
+                    >
+                      {showFullContent ? "See less" : "See more"}
+                    </button>
+                  )}
                 </article>
               </div>
             </AccordionContent>
           </AccordionItem>
         </Accordion>
       </Card>
+
       <div className="border-t">
         <Essentials essential={carTabData?.pre_pick_up} />
       </div>
@@ -51,7 +69,6 @@ const CarOverview = ({ carTabData }: any) => {
       <div className="border-t">
         <BestOption content={carTabData?.best_option} />
       </div>
-
       <div className="border-t">
         <TermsAndC content={carTabData?.term} />
       </div>

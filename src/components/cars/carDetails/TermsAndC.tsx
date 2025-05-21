@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Accordion,
   AccordionContent,
@@ -7,7 +7,15 @@ import {
 } from "@/components/ui/accordion";
 import { Card } from "@/components/ui/card";
 import { LandPlot } from "lucide-react";
-const TermsAndC = ({ content }: any) => {
+const TermsAndC = ({ content: contentM }: any) => {
+  const [showFullContent, setShowFullContent] = useState(false);
+  const content = contentM || "";
+  const charLimit = 1500;
+
+  const shouldTruncate = contentM.length > charLimit;
+  const visibleContent = showFullContent
+    ? contentM
+    : contentM.slice(0, charLimit);
   return (
     <Card className="w-full border-none none rounded-none">
       <Accordion type="single" collapsible defaultValue="policies">
@@ -24,8 +32,16 @@ const TermsAndC = ({ content }: any) => {
               <article className="prose prose-slate prose-lead:text-secondary-foreground dark:prose-invert xl:prose-md w-full mx-auto max-w-4xl">
                 <div
                   className="font-normal leading-7"
-                  dangerouslySetInnerHTML={{ __html: content ?? "" }}
+                  dangerouslySetInnerHTML={{ __html: visibleContent }}
                 />
+                {shouldTruncate && (
+                  <button
+                    onClick={() => setShowFullContent(!showFullContent)}
+                    className="mt-4 text-blue-600 hover:underline"
+                  >
+                    {showFullContent ? "See less" : "See more"}
+                  </button>
+                )}
               </article>
             </div>
           </AccordionContent>

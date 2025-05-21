@@ -7,9 +7,17 @@ import {
 import { Card } from "@/components/ui/card";
 import { formatStaticPrice } from "@/lib/utils";
 import { LandPlot } from "lucide-react";
-import React from "react";
+import React, { useState } from "react";
 
 const Essentials = ({ essential }: { essential?: string }) => {
+  const [showFullContent, setShowFullContent] = useState(false);
+  const content = essential || "";
+  const charLimit = 1500;
+
+  const shouldTruncate = content.length > charLimit;
+  const visibleContent = showFullContent
+    ? content
+    : content.slice(0, charLimit);
   return (
     <Card className="w-full border-none none rounded-none">
       <Accordion
@@ -31,8 +39,16 @@ const Essentials = ({ essential }: { essential?: string }) => {
               <article className="prose prose-slate prose-lead:text-secondary-foreground dark:prose-invert xl:prose-md w-full mx-auto max-w-4xl">
                 <div
                   className="font-normal leading-7"
-                  dangerouslySetInnerHTML={{ __html: essential ?? "" }}
+                  dangerouslySetInnerHTML={{ __html: visibleContent }}
                 />
+                {shouldTruncate && (
+                  <button
+                    onClick={() => setShowFullContent(!showFullContent)}
+                    className="mt-4 text-blue-600 hover:underline"
+                  >
+                    {showFullContent ? "See less" : "See more"}
+                  </button>
+                )}
               </article>
             </div>
           </AccordionContent>
