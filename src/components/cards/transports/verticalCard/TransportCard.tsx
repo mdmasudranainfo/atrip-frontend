@@ -98,7 +98,7 @@ export default function TransportCard({
               <DiscountPriceBadge
                 sellPrice={sellPrice}
                 comparePrice={comparePrice}
-                priceAfterText="Includes VAT"
+                priceAfterText="Per hour"
               />
               <div className="text-right mt-2">
                 <Button variant={"primary"} className="w-full sm:w-auto !py-4">

@@ -118,7 +118,7 @@ export default function ActivitiesCard({
               <DiscountPriceBadge
                 sellPrice={sellPrice}
                 comparePrice={comparePrice}
-                priceAfterText="Includes VAT"
+                priceAfterText="Per person"
               />
 
               <div className="text-right mt-2">
