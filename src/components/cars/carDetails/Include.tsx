@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import {
   Accordion,
   AccordionContent,
@@ -6,9 +6,12 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Card } from "@/components/ui/card";
-import { ChevronDown, ChevronUp, LandPlot, PackagePlus } from "lucide-react";
+import { ChevronDown, ChevronUp, PackagePlus } from "lucide-react";
+
 const Included = ({ include }: any) => {
   const [showFullContent, setShowFullContent] = useState(false);
+  const sectionRef = useRef<HTMLDivElement>(null);
+
   const content = include || "";
   const charLimit = 1500;
 
@@ -16,6 +19,14 @@ const Included = ({ include }: any) => {
   const visibleContent = showFullContent
     ? content
     : content.slice(0, charLimit);
+
+  const handleToggleContent = () => {
+    if (showFullContent && sectionRef.current) {
+      sectionRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+    setShowFullContent(!showFullContent);
+  };
+
   return (
     <Card className="w-full border-none none rounded-none">
       <Accordion type="single" collapsible defaultValue="policies">
@@ -31,7 +42,7 @@ const Included = ({ include }: any) => {
           </AccordionTrigger>
 
           <AccordionContent className="md:px-6 px-2 pb-6">
-            <div className="w-full">
+            <div className="w-full" ref={sectionRef}>
               <article className="prose prose-slate prose-lead:text-secondary-foreground dark:prose-invert xl:prose-md w-full mx-auto max-w-4xl">
                 <div
                   className="font-normal leading-7"
@@ -39,13 +50,13 @@ const Included = ({ include }: any) => {
                 />
                 {shouldTruncate && (
                   <button
-                    onClick={() => setShowFullContent(!showFullContent)}
+                    onClick={handleToggleContent}
                     className="mt-4 text-blue-600 hover:underline px-2 flex items-center gap-1"
                   >
                     <span>{showFullContent ? "See less" : "See more"}</span>
 
                     {showFullContent ? (
-                      <ChevronUp className="" />
+                      <ChevronUp />
                     ) : (
                       <ChevronDown className="mt-1" />
                     )}
