@@ -47,7 +47,7 @@ const CarOverview = ({ carTabData }: any) => {
                   color="blue"
                   className="h-10 w-10 bg-blue-50 p-2 rounded-lg"
                 />
-                <span className="text-base font-bold">Car Overview</span>
+                <span className="text-base font-bold">Car Highlights</span>
               </div>
             </AccordionTrigger>
             <AccordionContent className="md:px-6 px-2 pb-6">
