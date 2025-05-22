@@ -6,7 +6,7 @@ import {
 } from "@/components/ui/accordion";
 import { Card } from "@/components/ui/card";
 import { formatStaticPrice } from "@/lib/utils";
-import { HandPlatter, LandPlot } from "lucide-react";
+import { ChevronDown, ChevronUp, HandPlatter, LandPlot } from "lucide-react";
 import React, { useState } from "react";
 
 const Essentials = ({ essential }: { essential?: string }) => {
@@ -47,9 +47,15 @@ const Essentials = ({ essential }: { essential?: string }) => {
                 {shouldTruncate && (
                   <button
                     onClick={() => setShowFullContent(!showFullContent)}
-                    className="mt-4 text-blue-600 hover:underline"
+                    className="mt-4 text-blue-600 hover:underline px-2 flex items-center gap-1"
                   >
-                    {showFullContent ? "See less" : "See more"}
+                    <span>{showFullContent ? "See less" : "See more"}</span>
+
+                    {showFullContent ? (
+                      <ChevronUp className="" />
+                    ) : (
+                      <ChevronDown className="mt-1" />
+                    )}
                   </button>
                 )}
               </article>

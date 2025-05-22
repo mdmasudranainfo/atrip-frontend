@@ -6,7 +6,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Card } from "@/components/ui/card";
-import { LandPlot, PackagePlus } from "lucide-react";
+import { ChevronDown, ChevronUp, LandPlot, PackagePlus } from "lucide-react";
 const Included = ({ include }: any) => {
   const [showFullContent, setShowFullContent] = useState(false);
   const content = include || "";
@@ -40,9 +40,15 @@ const Included = ({ include }: any) => {
                 {shouldTruncate && (
                   <button
                     onClick={() => setShowFullContent(!showFullContent)}
-                    className="mt-4 text-blue-600 hover:underline"
+                    className="mt-4 text-blue-600 hover:underline px-2 flex items-center gap-1"
                   >
-                    {showFullContent ? "See less" : "See more"}
+                    <span>{showFullContent ? "See less" : "See more"}</span>
+
+                    {showFullContent ? (
+                      <ChevronUp className="" />
+                    ) : (
+                      <ChevronDown className="mt-1" />
+                    )}
                   </button>
                 )}
               </article>

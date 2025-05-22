@@ -6,7 +6,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Card } from "@/components/ui/card";
-import { LandPlot, SquareKanban } from "lucide-react";
+import { ChevronDown, ChevronUp, LandPlot, SquareKanban } from "lucide-react";
 import CarFAQs from "@/components/cars/carDetails/CarFaq";
 import Essentials from "@/components/cars/carDetails/Essentials";
 import GreatChoice from "@/components/cars/carDetails/GreatChoice";
@@ -48,9 +48,15 @@ const CarOverview = ({ carTabData }: any) => {
                   {shouldTruncate && (
                     <button
                       onClick={() => setShowFullContent(!showFullContent)}
-                      className="mt-4 text-blue-600 hover:underline"
+                      className="mt-4 text-blue-600 hover:underline px-2 flex items-center gap-1"
                     >
-                      {showFullContent ? "See less" : "See more"}
+                      <span>{showFullContent ? "See less" : "See more"}</span>
+
+                      {showFullContent ? (
+                        <ChevronUp className="" />
+                      ) : (
+                        <ChevronDown className="mt-1" />
+                      )}
                     </button>
                   )}
                 </article>
