@@ -9,23 +9,27 @@ import { ChevronDown, ChevronUp, HandPlatter } from "lucide-react";
 import React, { useState, useRef } from "react";
 
 const Essentials = ({ essential }: { essential?: string }) => {
-  const [showFullContent, setShowFullContent] = useState(false);
+  const [visibleCharCount, setVisibleCharCount] = useState(1500);
   const contentRef = useRef<HTMLDivElement>(null);
 
   const content = essential || "";
-  const charLimit = 1500;
-  const shouldTruncate = content.length > charLimit;
-  const visibleContent = showFullContent
-    ? content
-    : content.slice(0, charLimit);
+  const isFullyVisible = visibleCharCount >= content.length;
+  const visibleContent = content.slice(0, visibleCharCount);
 
   const handleToggle = () => {
-    // If collapsing content, scroll to top of content
-    if (showFullContent && contentRef.current) {
-      contentRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (isFullyVisible) {
+      // Collapse to initial state and scroll to top
+      setVisibleCharCount(1500);
+      if (contentRef.current) {
+        contentRef.current.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
+    } else {
+      // Reveal more content
+      setVisibleCharCount((prev) => prev + 1500);
     }
-
-    setShowFullContent(!showFullContent);
   };
 
   return (
@@ -54,14 +58,14 @@ const Essentials = ({ essential }: { essential?: string }) => {
                   className="font-normal leading-7"
                   dangerouslySetInnerHTML={{ __html: visibleContent }}
                 />
-                {shouldTruncate && (
+                {content.length > 1500 && (
                   <button
                     onClick={handleToggle}
                     className="mt-4 text-blue-600 hover:underline px-2 flex items-center gap-1"
                   >
-                    <span>{showFullContent ? "See less" : "See more"}</span>
-                    {showFullContent ? (
-                      <ChevronUp className="" />
+                    <span>{isFullyVisible ? "See less" : "See more"}</span>
+                    {isFullyVisible ? (
+                      <ChevronUp />
                     ) : (
                       <ChevronDown className="mt-1" />
                     )}

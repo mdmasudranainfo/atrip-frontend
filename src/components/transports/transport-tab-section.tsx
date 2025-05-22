@@ -127,7 +127,7 @@ export default function TransportTabSection({
   const [activeTab, setActiveTab] = useState<string>("overview");
 
   const tabItems = [
-    { value: "overview", label: "Car Highlights" },
+    { value: "overview", label: "Car Overview" },
     { value: "essentials", label: "Service Provided" }, //essentials
     { value: "choice", label: "Great choice for" },
     { value: "include", label: "Inclusions" },
